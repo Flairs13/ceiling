@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://flairsss:hw7gs7eip7@cluster.eouga.mongodb.net/potolki-shop?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000"
+}
