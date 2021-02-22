@@ -2,23 +2,12 @@ const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
-const Profile = require('./models/profile')
 const path = require('path')
-const initRoutes = require("./routes/uploads");
 const profileRoutes = require("./routes/profile")
 
 
 
-
-
-
-
 const app = express()
-initRoutes(app);
-
-
-
-
 app.use('/uploads', express.static('./uploads'));
 
 
