@@ -1,9 +1,10 @@
-import {spawn } from "redux-saga/effects";
-import catalogSaga from "./Catalog/catalog-saga"
+import {spawn} from "redux-saga/effects";
+import item from './Admin/src/profile/item-saga'
+
 
 
 
 
 export default function* rootSaga () {
-   yield spawn(catalogSaga)
+    yield spawn(item)
 }

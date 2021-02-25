@@ -2,12 +2,15 @@ import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import CreateSagaMiddleware from 'redux-saga'
 
 import rootSaga from "./root-saga";
-import {catalogReducer} from "./Catalog/catalog-reducer";
+import {itemReducer} from "./Admin/src/profile/item-reducer";
+import {authReducer} from "./Admin/src/auth/auth-reducer";
+
 
 
 
 let reducers = combineReducers ({
-    catalogReducer
+    itemReducer,
+    authReducer
 })
 
 
