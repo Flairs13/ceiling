@@ -6,24 +6,9 @@ const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
 const path = require('path')
 const profileRoutes = require("./routes/profile")
-const multer = require ('multer');
 const uploadController = require("./Controllers/profileController");
 
 
-const storage = multer.diskStorage ({
-                                        destination: function (req, file, cb) {
-                                            cb (null,  './uploads');
-                                        },
-                                        filename: function (req, file, cb) {
-                                            cb (null, file.originalname);
-                                        }
-                                    });
-
-const uploadImg = multer ({
-                              storage: storage,
-                              limits : {fileSize : 1000000}
-})
-    .single ('image');
 
 
 
@@ -53,6 +38,7 @@ async function start(){
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
+            useFindAndModify: false,
         })
         app.listen(PORT, () => console.log(`App started on port${PORT}....`))
     } catch (e) {
@@ -60,8 +46,6 @@ async function start(){
         process.exit(1)
     }
 }
-
-router.post('/uploads',uploadImg, uploadController.newProfile)
 
 
 start()

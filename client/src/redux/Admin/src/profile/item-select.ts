@@ -11,3 +11,7 @@ export const getItems = (state:AppStateType) => {
 export const getStatus = (state:AppStateType) => {
     return state.itemReducer.status
 }
+
+export const getCollection = (state: AppStateType) => {
+    return state.itemReducer.collection
+}

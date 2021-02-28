@@ -17,8 +17,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Item from "./item/item";
 import {Route, NavLink , useHistory} from "react-router-dom";
+import ItemContainer from "./item/item-container";
 
 const drawerWidth = 240;
 
@@ -92,7 +92,7 @@ export default function AdminMain() {
     const arr = [
         {name: 'Полотна', route: 'polotna'},
         {name: 'Профили', route: 'profile'},
-        {name: 'Вставки', route: 'vstavki'},
+        {name: 'Вставки', route: 'tape'},
         {name: 'Комплектующие', route: 'komplect'},
         {name: 'Светильники', route: 'svetilniki'},
     ]
@@ -181,7 +181,7 @@ export default function AdminMain() {
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Route path ='/admin/main/:type' render={({match}) => <Item type={match.params.type}/>}/>
+                <Route path ='/admin/main/:type' render={({match}) => <ItemContainer type={match.params.type}/>}/>
             </main>
         </div>
     );

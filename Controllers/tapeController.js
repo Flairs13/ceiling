@@ -1,25 +1,19 @@
 const config = require ('config')
-const Profile = require ('../models/profile')
+const Tape = require ('../models/tape')
 
 
-module.exports.newProfile = (req, res) => {
-    console.log (req.body)
-    Profile.findOne ({}, () => {
+module.exports.newTape = (req, res) => {
+    Tape.findOne ({}, () => {
         const host = req.host;
         const filePath = req.protocol + "://" + host + ':' + config.get ('port') + '/' + req.file.path;
 
 
-        const newProfile = new Profile ({
+        const newProfile = new Tape ({
                                             name: req.body.name,
-                                            material: req.body.material,
                                             type: req.body.type,
-                                            size: req.body.size,
-                                            priceOneUnit: req.body.priceOneUnit,
                                             priceOneMetre: req.body.priceOneMetre,
                                             technology: req.body.technology,
-                                            perf: req.body.perf,
-                                            weight: req.body.weight,
-                                            image: filePath
+                                            image: filePath,
                                         })
 
         newProfile.save ((err, data) => {
@@ -30,33 +24,29 @@ module.exports.newProfile = (req, res) => {
     })
 };
 
-module.exports.profileUpdate = (req, res) => {
+module.exports.tapeUpdate = (req, res) => {
 
     const updates = {
         name: req.body.name,
-        material: req.body.material,
         type: req.body.type,
-        size: req.body.size,
-        priceOneUnit: req.body.priceOneUnit,
         priceOneMetre: req.body.priceOneMetre,
         technology: req.body.technology,
-        perf: req.body.perf,
-        weight: req.body.weight
     };
+
     if (req.file) {
         const host = req.host;
         const filePath = req.protocol + "://" + host + ':' + config.get ('port') + '/' + req.file.path;
         updates.image = filePath;
     }
 
-    Profile.findByIdAndUpdate(req.body._id, {$set:updates} ).then (post => {res.send(post)}).catch (err => {res.send(err)});
+    Tape.findByIdAndUpdate(req.body._id, {$set:updates} ).then (post => {res.send(post)}).catch (err => {res.send(err)});
 
 };
 
-module.exports.profileDelete = (req, res) => {
+module.exports.tapeDelete = (req, res) => {
     const _id = req.params.id.slice(1)
     console.log (JSON.stringify(_id))
-    Profile.findByIdAndRemove(_id, {},function (err, docs) {
+    Tape.findByIdAndRemove(_id, {},function (err, docs) {
         if (err) {
             console.log (err)
         }
