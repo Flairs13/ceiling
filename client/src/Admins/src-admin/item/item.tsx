@@ -6,16 +6,27 @@ import ItemEditor from "./item-editor";
 import {useDispatch} from "react-redux";
 import {deleteItemAction} from "../../../redux/Admin/src/profile/item-action";
 import ItemAdd from "./item-add";
+import Profile from './item-description/profile';
+import Tape from "./item-description/tape";
+import Accessories from "./item-description/accessories";
+import Light from "./item-description/light";
+import Constructions from "./item-description/constructions";
+import Led from "./item-description/led";
 
 type Props = {
     image: string
     size: string
     material: string
-    priceOneUnit: string
-    priceOneMetre: string
+    priceOneUnit: number
+    priceOneMetre: number
     technology: string
+    manufacturer: string
+    numberLed: number
     weight: string
     perf: string
+    plinth: string,
+    color: string,
+    power: string,
     type: string
     name: string
     _id: string
@@ -41,7 +52,6 @@ const Item: React.FC<Props> = (props) => {
     const deleteChange = () => {
         dispatch(deleteItemAction(props._id, props.req))
         setAnchorEl(null);
-        dispatch(props.getItem(props.req))
     }
     const editChange = () => {
         setAnchorEl(null);
@@ -53,58 +63,42 @@ const Item: React.FC<Props> = (props) => {
     }
 
 
+    const descriptionRender = () => {
+        switch (props.req) {
+            case 'profile': {
+                return <Profile {...props}/>
+            }
+
+            case 'tape': {
+                return <Tape {...props}/>
+            }
+
+            case 'accessories': {
+                return <Accessories {...props} />
+            }
+
+            case 'light': {
+                return <Light  {...props} />
+            }
+
+            case 'constructions': {
+                return  <Constructions {...props} />
+            }
+
+            case 'led': {
+                return <Led {...props} />
+            }
+        }
+    }
+
+
     return (
         <ItemContainer>
             <ImgWrapper>
                 <img src={props.image} alt={props.name}/>
             </ImgWrapper>
             <DescriptionWrapper>
-                {props.name &&
-                <DescriptionItem>
-                    <dt>Наименование:</dt>
-                    <dd>{props.name}</dd>
-                </DescriptionItem>}
-                {props.material &&
-                <DescriptionItem>
-                    <dt>Материал:</dt>
-                    <dd>{props.material}</dd>
-                </DescriptionItem>}
-                {props.size &&
-                <DescriptionItem>
-                    <dt>Размер:</dt>
-                    <dd>{props.size}м</dd>
-                </DescriptionItem>}
-                {props.type &&
-                <DescriptionItem>
-                    <dt>Тип:</dt>
-                    <dd>{props.type}</dd>
-                </DescriptionItem>}
-                {props.technology &&
-                <DescriptionItem>
-                    <dt>Технология:</dt>
-                    <dd>{props.technology}</dd>
-                </DescriptionItem>}
-                {props.weight &&
-                <DescriptionItem>
-                    <dt>Вес:</dt>
-                    <dd>{props.weight}</dd>
-                </DescriptionItem>}
-                {props.perf &&
-                <DescriptionItem>
-                    <dt>Вид:</dt>
-                    <dd>{props.perf}</dd>
-                </DescriptionItem>}
-                {props.priceOneUnit &&
-                <DescriptionItem>
-                    <dt>Цена за шт:</dt>
-                    <dd>{props.priceOneUnit}</dd>
-                </DescriptionItem>}
-                {props.priceOneMetre &&
-                <DescriptionItem>
-                    <dt>Цена за метр:</dt>
-                    <dd>{props.priceOneMetre}</dd>
-                </DescriptionItem>}
-
+                {descriptionRender()}
             </DescriptionWrapper>
 
             <Btn aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -123,12 +117,12 @@ const Item: React.FC<Props> = (props) => {
 
             </Menu>
             {isShowModalEditor && <Modal closeModal={setShowModalEditor} padding={'5px'}>
-                                     <ItemEditor {...props}/>
-                                 </Modal>
+                <ItemEditor {...props}/>
+            </Modal>
             }
             {isShowModalAdd && <Modal closeModal={setShowModalAdd} padding={'5px'}>
-                                    <ItemAdd closeModal={setShowModalAdd} getItem={props.getItem} req={props.req}/>
-                                </Modal>
+                <ItemAdd closeModal={setShowModalAdd} getItem={props.getItem} req={props.req}/>
+            </Modal>
             }
 
         </ItemContainer>

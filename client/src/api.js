@@ -11,8 +11,8 @@ export const getItemArr = route => {
 }
 
 export const uploadItem = (payload,route) => {
-    let formData = new FormData()
     debugger
+    let formData = new FormData()
     Object.entries(payload).forEach(i => {
         if (i[0] === 'file'){
             formData.append(`image`, i[1])
@@ -21,21 +21,26 @@ export const uploadItem = (payload,route) => {
         }
 
     })
-    return instance.post(`/${route}`,formData,{ headers: { 'Content-type': 'multipart/form-data' }}).then(res => ({res})).catch(error => console.log(error.message))
+    return instance.post(`/${route}`,formData,{ headers: { 'Content-type': 'multipart/form-data' }}).then(response => ({response})).catch(error => console.log(error.message))
 }
 
 export const updateItem = (payload,route,id) => {
+    debugger
     let formData = new FormData()
     formData.append('_id', id)
     Object.entries(payload).forEach(i => {
         if (i[0] === 'file'){
             formData.append(`image`, i[1])
         } else {
-            formData.append(`${i[0]}`, i[1])
+            let value = i[1]
+            if (value === null){
+                value = ''
+            }
+            formData.append(`${i[0]}`, value)
         }
 
     })
-    return instance.put(`/${route}`,formData,{ headers: { 'Content-type': 'multipart/form-data' }}).then(res => ({res})).catch(error => console.log(error.message))
+    return instance.put(`/${route}`,formData,{ headers: { 'Content-type': 'multipart/form-data' }}).then(response => ({response})).catch(error => console.log(error.message))
 }
 
 export const deleteItem = (id,route) => {

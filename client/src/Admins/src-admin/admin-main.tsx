@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,13 +12,22 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import PanToolIcon from '@material-ui/icons/PanTool';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import {Route, NavLink , useHistory} from "react-router-dom";
+import GavelIcon from '@material-ui/icons/Gavel';
+import {NavLink, Route} from "react-router-dom";
+import EcoIcon from '@material-ui/icons/Eco';
+import PowerIcon from '@material-ui/icons/Power';
 import ItemContainer from "./item/item-container";
+import AttachFileIcon from '@material-ui/icons/AttachFile';
+import CategoryIcon from '@material-ui/icons/Category';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import BuildIcon from '@material-ui/icons/Build';
+import DockIcon from '@material-ui/icons/Dock'
+import StarIcon from '@material-ui/icons/Star';
+import Cloth from './item/cloth';
 
 const drawerWidth = 240;
 
@@ -90,11 +99,18 @@ export default function AdminMain() {
     const [open, setOpen] = React.useState(false);
 
     const arr = [
-        {name: 'Полотна', route: 'polotna'},
-        {name: 'Профили', route: 'profile'},
-        {name: 'Вставки', route: 'tape'},
-        {name: 'Комплектующие', route: 'komplect'},
-        {name: 'Светильники', route: 'svetilniki'},
+        {name: 'Профили', route: 'profile', icon: <GavelIcon/>},
+        {name: 'Вставки', route: 'tape', icon: <PanToolIcon/>},
+        {name: 'Комплектующие', route: 'accessories', icon: <AttachFileIcon/>},
+        {name: 'Светильники', route: 'light', icon: <PowerIcon/>},
+    ]
+
+    const arr2 = [
+        {name: 'Конструкции', route: 'constructions', icon: <CategoryIcon/>,},
+        {name: 'Ленты и пульты', route: 'led', icon: <DockIcon/>,},
+        {name: 'Расходники', route: 'ras', icon: <BusinessCenterIcon/>,},
+        {name: 'Инструменты', route: 'tools', icon: <BuildIcon/>,},
+        {name: 'Дополнительное', route: 'about', icon: <StarIcon/>,},
     ]
 
 
@@ -108,7 +124,7 @@ export default function AdminMain() {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
@@ -125,7 +141,7 @@ export default function AdminMain() {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         Админка для потолков
@@ -147,41 +163,50 @@ export default function AdminMain() {
             >
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
                     </IconButton>
                 </div>
-                <Divider />
+                <Divider/>
                 <List>
+                    <NavLink style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/polotna`}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <EcoIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary={'Полотна'}/>
+                        </ListItem>
+                    </NavLink>
                     {arr.map((i) => (
-                         <NavLink to={`/admin/main/${i.route}`}>
-                        <ListItem button key={i.name}>
-                            <ListItemIcon>
-                                <InboxIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={i.name} />
-                        </ListItem>
-                         </NavLink>
-                        ))}
+                        <NavLink style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/${i.route}`}>
+                            <ListItem button key={i.name}>
+                                <ListItemIcon>
+                                    {i.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={i.name}/>
+                            </ListItem>
+                        </NavLink>
+                    ))}
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
-                    {['Конструкции',
-                        'Ленты и пульты',
-                        'Расходники',
-                        'Инструменты',
-                        'Дополнительное'].map((text) => (
-                        <ListItem button  key={text}>
-                            <ListItemIcon>
-                                <InboxIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
+                    {arr2.map((i, index) => (
+                        <NavLink style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/${i.route}`}>
+                            <ListItem button key={index}>
+                                <ListItemIcon>
+                                    {i.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={i.name}/>
+                            </ListItem>
+                        </NavLink>
                     ))}
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <div className={classes.toolbar} />
-                <Route path ='/admin/main/:type' render={({match}) => <ItemContainer type={match.params.type}/>}/>
+                <div className={classes.toolbar}/>
+                <Route exact path='/admin/main/:type' render={({match}) => {
+                    if (match.params.type === 'polotna') return <Cloth/>
+                    return <ItemContainer type={match.params.type}/>
+                }}/>
             </main>
         </div>
     );

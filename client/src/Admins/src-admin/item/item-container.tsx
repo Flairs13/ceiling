@@ -6,6 +6,7 @@ import {getItem} from "../../../redux/Admin/src/profile/item-action";
 import Item from "./item";
 import {CircularProgress} from "@material-ui/core";
 import styled from "styled-components/macro";
+import Cloth from "./cloth";
 
 
 type Props = {
@@ -35,7 +36,7 @@ const ItemContainer: React.FC<Props> = (props) => {
                             arrItem.map((item: any) => {
                                 return (
                                     <ul>
-                                        <Item getItem={getItem} req={props.type} {...item}/>
+                                        <Item getItem={getItem}  req={props.type} {...item}/>
                                     </ul>
 
 

@@ -34,7 +34,6 @@ const ItemEditor: React.FC<Props> = (props) => {
     console.log(inputsArray)
     const submit = (values: any) => {
         dispatch(updateItemAction(values, props.req, props._id))
-        dispatch(props.getItem(props.req))
     }
 
 

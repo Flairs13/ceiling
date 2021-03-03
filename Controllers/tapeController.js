@@ -2,6 +2,12 @@ const config = require ('config')
 const Tape = require ('../models/tape')
 
 
+module.exports.getTape = (req,res) => {
+    Tape.find ({}).then (profile => res.send (profile)).catch(error => res.send(error))
+}
+
+
+
 module.exports.newTape = (req, res) => {
     Tape.findOne ({}, () => {
         const host = req.host;

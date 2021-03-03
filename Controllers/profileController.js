@@ -1,5 +1,15 @@
 const config = require ('config')
 const Profile = require ('../models/profile')
+const commonControllers = require('../Controllers/commonControllers')
+
+
+
+module.exports.getProfile = (req,res) => {
+    Profile.find ({}).then (profile => res.send (profile)).catch(error => res.send(error))
+}
+
+
+
 
 
 module.exports.newProfile = (req, res) => {
@@ -31,6 +41,7 @@ module.exports.newProfile = (req, res) => {
 };
 
 module.exports.profileUpdate = (req, res) => {
+    console.log (req.body)
 
     const updates = {
         name: req.body.name,
@@ -41,7 +52,7 @@ module.exports.profileUpdate = (req, res) => {
         priceOneMetre: req.body.priceOneMetre,
         technology: req.body.technology,
         perf: req.body.perf,
-        weight: req.body.weight
+        weight: req.body.weight,
     };
     if (req.file) {
         const host = req.host;
@@ -49,7 +60,7 @@ module.exports.profileUpdate = (req, res) => {
         updates.image = filePath;
     }
 
-    Profile.findByIdAndUpdate(req.body._id, {$set:updates} ).then (post => {res.send(post)}).catch (err => {res.send(err)});
+    Profile.findByIdAndUpdate(req.body._id, {$set:updates}).then(post => res.send(post)).catch (err => res.send(err));
 
 };
 

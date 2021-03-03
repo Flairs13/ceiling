@@ -30,7 +30,7 @@ function* uploadItemWatcher() {
 function* uploadItemWorker({payload,route} : ReturnType<typeof uploadItemAction>) {
     const {response,error} = yield call(uploadItem, payload,route)
     if (response){
-        console.log(response)
+        yield  put(getItem(route))
     } else if (error) {
         console.log(error)
     }
@@ -49,7 +49,7 @@ function* updateItemWatcher() {
 function* updateItemWorker({values,route,id} : ReturnType<typeof updateItemAction>) {
     const {response,error} = yield call(updateItem, values,route,id)
     if (response){
-        console.log(response)
+        yield  put(getItem(route))
     } else if (error) {
         console.log(error)
     }
@@ -63,7 +63,7 @@ function* deleteItemWatcher() {
 function* deleteItemWorker({id,route} : ReturnType<typeof deleteItemAction>) {
     const {response,error} = yield call(deleteItem, id,route)
     if (response){
-        console.log(response)
+        yield  put(getItem(route))
     } else if (error) {
         console.log(error)
     }

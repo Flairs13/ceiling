@@ -1,4 +1,5 @@
 import * as actions from "./item-action"
+import {light} from "@material-ui/core/styles/createPalette";
 
 export const GET_ITEM = 'item-reducer/GET_ITEM'
 export const SET_ITEM = 'item-reducer/SET_ITEM'
@@ -18,7 +19,40 @@ const initialState  = {
             {technology: 'Технология'},
             {perf: 'Вид'},
             {weight: 'Вес'},] as Array<object>,
-        tape: [ {name:'Наименование'}, {type: 'Тип'},  {priceOneMetre: 'Цена за метр'}, {technology: 'Технология'}] as Array<object>,
+        tape: [ {name:'Наименование'},
+            {type: 'Тип'},
+            {priceOneMetre: 'Цена за метр'},
+            {technology: 'Технология'}] as Array<object>,
+        accessories: [
+            {name:'Наименование'},
+            {manufacturer:'Производитель'},
+            {priceOneUnit: 'Цена за шт'},
+            {size: 'Размер'},
+        ] as Array<object>,
+        light: [
+            {name:'Наименование'},
+            {manufacturer:'Производитель'},
+            {priceOneUnit: 'Цена за шт'},
+            {plinth: 'Цоколь'},
+            {color: 'Цвет'},
+            {power: 'Мощность'},
+
+        ] as Array<object>,
+        constructions: [
+            {name:'Наименование'},
+            {type: 'Тип'},
+            {priceOneMetre: 'Цена за метр'},
+        ] as Array<object>,
+
+        led: [
+            {name:'Наименование'},
+            {manufacturer:'Производитель'},
+            {power: 'Мощность'},
+            {color: 'Цвет'},
+            {numberLed: 'Кол-во диодов'},
+            {priceOneMetre: 'Цена за метр'},
+            {priceOneUnit: 'Цена за упаковку'},
+        ] as Array<object>,
     },
     status: '',
 }

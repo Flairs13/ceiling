@@ -6,6 +6,10 @@ const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
 const path = require('path')
 const profileRoutes = require("./routes/profile")
+const accessoriesRoutes = require('./routes/accessories')
+const lightRouter = require('./routes/light')
+const constructionsRouter = require('./routes/constructions')
+const ledRouter = require('./routes/led')
 const uploadController = require("./Controllers/profileController");
 
 
@@ -20,7 +24,16 @@ app.use('/uploads', express.static('uploads'));
 
 // app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', require('./routes/tape'),router, profileRoutes)
+app.use(
+    '/api',
+        require('./routes/tape'),
+        router,
+        profileRoutes,
+        accessoriesRoutes,
+        lightRouter,
+        constructionsRouter,
+        ledRouter
+)
 
 if (process.env.NODE_ENV === 'production'){
     app.use('/', express.static(path.join(__dirname,'client', 'build')))

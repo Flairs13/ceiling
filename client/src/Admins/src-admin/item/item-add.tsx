@@ -20,15 +20,25 @@ const ItemAdd: React.FC<Props> = (props) => {
     const dispatch = useDispatch()
 
     const collection = useSelector(getCollection)
-    const test = props.req as keyof typeof collection
-    const arrCollection = collection[test]
+    const route = props.req as keyof typeof collection
+    const arrCollection = collection[route]
 
     const srcImg = useRef('')
 
+
+
     const validationSchema = yup.object().shape({
-        file: yup.mixed().required('Загрузите фото').typeError("Фото обязательно"),
-        priceOneMetre: yup.number().required('Обязательное поле').typeError("Это поле обязательно, введите число"),
-        priceOneUnit: yup.number().typeError('Введите число'),
+        file: yup.mixed().required('Загрузите фото'),
+        priceOneUnit: yup.number(),
+        isBig: yup.boolean(),
+        priceOneMetre: yup.number().when('priceOneUnit', {
+            is: (value: any) => {
+                if (value) return yup.number().notRequired()
+            },
+            otherwise: yup.number().required('Введите цену за метр, или за шт')
+
+        }),
+
     });
 
     const initialValues = {file: '',} as any
@@ -42,7 +52,6 @@ const ItemAdd: React.FC<Props> = (props) => {
 
     const submit = (values: any) => {
         dispatch(uploadItemAction(values,props.req))
-        dispatch(props.getItem(props.req))
         props.closeModal(false)
 
     }
@@ -71,7 +80,6 @@ const ItemAdd: React.FC<Props> = (props) => {
                             </FormsItem>
 
                             {arrCollection.map((i,index) => {
-                                const value = Object.entries(i)[0][0]
                                 return (
                                     <FormsItem key={index}>
                                         <Label>{Object.entries(i)[0][1]}</Label>
