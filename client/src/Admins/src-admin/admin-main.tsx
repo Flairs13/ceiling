@@ -108,9 +108,9 @@ export default function AdminMain() {
     const arr2 = [
         {name: 'Конструкции', route: 'constructions', icon: <CategoryIcon/>,},
         {name: 'Ленты и пульты', route: 'led', icon: <DockIcon/>,},
-        {name: 'Расходники', route: 'ras', icon: <BusinessCenterIcon/>,},
+        {name: 'Расходники', route: 'consumables', icon: <BusinessCenterIcon/>,},
         {name: 'Инструменты', route: 'tools', icon: <BuildIcon/>,},
-        {name: 'Дополнительное', route: 'about', icon: <StarIcon/>,},
+        {name: 'Дополнительное', route: 'additional', icon: <StarIcon/>,},
     ]
 
 

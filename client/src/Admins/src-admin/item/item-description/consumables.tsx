@@ -2,17 +2,16 @@ import React from 'react';
 import styled from "styled-components/macro";
 
 type Props = {
-    name: string,
-    manufacturer: string,
-    plinth: string,
-    color: string,
-    power: string,
-    priceOneUnit: number,
-    priceOneMetre: number,
-    numberLed: number
+    name: string
+    manufacturer: string
+    size: string
+    thickness: string
+    priceOneUnit: number
+    priceOneMetre: number
+    priceOnePack: number
 
 }
-const Led:React.FC<Props> = (props) => {
+const Consumables:React.FC<Props> = (props) => {
     return (
         <>
             {props.name && <DescriptionItem>
@@ -25,23 +24,18 @@ const Led:React.FC<Props> = (props) => {
                 <dd>{props.manufacturer}</dd>
             </DescriptionItem>
             }
-            {props.power && <DescriptionItem>
-                <dt>Мощность:</dt>
-                <dd>{props.power}</dd>
+            {props.size && <DescriptionItem>
+                <dt>Размер:</dt>
+                <dd>{props.size}</dd>
             </DescriptionItem>
             }
-            {props.numberLed && <DescriptionItem>
-                <dt>Кол-во диодов на метр:</dt>
-                <dd>{props.numberLed}</dd>
-            </DescriptionItem>
-            }
-            {props.color && <DescriptionItem>
-                <dt>Цвет:</dt>
-                <dd>{props.color}</dd>
+            {props.thickness && <DescriptionItem>
+                <dt>Толщина:</dt>
+                <dd>{props.thickness}</dd>
             </DescriptionItem>
             }
             {props.priceOneUnit && <DescriptionItem>
-                <dt>Цена за упаковку:</dt>
+                <dt>Цена за шт:</dt>
                 <dd>{props.priceOneUnit}<span>руб</span></dd>
             </DescriptionItem>
             }
@@ -50,11 +44,16 @@ const Led:React.FC<Props> = (props) => {
                 <dd>{props.priceOneMetre}<span>руб</span></dd>
             </DescriptionItem>
             }
+            {props.priceOnePack && <DescriptionItem>
+                <dt>Цена за упаковку:</dt>
+                <dd>{props.priceOneMetre}<span>руб</span></dd>
+            </DescriptionItem>
+            }
         </>
     );
 };
 
-export default Led;
+export default Consumables;
 
 
 const DescriptionItem = styled.div`

@@ -1,5 +1,5 @@
 import * as actions from "./item-action"
-import {light} from "@material-ui/core/styles/createPalette";
+
 
 export const GET_ITEM = 'item-reducer/GET_ITEM'
 export const SET_ITEM = 'item-reducer/SET_ITEM'
@@ -52,6 +52,35 @@ const initialState  = {
             {numberLed: 'Кол-во диодов'},
             {priceOneMetre: 'Цена за метр'},
             {priceOneUnit: 'Цена за упаковку'},
+        ] as Array<object>,
+
+        consumables: [
+            {name:'Наименование'},
+            {manufacturer:'Производитель'},
+            {thickness: 'Толщина'},
+            {size: 'Размер'},
+            {priceOneMetre: 'Цена за метр'},
+            {priceOneUnit: 'Цена за шт'},
+            {priceOnePack: 'Цена за упаковку'},
+        ] as Array<object>,
+
+        tools: [
+            {name:'Наименование'},
+            {type: 'Тип'},
+            {manufacturer:'Производитель'},
+            {size: 'Размер'},
+            {priceOneUnit: 'Цена за шт'},
+        ] as Array<object>,
+
+        additional: [
+            {name:'Наименование'},
+            {type: 'Тип'},
+            {manufacturer:'Производитель'},
+            {color: 'Цвет'},
+            {size: 'Размер'},
+            {priceOneMetre: 'Цена за метр'},
+            {priceOneUnit: 'Цена за шт'},
+            {priceOnePack: 'Цена за упаковку'},
         ] as Array<object>,
     },
     status: '',

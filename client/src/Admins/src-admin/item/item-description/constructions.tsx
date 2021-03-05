@@ -30,7 +30,6 @@ export default Constructions;
 
 
 const DescriptionItem = styled.div`
-  font-size: 15px;
   display: flex;
   margin-bottom: 10px;
   dt {

@@ -2,36 +2,48 @@ import React from 'react';
 import styled from "styled-components/macro";
 
 type Props = {
-    name: string,
-    manufacturer: string,
-    size: string,
-    priceOneUnit: number,
+    name: string
+    type: string
+    manufacturer: string
+    size: string
+    priceOneUnit: number
+
 
 }
-const Accessories:React.FC<Props> = (props) => {
+const Tools:React.FC<Props> = (props) => {
     return (
         <>
-            <DescriptionItem>
+            {props.name && <DescriptionItem>
                 <dt>Наименование:</dt>
                 <dd>{props.name}</dd>
             </DescriptionItem>
-            <DescriptionItem>
+            }
+            {props.type && <DescriptionItem>
+                <dt>Тип:</dt>
+                <dd>{props.type}</dd>
+            </DescriptionItem>
+            }
+            {props.manufacturer && <DescriptionItem>
                 <dt>Производитель:</dt>
                 <dd>{props.manufacturer}</dd>
             </DescriptionItem>
-            <DescriptionItem>
+            }
+            {props.size && <DescriptionItem>
                 <dt>Размер:</dt>
                 <dd>{props.size}</dd>
             </DescriptionItem>
-            <DescriptionItem>
+            }
+
+            {props.priceOneUnit && <DescriptionItem>
                 <dt>Цена за шт:</dt>
                 <dd>{props.priceOneUnit}<span>руб</span></dd>
             </DescriptionItem>
+            }
         </>
     );
 };
 
-export default Accessories;
+export default Tools;
 
 
 const DescriptionItem = styled.div`

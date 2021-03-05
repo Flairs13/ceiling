@@ -6,6 +6,8 @@ import {ReactComponent as Img} from '../../../assets/images/no-image.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {getCollection} from "../../../redux/Admin/src/profile/item-select";
 import * as yup from 'yup';
+import {IconButton} from "@material-ui/core";
+import ClearIcon from "@material-ui/icons/Clear";
 
 
 
@@ -60,7 +62,12 @@ const ItemAdd: React.FC<Props> = (props) => {
 
     return (
         <EditorWrapper>
-            <Header>Добавить</Header>
+            <Header>
+                <p>Добавить</p>
+                <IconButton onClick={() => props.closeModal(false)} aria-label="delete">
+                    <ClearIcon />
+                </IconButton>
+            </Header>
             <Forms>
                 <Formik validationSchema={validationSchema}  initialValues={initialValues} onSubmit={submit}>
                     {({values, handleSubmit, setFieldValue,errors,isValid, handleChange,handleBlur,dirty}) => (
@@ -112,13 +119,20 @@ const PhotoSvgIcon = styled(Img)`
 
 
 const EditorWrapper = styled.div`
-   width: 500px;
+   min-width: 500px;
+   white-space: nowrap;
+   
+  @media(max-width: 738px) {
+    min-width: 200px;
+    max-width: 350px;
+  }
 `
 
 const Header = styled.div`
     padding: 0 20px;
     border-bottom: 1px solid #e7e8ec;
-    display: block;
+    display: flex;
+    justify-content: space-between;
     height: 54px;
     line-height: 54px;
     font-size: 16px;
@@ -130,6 +144,10 @@ const Header = styled.div`
 
 const Forms = styled.section`
   padding: 30px 10px;
+     @media(max-width: 738px) {
+    max-height: 400px;
+    overflow-y: auto;
+  }
 `
 
 const ImgWrapper = styled.div`
@@ -138,6 +156,9 @@ const ImgWrapper = styled.div`
   
   img {
     width: 100%;
+  }
+  @media(max-width: 738px) {
+    width: 90px;
   }
 `
 
@@ -153,6 +174,9 @@ const Label = styled.label`
   color: #656565;
   justify-self: end;
   grid-column: labels;
+   @media(max-width: 738px) {
+    justify-self: start;
+  }
 `
 
 const Input = styled(Field)`
@@ -165,6 +189,11 @@ const Input = styled(Field)`
   max-width: 300px;
   height: 25px;
   grid-column: controls;
+  
+  @media(max-width: 738px) {
+    width: 100%;
+    justify-self: end;
+  }
 `
 
 const Error = styled(ErrorMessage)`

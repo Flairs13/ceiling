@@ -49,7 +49,7 @@ const Profile:React.FC<Props> = (props) => {
                 <dd>{props.priceOneMetre}<span>руб</span></dd>
             </DescriptionItem>
             <DescriptionItem>
-                <dt>Цена за шт</dt>
+                <dt>Цена за шт:</dt>
                 <dd>{props.priceOneUnit}<span>руб</span></dd>
             </DescriptionItem>
         </>
@@ -60,7 +60,6 @@ export default Profile;
 
 
 const DescriptionItem = styled.div`
-  font-size: 15px;
   display: flex;
   margin-bottom: 10px;
   dt {

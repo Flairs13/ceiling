@@ -26,6 +26,7 @@ time, mark, audio, video {
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+ 
 }
 
 
@@ -44,7 +45,6 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1.1;
     background-color: #edeef0;
-    font-size: 16px;
 }
 
 ol, ul {

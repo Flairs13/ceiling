@@ -3,18 +3,21 @@ import styled from "styled-components/macro";
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {updateItemAction} from '../../../redux/Admin/src/profile/item-action';
 import {useDispatch} from "react-redux";
+import {IconButton} from "@material-ui/core";
+import ClearIcon from '@material-ui/icons/Clear';
 
 type Props = {
     image: string
     req: string
     _id: string
     getItem: (req: string) => void
+    closeModal: (flag: boolean) => void
 }
 
 const ItemEditor: React.FC<Props> = (props) => {
     const srcImg = useRef(props.image)
     const dispatch = useDispatch()
-    const exceptions = ['_id', 'image', '__v', 'req', 'getItem']
+    const exceptions = ['_id', 'image', '__v', 'req', 'getItem','closeModal','fnc']
     const inputsArray = Object.entries({...props})
         .filter((item) => {
                 let flag = false
@@ -39,7 +42,12 @@ const ItemEditor: React.FC<Props> = (props) => {
 
     return (
         <EditorWrapper>
-            <Header>Редактировать</Header>
+            <Header>
+                <p>Редактировать</p>
+                <IconButton onClick={() => props.closeModal(false)} aria-label="delete">
+                    <ClearIcon />
+                </IconButton>
+            </Header>
             <Forms>
                 <Formik initialValues={Object.fromEntries(inputsArray)} onSubmit={submit}>
                     {({values, setFieldValue, handleChange, handleBlur, dirty}) => (
@@ -81,12 +89,17 @@ export default ItemEditor;
 
 const EditorWrapper = styled.div`
    width: 500px;
+   @media(max-width: 738px) {
+    min-width: 200px;
+    max-width: 350px;
+  }
 `
 
 const Header = styled.div`
     padding: 0 20px;
     border-bottom: 1px solid #e7e8ec;
-    display: block;
+    display: flex;
+    justify-content: space-between;
     height: 54px;
     line-height: 54px;
     font-size: 16px;
@@ -97,6 +110,10 @@ const Header = styled.div`
 
 const Forms = styled.section`
   padding: 30px 10px;
+    @media(max-width: 738px) {
+    max-height: 400px;
+    overflow-y: auto;
+  }
 `
 
 const ImgWrapper = styled.div`
@@ -105,6 +122,9 @@ const ImgWrapper = styled.div`
   
   img {
     width: 100%;
+  }
+   @media(max-width: 738px) {
+    width: 90px;
   }
 `
 
@@ -120,6 +140,9 @@ const Label = styled.label`
   color: #656565;
   justify-self: end;
   grid-column: labels;
+   @media(max-width: 738px) {
+    justify-self: start;
+  }
 `
 
 const Input = styled(Field)`
@@ -132,6 +155,11 @@ const Input = styled(Field)`
   max-width: 300px;
   height: 25px;
   grid-column: controls;
+  
+    @media(max-width: 738px) {
+    width: 100%;
+    justify-self: end;
+  }
 `
 
 const Error = styled(ErrorMessage)`
