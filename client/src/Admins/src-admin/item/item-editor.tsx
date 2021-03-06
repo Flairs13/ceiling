@@ -100,6 +100,7 @@ const Header = styled.div`
     border-bottom: 1px solid #e7e8ec;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 54px;
     line-height: 54px;
     font-size: 16px;

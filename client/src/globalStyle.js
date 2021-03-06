@@ -1,8 +1,7 @@
 import { createGlobalStyle } from 'styled-components/macro';
 
 const GlobalStyle = createGlobalStyle`
-  body {
-html, body, div, span, applet, object, iframe,
+body,html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -20,12 +19,22 @@ time, mark, audio, video {
     border: 0;
     vertical-align: baseline;
     text-decoration: none;
+    line-height: 1.1;
 
+}
+
+:root {
+  --main-color: #0088CC;
+  --main-hover: #00a5e6;
+  --main-border: rgba(0,0,0,0.06);
+  --nav: #f7f7f7;
+  --second: #999;
 }
 
 * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
  
 }
 
@@ -42,10 +51,7 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
-body {
-    line-height: 1.1;
-    background-color: #edeef0;
-}
+
 
 ol, ul {
     list-style: none;
@@ -381,6 +387,7 @@ textarea {resize:horizontal;}
     color: #000;
     padding: 0.2em 0;
 }
+
 
 
 
