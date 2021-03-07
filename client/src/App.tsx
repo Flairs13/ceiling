@@ -19,7 +19,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <GlobalStyle/>
                 <Route path='/admin' render={() => <Admin/>}/>
-                <Route exact path={'/'} render={() => <Main/>}/>
+                <Route exact path={'/:name'} render={() => <Main/>}/>
             </ThemeProvider>
         </>
     );

@@ -6,10 +6,33 @@ import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import {ReactComponent as Down} from '../../assets/images/down-chevron.svg'
 import {ReactComponent as Up} from '../../assets/images/up-chevron.svg'
+import GavelIcon from "@material-ui/icons/Gavel";
+import PanToolIcon from "@material-ui/icons/PanTool";
+import AttachFileIcon from "@material-ui/icons/AttachFile";
+import PowerIcon from "@material-ui/icons/Power";
+import CategoryIcon from "@material-ui/icons/Category";
+import DockIcon from "@material-ui/icons/Dock";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
+import BuildIcon from "@material-ui/icons/Build";
+import StarIcon from "@material-ui/icons/Star";
 
 const HeaderNav: React.FC = () => {
     const [isShowMobileMenu, setShowMobileMenu] = useState(false)
     const [isShowMenu, setShowMenu] = useState(false)
+
+
+    const arrNav = [
+        {name: 'Профили', route: '/profile'},
+        {name: 'Вставки', route: '/tape'},
+        {name: 'Комплектующие', route: '/accessories'},
+        {name: 'Светильники', route: '/light'},
+        {name: 'Конструкции', route: '/constructions'},
+        {name: 'Ленты и пульты', route: '/led'},
+        {name: 'Расходники', route: '/consumables'},
+        {name: 'Инструменты', route: '/tools'},
+        {name: 'Дополнительное', route: '/additional'},
+    ]
+
 
     return (
         <HeaderNavWrapper>
@@ -20,58 +43,21 @@ const HeaderNav: React.FC = () => {
                             onMouseEnter={() => setShowMenu(true)}
                             onMouseLeave={() => setShowMenu(false)}
                         >
-                            <Link to={'/catalog'}>
+                            <Link to={'#'}>
                                 <p>Каталог</p>
                             </Link>
                             <DropDownMenu style={isShowMenu ? {opacity: 1} : undefined}>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>Полотна</DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Профили</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Вставки</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Комплектующие</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Расходные Материалы</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Конструкции</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Светильники-лампы</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Ленты-пульты</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Дополнительное</span>
-                                    </DropDownLink>
-                                </DropDownItem>
-                                <DropDownItem>
-                                    <DropDownLink to={'/polotna'}>
-                                        <span>Инструменты</span>
-                                    </DropDownLink>
-                                </DropDownItem>
+
+
+                                {arrNav.map(i => {
+                                    return (
+                                        <DropDownItem>
+                                            <DropDownLink to={i.route}>{i.name}</DropDownLink>
+                                        </DropDownItem>
+                                    )
+                                })}
+
+
                             </DropDownMenu>
                         </NavItem>
                         <NavItem>
@@ -105,14 +91,14 @@ const HeaderNav: React.FC = () => {
                             <MenuIcon/>
                         </IconButton>
                         <DropDownMobileWrapper
-                            style={isShowMenu ? {height: '60vh'} : undefined}
+                            style={isShowMenu ? {height: 'auto'} : undefined}
                         >
                             <DropDownMobileList>
                                 <DropDownMobileItem>
                                     <DropDownMobileLink
                                         style={{display: 'flex', justifyContent: 'space-between'}}
                                         onClick={() => setShowMobileMenu((prevState) => !prevState)}
-                                        to={'/'}
+                                        to={'#'}
                                     >
                                         Каталог
                                         <IconWrapper>
@@ -122,58 +108,19 @@ const HeaderNav: React.FC = () => {
                                     </DropDownMobileLink>
                                     <DropDownMenuMobile
                                         isShowMobileMenu={isShowMobileMenu}
-                                        style={isShowMobileMenu ? {height: '38vh'} : undefined}
+                                        style={isShowMobileMenu ? {height: '30vh'} : undefined}
                                     >
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Полотна
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Профили
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Вставки
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Комплектующие
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Расходные материалы
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Конструкции
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Светильники лампы
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Ленты и пульты
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Дополнительное
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
-                                        <DropDownMenuItemMobile>
-                                            <DropDownMenuLink to={'/polotna'}>
-                                                Инструменты
-                                            </DropDownMenuLink>
-                                        </DropDownMenuItemMobile>
+
+                                        {arrNav.map((i) => {
+                                            return (
+                                                <DropDownMenuItemMobile onClick={() => setShowMenu(false)}>
+                                                    <DropDownMenuLink to={i.route}>
+                                                        {i.name}
+                                                    </DropDownMenuLink>
+                                                </DropDownMenuItemMobile>
+                                            )
+                                        })}
+
                                     </DropDownMenuMobile>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
@@ -183,9 +130,7 @@ const HeaderNav: React.FC = () => {
                                     <DropDownMobileLink to={'/'}>Контакты</DropDownMobileLink>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/'}>
-                                        Отправить запрос
-                                    </DropDownMobileLink>
+                                    <DropDownMobileLink to={'/'}>Отправить запрос</DropDownMobileLink>
                                 </DropDownMobileItem>
                             </DropDownMobileList>
                         </DropDownMobileWrapper>
@@ -202,11 +147,11 @@ const HeaderNavWrapper = styled.nav``
 
 const Wrapper = styled.div`
   background-color: var(--nav);
-  padding: 0 30px;
 `
 
 const NavList = styled.ul`
   display: flex;
+  padding: 0 30px;
 
   @media (max-width: 550px) {
     display: none;
@@ -254,10 +199,11 @@ const DropDownLink = styled(NavLink)`
 const DropDownMenu = styled.ul`
   opacity: 0;
   transition: opacity 0.3s ease-in;
+  background-color: white;
   position: absolute;
   top: 100%;
   left: -30px;
-  z-index: 999;
+  z-index: 9999;
   box-shadow: 0 1px 0 0 #d3d9de, 0 0 0 1px #e7e8ec;
 `
 
@@ -275,7 +221,7 @@ const DropDownItem = styled.li`
 
 const NavListMobile = styled.div`
   display: none;
-  padding: 5px 0;
+  padding: 5px 5px;
   position: relative;
 
   @media (max-width: 550px) {
@@ -289,9 +235,11 @@ const DropDownMobileWrapper = styled.div`
   left: 0;
   width: 100%;
   margin-top: 15px;
+  z-index: 999;
   height: 0;
   overflow: hidden;
   transition: height 0.2s ease-in;
+  background-color: white;
 `
 
 const DropDownMobileList = styled.ul``

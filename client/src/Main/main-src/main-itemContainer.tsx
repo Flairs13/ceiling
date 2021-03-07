@@ -1,7 +1,8 @@
-import { CircularProgress } from '@material-ui/core'
+import {CircularProgress} from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
+import { Container } from '../../Common/CSS/src'
 import { getItem } from '../../redux/Admin/src/profile/item-action'
 import { getItems, getStatus } from '../../redux/Admin/src/profile/item-select'
 import MainItem from './main-item'
@@ -35,9 +36,11 @@ const MainItemContainer:React.FC<Props> = (props) => {
                     {
                         arrItem.map((item: any) => {
                             return (
-                                <ul>
-                                    <MainItem fnc={test} route={props.route} {...item}/>
-                                </ul>
+                                <Container>
+                                    <ListWrapper>
+                                        <MainItem route={props.route} {...item}/>
+                                    </ListWrapper>
+                                </Container>
 
 
 
@@ -67,4 +70,8 @@ const LoadingWrapper = styled.div`
   justify-content: center;  
   align-items: center;
   
+`
+
+const ListWrapper = styled.ul`
+    margin-top: 20px;
 `
