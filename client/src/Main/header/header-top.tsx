@@ -104,13 +104,13 @@ const ItemLeft = styled.li`
   }
   
   
-  @media (max-width: 800px){
+  @media (max-width: 850px){
     :nth-child(2){
       display: none;
     }
   }
   
-  @media (max-width: 550px){
+  @media (max-width: 585px){
     :nth-child(3){
       display: none;
     }

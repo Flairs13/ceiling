@@ -33,7 +33,7 @@ time, mark, audio, video {
 
 * {
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
  
 }
@@ -396,7 +396,7 @@ ul, li {
     list-style: none;
     padding: 0;
 }
-  }
+  
 `;
 
 export default GlobalStyle;
