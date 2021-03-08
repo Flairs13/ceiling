@@ -34,12 +34,12 @@ const HeaderTop = () => {
                     </HeaderLeft>
                     <HeaderRight>
                         <ItemRight>
-                            <Link to={'/'}>
+                            <Link to={'/company'}>
                                 <p>О компании</p>
                             </Link>
                         </ItemRight>
                         <ItemRight>
-                            <Link to={'/'}>
+                            <Link to={'/contacts'}>
                                 <p>Контакты</p>
                             </Link>
                         </ItemRight>
@@ -73,19 +73,19 @@ const SvgWrapper = styled.div`
  
 `
 const CallIcon = styled(Call)`
-  fill: ${props => props.theme.main};
+  fill: var(--main-color);
   width: 100%;
   height: 100%;
 `
 
 const WhatsappIcon = styled(Whatsapp)`
-  fill: ${props => props.theme.main};
+  fill: var(--main-color);;
   width: 100%;
   height: 100%;
 `
 
 const MailIcon = styled(Mail)`
-  fill: ${props => props.theme.main};
+  fill: var(--main-color);
   width: 100%;
   height: 100%;
 `

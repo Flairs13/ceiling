@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import styled from 'styled-components/macro'
 import {Container} from '../../Common/CSS/src'
 import {NavLink} from 'react-router-dom'
@@ -6,19 +6,13 @@ import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import {ReactComponent as Down} from '../../assets/images/down-chevron.svg'
 import {ReactComponent as Up} from '../../assets/images/up-chevron.svg'
-import GavelIcon from "@material-ui/icons/Gavel";
-import PanToolIcon from "@material-ui/icons/PanTool";
-import AttachFileIcon from "@material-ui/icons/AttachFile";
-import PowerIcon from "@material-ui/icons/Power";
-import CategoryIcon from "@material-ui/icons/Category";
-import DockIcon from "@material-ui/icons/Dock";
-import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
-import BuildIcon from "@material-ui/icons/Build";
-import StarIcon from "@material-ui/icons/Star";
+
 
 const HeaderNav: React.FC = () => {
     const [isShowMobileMenu, setShowMobileMenu] = useState(false)
     const [isShowMenu, setShowMenu] = useState(false)
+    const refItem = useRef<HTMLLIElement>(null)
+
 
 
     const arrNav = [
@@ -39,19 +33,17 @@ const HeaderNav: React.FC = () => {
             <Container>
                 <Wrapper>
                     <NavList>
-                        <NavItem
-                            onMouseEnter={() => setShowMenu(true)}
-                            onMouseLeave={() => setShowMenu(false)}
-                        >
-                            <Link to={'#'}>
+                        <NavItem  onMouseLeave={() => setShowMenu(false)} ref={refItem}>
+                            <Link onMouseEnter={() => setShowMenu(true)}
+                                  to={'#'}>
                                 <p>Каталог</p>
                             </Link>
-                            <DropDownMenu style={isShowMenu ? {opacity: 1} : undefined}>
+                            <DropDownMenu style={isShowMenu ? {opacity: 1} : {pointerEvents: 'none'}}>
 
 
                                 {arrNav.map(i => {
                                     return (
-                                        <DropDownItem>
+                                        <DropDownItem key={i.name}>
                                             <DropDownLink to={i.route}>{i.name}</DropDownLink>
                                         </DropDownItem>
                                     )
@@ -61,7 +53,7 @@ const HeaderNav: React.FC = () => {
                             </DropDownMenu>
                         </NavItem>
                         <NavItem>
-                            <Link to={'/dostavka'}>
+                            <Link to={'/delivery'}>
                                 <p>Доставка</p>
                             </Link>
                         </NavItem>
@@ -71,7 +63,7 @@ const HeaderNav: React.FC = () => {
                             </Link>
                         </NavItem>
                         <NavItem>
-                            <Link to={'/zapros'}>
+                            <Link to={'/request'}>
                                 <p>Отправить запрос</p>
                             </Link>
                         </NavItem>
@@ -113,7 +105,7 @@ const HeaderNav: React.FC = () => {
 
                                         {arrNav.map((i) => {
                                             return (
-                                                <DropDownMenuItemMobile onClick={() => setShowMenu(false)}>
+                                                <DropDownMenuItemMobile key={i.name} onClick={() => setShowMenu(false)}>
                                                     <DropDownMenuLink to={i.route}>
                                                         {i.name}
                                                     </DropDownMenuLink>
@@ -124,13 +116,13 @@ const HeaderNav: React.FC = () => {
                                     </DropDownMenuMobile>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/'}>Доставка</DropDownMobileLink>
+                                    <DropDownMobileLink to={'/delivery'}>Доставка</DropDownMobileLink>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/'}>Контакты</DropDownMobileLink>
+                                    <DropDownMobileLink to={'/contacts'}>Контакты</DropDownMobileLink>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/'}>Отправить запрос</DropDownMobileLink>
+                                    <DropDownMobileLink to={'/request'}>Отправить запрос</DropDownMobileLink>
                                 </DropDownMobileItem>
                             </DropDownMobileList>
                         </DropDownMobileWrapper>

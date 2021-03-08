@@ -15,6 +15,7 @@ import Led from "./item-description/led";
 import Consumables from "./item-description/consumables";
 import Tools from "./item-description/tools";
 import Additional from "./item-description/additional";
+import { descriptionRender } from '../../../Common/descriptionSchema';
 
 type Props = {
     image: string
@@ -73,46 +74,6 @@ const Item: React.FC<Props> = (props,ref) => {
 
 
 
-    const descriptionRender = () => {
-        switch (props.req) {
-            case 'profile': {
-                return <Profile {...props}/>
-            }
-
-            case 'tape': {
-                return <Tape {...props}/>
-            }
-
-            case 'accessories': {
-                return <Accessories {...props} />
-            }
-
-            case 'light': {
-                return <Light  {...props} />
-            }
-
-            case 'constructions': {
-                return <Constructions {...props} />
-            }
-
-            case 'led': {
-                return <Led {...props} />
-            }
-
-            case 'consumables': {
-                return <Consumables {...props} />
-            }
-
-            case 'tools': {
-                return <Tools {...props} />
-            }
-
-            case 'additional': {
-                return <Additional {...props} />
-            }
-        }
-    }
-
 
     return (
         <ItemWrapper>
@@ -121,7 +82,7 @@ const Item: React.FC<Props> = (props,ref) => {
                     <img src={props.image} alt={props.name}/>
                 </ImgWrapper>
                 <DescriptionWrapper>
-                    {descriptionRender()}
+                    {descriptionRender(props,props.req)}
                 </DescriptionWrapper>
 
                 <Btn aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>

@@ -9,6 +9,8 @@ import Light from '../../Admins/src-admin/item/item-description/light'
 import Profile from '../../Admins/src-admin/item/item-description/profile'
 import Tape from '../../Admins/src-admin/item/item-description/tape'
 import Tools from '../../Admins/src-admin/item/item-description/tools'
+import {useHistory} from "react-router-dom";
+import {descriptionRender} from "../../Common/descriptionSchema";
 
 type Props = {
     image: string
@@ -34,54 +36,19 @@ type Props = {
 
 const MainItem: React.FC<Props> = (props) => {
 
+    const history = useHistory()
+    const test = () => {
+        history.push( history.location.pathname + '/' + props._id)
 
-    const descriptionRender = () => {
-        switch (props.route) {
-            case 'profile': {
-                return <Profile {...props} />
-            }
-
-            case 'tape': {
-                return <Tape {...props} />
-            }
-
-            case 'accessories': {
-                return <Accessories {...props} />
-            }
-
-            case 'light': {
-                return <Light {...props} />
-            }
-
-            case 'constructions': {
-                return <Constructions {...props} />
-            }
-
-            case 'led': {
-                return <Led {...props} />
-            }
-
-            case 'consumables': {
-                return <Consumables {...props} />
-            }
-
-            case 'tools': {
-                return <Tools {...props} />
-            }
-
-            case 'additional': {
-                return <Additional {...props} />
-            }
-        }
     }
 
     return (
         <ItemWrapper>
-            <ImgWrapper>
+            <ImgWrapper onClick={test}>
                 <img src={props.image} alt="#"/>
             </ImgWrapper>
             <DescriptionWrapper>
-                {descriptionRender()}
+                {descriptionRender(props,props.route)}
             </DescriptionWrapper>
         </ItemWrapper>
     )
