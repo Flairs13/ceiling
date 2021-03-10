@@ -1,65 +1,58 @@
 import {CircularProgress} from '@material-ui/core'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components/macro'
-import { Container } from '../../Common/CSS/src'
-import { getItem } from '../../redux/Admin/src/profile/item-action'
-import { getItems, getStatus } from '../../redux/Admin/src/profile/item-select'
+import {Container} from '../../Common/CSS/src'
+import {getItem} from '../../redux/Admin/src/profile/item-action'
+import {getItems, getStatus} from '../../redux/Admin/src/profile/item-select'
 import MainItem from './main-item'
 
 type Props = {
-  route: string
+    route: string
 }
 
-const MainItemContainer:React.FC<Props> = (props) => {
+const MainItemContainer: React.FC<Props> = (props) => {
 
     const arrItem = useSelector(getItems)
     const status = useSelector(getStatus)
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-      dispatch(getItem(props.route))
-  }, [props.route])
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getItem(props.route))
+    }, [props.route])
 
 
-  const render = () => {
-    switch (status) {
-        case 'loading': {
-            return <LoadingWrapper>
-                <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-            </LoadingWrapper>
-        }
-        case 'complete': {
-            return (
-                <>
-                   
-                    {
-                        arrItem.map((item: any) => {
-                            return (
-                                <Container>
-                                    <ListWrapper>
-                                        <MainItem route={props.route} {...item}/>
-                                    </ListWrapper>
-                                </Container>
+    const render = () => {
+        switch (status) {
+            case 'loading': {
+                return <LoadingWrapper>
+                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
+                </LoadingWrapper>
+            }
+            case 'complete': {
+                return (
+                    <ListWrapper>
 
+                        {
+                            arrItem.map((item: any) => {
+                                return (
+                                    <MainItem route={props.route} {...item}/>
+                                )
+                            }).reverse()
+                        }
 
-
-                            )
-                        }).reverse()
-                    }
-                  
-                </>
-            )
-        }
-        default: {
-           return <span>загрузка</span>
+                    </ListWrapper>
+                )
+            }
+            default: {
+                return <span>загрузка</span>
+            }
         }
     }
-}
 
-  return (
-    render()
-  )
+    return (
+        render()
+    )
 }
 
 export default MainItemContainer
@@ -67,11 +60,24 @@ export default MainItemContainer
 
 const LoadingWrapper = styled.div`
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
-  
+
 `
 
 const ListWrapper = styled.ul`
-    margin-top: 20px;
+  padding: 15px 0;
+  
+  
+  @media (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+  @media (max-width: 600px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 `
+

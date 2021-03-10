@@ -15,7 +15,6 @@ import ClearIcon from "@material-ui/icons/Clear";
 type Props = {
     req: string
     closeModal: (flag: boolean) => void
-    getItem: (route: string) => void
 }
 
 const ItemAdd: React.FC<Props> = (props) => {
@@ -49,16 +48,12 @@ const ItemAdd: React.FC<Props> = (props) => {
          initialValues[key] = ''
     })
 
-    console.log(initialValues)
-
 
     const submit = (values: any) => {
         dispatch(uploadItemAction(values,props.req))
         props.closeModal(false)
 
     }
-
-    console.log(initialValues)
 
     return (
         <EditorWrapper>

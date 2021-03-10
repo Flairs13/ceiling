@@ -36,18 +36,14 @@ type Props = {
     type: string
     name: string
     _id: string
-    getItem: (type: string) => void
     req: string
-    fnc: (fnc: any) => void
+
 }
-const Item: React.FC<Props> = (props,ref) => {
+const Item: React.FC<Props> = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isShowModalEditor, setShowModalEditor] = useState(false)
     const [isShowModalAdd, setShowModalAdd] = useState(false)
 
-    useEffect(() => {
-        props.fnc(addChange)
-    })
 
     const dispatch = useDispatch()
 
@@ -105,7 +101,7 @@ const Item: React.FC<Props> = (props,ref) => {
                 </Modal>
                 }
                 {isShowModalAdd && <Modal closeModal={setShowModalAdd} padding={'5px'}>
-                    <ItemAdd closeModal={setShowModalAdd} getItem={props.getItem} req={props.req}/>
+                    <ItemAdd closeModal={setShowModalAdd}  req={props.req}/>
                 </Modal>
                 }
 

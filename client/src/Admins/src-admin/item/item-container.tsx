@@ -26,9 +26,7 @@ const ItemContainer: React.FC<Props> = (props) => {
     }, [props.type])
 
 
-    const test = (fnc: any) => {
-        child.current = fnc
-    }
+
     const render = () => {
         switch (status) {
             case 'loading': {
@@ -46,7 +44,7 @@ const ItemContainer: React.FC<Props> = (props) => {
                             arrItem.map((item: any) => {
                                 return (
                                     <ul>
-                                        <Item getItem={getItem}  fnc={test} req={props.type} {...item}/>
+                                        <Item  req={props.type} {...item}/>
                                     </ul>
 
 
@@ -55,7 +53,7 @@ const ItemContainer: React.FC<Props> = (props) => {
                             }).reverse()
                         }
                         {isShowModalAdd && <Modal closeModal={setShowModalAdd} padding={'5px'}>
-                            <ItemAdd closeModal={setShowModalAdd} getItem={getItem} req={props.type}/>
+                            <ItemAdd closeModal={setShowModalAdd}  req={props.type}/>
                         </Modal>
                         }
                     </>

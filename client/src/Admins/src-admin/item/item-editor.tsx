@@ -5,12 +5,12 @@ import {updateItemAction} from '../../../redux/Admin/src/profile/item-action';
 import {useDispatch} from "react-redux";
 import {IconButton} from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
+import { toStringItemTitle } from '../../../Common/functions';
 
 type Props = {
     image: string
     req: string
     _id: string
-    getItem: (req: string) => void
     closeModal: (flag: boolean) => void
 }
 
@@ -18,23 +18,9 @@ const ItemEditor: React.FC<Props> = (props) => {
     const srcImg = useRef(props.image)
     const dispatch = useDispatch()
     const exceptions = ['_id', 'image', '__v', 'req', 'getItem','closeModal','fnc']
-    const inputsArray = Object.entries({...props})
-        .filter((item) => {
-                let flag = false
-                for (let i = 0; i < exceptions.length; i++) {
-                    if (item[0] === exceptions[i]) {
-                        flag = false
-                        break
-                    } else {
-                        flag = true
-                    }
+    const inputsArray = toStringItemTitle({...props},exceptions)
 
-                }
-                return flag
-            }
-        )
 
-    console.log(inputsArray)
     const submit = (values: any) => {
         dispatch(updateItemAction(values, props.req, props._id))
     }

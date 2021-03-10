@@ -42,6 +42,8 @@ const MainItem: React.FC<Props> = (props) => {
 
     }
 
+    console.log(props)
+
     return (
         <ItemWrapper>
             <ImgWrapper onClick={test}>
@@ -59,21 +61,43 @@ export default MainItem
 
 const ItemWrapper = styled.li`
   display: flex;
-  border: 1px solid var(--main-border);
+  box-shadow: 0 1px 0 0 #d3d9de,0 0 0 1px #e7e8ec;
   border-radius: 5px;
-`
-
-const ImgWrapper = styled.div`
-  width: 250px;
-  
-
-  img {
-    width: 100%;
-    height: 100%;
+  padding: 20px;
+  margin-bottom: 10px;
+  @media (max-width: 800px){
+    flex-direction: column;
+    align-items: center;
   }
 `
 
-const DescriptionWrapper = styled.dl`
-  font-size: 17px;
+const ImgWrapper = styled.div`
+  
+  img {
+    width: 160px;
+    height: 160px;
+  }
+
+  @media (max-width: 800px){
+    margin-bottom: 10px;
+  }
+`
+
+const DescriptionWrapper = styled.div`
+  font-size: 18px;
+  margin-left: 15px;
+  width: 100%;
+
+  @media (max-width: 800px){
+    margin-left: 0;
+    font-size: 15px;
+  }
+  
+  div {
+    @media (max-width: 800px){
+      flex-direction: column;
+    }
+  }
+  
 `
 

@@ -67,6 +67,9 @@ const HeaderLeft = styled.ul`
 `
 const HeaderRight = styled.ul`
     display: flex;
+  @media (max-width: 450px){
+    font-size: 14px;
+  }
 `
 const SvgWrapper = styled.div`
   width: 15px;
@@ -110,7 +113,7 @@ const ItemLeft = styled.li`
     }
   }
   
-  @media (max-width: 585px){
+  @media (max-width: 625px){
     :nth-child(3){
       display: none;
     }
