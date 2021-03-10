@@ -1,4 +1,4 @@
-import Profile from "../Admins/src-admin/item/item-description/profile";
+import Profile from "../Admins/src-admin/item/item-description/DescriptionItem";
 import Tape from "../Admins/src-admin/item/item-description/tape";
 import Accessories from "../Admins/src-admin/item/item-description/accessories";
 import Light from "../Admins/src-admin/item/item-description/light";

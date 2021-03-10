@@ -14,15 +14,17 @@ const initialState  = {
         profile:  [{name:'Наименование'},
             {material: 'Материал'},
             {type: 'Тип'}, {size: 'Размер'},
-            {priceOneUnit: 'Цена за шт'},
-            {priceOneMetre: 'Цена за метр'},
             {technology: 'Технология'},
             {perf: 'Вид'},
-            {weight: 'Вес'},] as Array<object>,
+            {weight: 'Вес'},
+            {priceOneMetre: 'Цена за метр'},
+            {priceOneUnit: 'Цена за шт'},
+        ] as Array<object>,
         tape: [ {name:'Наименование'},
             {type: 'Тип'},
+            {technology: 'Технология'},
             {priceOneMetre: 'Цена за метр'},
-            {technology: 'Технология'}] as Array<object>,
+            ] as Array<object>,
         accessories: [
             {name:'Наименование'},
             {manufacturer:'Производитель'},
@@ -32,10 +34,10 @@ const initialState  = {
         light: [
             {name:'Наименование'},
             {manufacturer:'Производитель'},
-            {priceOneUnit: 'Цена за шт'},
             {plinth: 'Цоколь'},
             {color: 'Цвет'},
             {power: 'Мощность'},
+            {priceOneUnit: 'Цена за шт'},
 
         ] as Array<object>,
         constructions: [

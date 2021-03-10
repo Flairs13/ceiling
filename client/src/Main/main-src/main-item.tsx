@@ -6,11 +6,12 @@ import Constructions from '../../Admins/src-admin/item/item-description/construc
 import Consumables from '../../Admins/src-admin/item/item-description/consumables'
 import Led from '../../Admins/src-admin/item/item-description/led'
 import Light from '../../Admins/src-admin/item/item-description/light'
-import Profile from '../../Admins/src-admin/item/item-description/profile'
+import Profile from '../../Admins/src-admin/item/item-description/DescriptionItem'
 import Tape from '../../Admins/src-admin/item/item-description/tape'
 import Tools from '../../Admins/src-admin/item/item-description/tools'
 import {useHistory} from "react-router-dom";
 import {descriptionRender} from "../../Common/descriptionSchema";
+import DescriptionItem from '../../Admins/src-admin/item/item-description/DescriptionItem'
 
 type Props = {
     image: string
@@ -42,7 +43,7 @@ const MainItem: React.FC<Props> = (props) => {
 
     }
 
-    console.log(props)
+
 
     return (
         <ItemWrapper>
@@ -50,7 +51,8 @@ const MainItem: React.FC<Props> = (props) => {
                 <img src={props.image} alt="#"/>
             </ImgWrapper>
             <DescriptionWrapper>
-                {descriptionRender(props,props.route)}
+                {/*{descriptionRender(props,props.route)}*/}
+                <DescriptionItem {...props}/>
             </DescriptionWrapper>
         </ItemWrapper>
     )

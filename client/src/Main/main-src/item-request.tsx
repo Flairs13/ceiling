@@ -27,6 +27,8 @@ const ItemRequest: React.FC<Props> = (props) => {
         {name: 'Дополнительное', route: '/additional'},
     ]
 
+    const prefixRub = ['Цена за шт', 'Цена за метр', 'Цена за упаковку']
+
 
     const collection = useSelector(getCollection)
     const route = props.route as keyof typeof collection
@@ -83,9 +85,13 @@ const ItemRequest: React.FC<Props> = (props) => {
                         <DescriptionItem>
                             {arrCharacteristics.map(i => {
                                 const arr: any = Object.entries(i)[0]
-                                return <DescriptionContainer>
+                                return <DescriptionContainer key={arr[0]}>
                                     <dt>{arr[0]}</dt>
-                                    <dd>{arr[1]}</dd>
+                                    <dd>{arr[1]}{prefixRub.map(i => {
+                                        if (i === arr[0]){
+                                            return <span key={i} style={{marginLeft: '5px'}}>₽</span>
+                                        }
+                                    })}</dd>
                                 </DescriptionContainer>
                             })}
                         </DescriptionItem>
@@ -105,6 +111,8 @@ const ItemRequest: React.FC<Props> = (props) => {
 };
 
 export default ItemRequest;
+
+
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -186,7 +194,6 @@ const DescriptionContainer = styled.div`
   
   dd {
     margin-left: 0;
-    white-space: nowrap;
   }
 `
 

@@ -6,7 +6,7 @@ import ItemEditor from "./item-editor";
 import {useDispatch} from "react-redux";
 import {deleteItemAction} from "../../../redux/Admin/src/profile/item-action";
 import ItemAdd from "./item-add";
-import Profile from './item-description/profile';
+import Profile from './item-description/DescriptionItem';
 import Tape from "./item-description/tape";
 import Accessories from "./item-description/accessories";
 import Light from "./item-description/light";
@@ -16,6 +16,7 @@ import Consumables from "./item-description/consumables";
 import Tools from "./item-description/tools";
 import Additional from "./item-description/additional";
 import { descriptionRender } from '../../../Common/descriptionSchema';
+import DescriptionItem from './item-description/DescriptionItem';
 
 type Props = {
     image: string
@@ -78,7 +79,8 @@ const Item: React.FC<Props> = (props) => {
                     <img src={props.image} alt={props.name}/>
                 </ImgWrapper>
                 <DescriptionWrapper>
-                    {descriptionRender(props,props.req)}
+                    {/*{descriptionRender(props,props.req)}*/}
+                    <DescriptionItem {...props}/>
                 </DescriptionWrapper>
 
                 <Btn aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>

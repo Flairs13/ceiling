@@ -3,44 +3,40 @@ import styled from "styled-components/macro";
 import { toStringItemTitle } from '../../../../Common/functions';
 
 type Props = {
-    name: string,
-    material: string,
-    type: string,
-    size: string,
     priceOneUnit: number,
     priceOneMetre: number,
-    technology: string,
-    perf: string,
-    weight: string,
-
+    priceOnePack: number,
 }
-const Profile: React.FC<Props> = (props) => {
+const DescriptionItem: React.FC<Props> = (props) => {
 
     const exceptions = ['_id', 'image', '__v', 'route','priceOneUnit','priceOneMetre','req']
     const inputsArray = toStringItemTitle({...props},exceptions)
 
-
     const titleArr: any = []
-    inputsArray.forEach(i => {
-        titleArr.push(i[1])
+    inputsArray.forEach((i: any) => {
+        if (i[1] !== '' && i[1] !== null){
+            titleArr.push(i[1])
+        }
+
     })
 
 
     return (
-        <DescriptionItem>
+        <DescriptionItemWrapper>
             <Title>{titleArr.join(', ')}</Title>
             <Price>
-                <p>{props.priceOneMetre}<span>₽/метр.</span></p>
-                <p>{props.priceOneUnit}<span>₽/шт.</span></p>
+                {props.priceOneMetre && <p>{props.priceOneMetre}<span>₽/метр.</span></p>}
+                {props.priceOneUnit && <p>{props.priceOneUnit}<span>₽/шт.</span></p>}
+                {props.priceOnePack && <p>{props.priceOnePack}<span>₽/упаковка.</span></p>}
             </Price>
-        </DescriptionItem>
+        </DescriptionItemWrapper>
     );
 };
 
-export default Profile;
+export default DescriptionItem;
 
 
-const DescriptionItem = styled.div`
+const DescriptionItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   @media (max-width: 835px){
