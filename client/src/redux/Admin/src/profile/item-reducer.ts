@@ -7,6 +7,8 @@ export const SET_STATUS = 'item-reducer/SET_STATUS'
 export const UPDATE_ITEM = 'item-reducer/UPDATE_ITEM'
 export const DELETE_ITEM = 'item-reducer/DELETE_ITEM'
 export const UPLOAD_ITEM = 'item-reducer/UPLOAD_ITEM'
+export const UPLOAD_TABLE = 'item-reducer/UPLOAD_TABLE'
+export const UPDATE_TABLE = 'item-reducer/UPDATE_TABLE'
 
 const initialState  = {
     items: [] as Array<object>,

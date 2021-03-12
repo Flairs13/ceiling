@@ -16,6 +16,7 @@ const HeaderNav: React.FC = () => {
 
 
     const arrNav = [
+        {name: 'Полотна', route: '/cloth'},
         {name: 'Профили', route: '/profile'},
         {name: 'Вставки', route: '/tape'},
         {name: 'Комплектующие', route: '/accessories'},

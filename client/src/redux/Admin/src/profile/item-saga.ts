@@ -1,7 +1,16 @@
 import {fork,call,throttle, put,takeEvery} from "redux-saga/effects";
-import {DELETE_ITEM, GET_ITEM, UPDATE_ITEM, UPLOAD_ITEM} from "./item-reducer";
-import {setItem, setStatus, deleteItemAction, getItem, updateItemAction, uploadItemAction} from "./item-action";
-import {deleteItem, getItemArr, updateItem, uploadItem} from "../../../../api";
+import {DELETE_ITEM, GET_ITEM, UPDATE_ITEM, UPDATE_TABLE, UPLOAD_ITEM, UPLOAD_TABLE} from "./item-reducer";
+import {
+    setItem,
+    setStatus,
+    deleteItemAction,
+    getItem,
+    updateItemAction,
+    uploadItemAction,
+    uploadTableAction,
+    updateTableAction
+} from "./item-action";
+import {deleteItem, getItemArr, updateItem, updateTable, uploadItem, uploadTable} from "../../../../api";
 
 
 
@@ -28,6 +37,7 @@ function* uploadItemWatcher() {
 }
 
 function* uploadItemWorker({payload,route} : ReturnType<typeof uploadItemAction>) {
+
     const {response,error} = yield call(uploadItem, payload,route)
     if (response){
         yield  put(getItem(route))
@@ -69,9 +79,48 @@ function* deleteItemWorker({id,route} : ReturnType<typeof deleteItemAction>) {
     }
 }
 
+
+
+//TABLE============================================================
+
+
+function* uploadTableWatcher() {
+    yield takeEvery(UPLOAD_TABLE,uploadTableWorker)
+}
+
+function* uploadTableWorker({payload,route} : ReturnType<typeof uploadTableAction>) {
+
+    const {response,error} = yield call(uploadTable, payload,route)
+    if (response){
+        yield  put(getItem(route))
+    } else if (error) {
+        console.log(error)
+    }
+}
+
+
+function* updateTableWatcher() {
+    yield takeEvery(UPDATE_TABLE,updateTableWorker)
+}
+
+function* updateTableWorker({values,route,id}: ReturnType<typeof updateTableAction>) {
+    const {response,error} = yield call(updateTable, values,route,id)
+    if (response){
+        yield  put(getItem(route))
+    } else if (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+
 export default function* rootSaga () {
     yield fork(getItemWatcher)
     yield fork(updateItemWatcher)
     yield fork(deleteItemWatcher)
     yield fork(uploadItemWatcher)
+    yield fork(uploadTableWatcher)
+    yield fork(updateTableWatcher)
 }

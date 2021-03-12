@@ -1,13 +1,98 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components/macro";
 import {Formik,Form,Field} from 'formik';
+import {useDispatch, useSelector} from "react-redux";
+import {getItem, updateTableAction, uploadTableAction} from '../../../redux/Admin/src/profile/item-action';
+import {getItems, getStatus} from "../../../redux/Admin/src/profile/item-select";
+import {CircularProgress} from "@material-ui/core";
 
 const Cloth: React.FC = () => {
 
+    const dispatch = useDispatch()
+    const items: any = useSelector(getItems)[0]
+    const status = useSelector(getStatus)
+
+    useEffect(() => {
+       dispatch(getItem('cloth'))
+    },[])
+
     const onSubmit = (values: any) => {
-        console.log(values)
+        // dispatch(uploadTableAction(values,'cloth'))
+        //Это если что чтобы добавить в таблицу новые свойства
+        // а так по задумке в базе только один объект который мы просто апдейтим
+
+        dispatch(updateTableAction(values,'cloth',items._id))
     }
 
+    const renderTable = () => {
+        switch (status){
+            case 'loading': {
+                return <LoadingWrapper>
+                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
+                </LoadingWrapper>
+            }
+
+            case 'complete': {
+                return (
+                    <Formik initialValues={items} onSubmit={onSubmit}>
+                        {({handleSubmit,values,handleChange}) => (
+                            <Form>
+                                <Table>
+                                    <Tbody>
+                                        <tr>
+                                            <th style={{width: '350px'}}>Фактура</th>
+                                            <th style={{width: '150px'}} colSpan={2}>Цена</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Матовые (MSD Premium)</th>
+                                            <th>отрезы</th>
+                                            <th>в гарпуне</th>
+                                        </tr>
+                                        {tableRender('mat',handleChange)}
+                                        <tr>
+                                            <th>Лаковые (MSD Premium)</th>
+                                            <th>отрезы</th>
+                                            <th>в гарпуне</th>
+                                        </tr>
+                                        {tableRender('lac',handleChange)}
+                                        <tr>
+                                            <th>Эксклюзивные</th>
+                                            <th>отрезы</th>
+                                            <th>в гарпуне</th>
+                                        </tr>
+                                        {tableRender('exc',handleChange)}
+                                        <tr>
+                                            <th>Ткань</th>
+                                            <th colSpan={2}>цена</th>
+                                        </tr>
+                                        <tr>
+                                            <TdDescription><Input onChange={handleChange} type='text' name={`cloth.descor.label`}/></TdDescription>
+                                            <TdPrice colSpan={2}><Input onChange={handleChange} type='number' name={`cloth.descor.price`}/></TdPrice>
+                                        </tr>
+                                        <tr>
+                                            <th>Дополнительные работы</th>
+                                            <th colSpan={2}>цена</th>
+                                        </tr>
+                                        {Object.entries(initialValue.additional).map((i) => {
+                                            return (
+                                                <tr>
+                                                    <TdDescription><Input onChange={handleChange} type='text' name={`additional.${i[0]}.${Object.keys(i[1])[0]}`}/></TdDescription>
+                                                    <TdPrice colSpan={2}><Input onChange={handleChange} type='number' name={`additional.${i[0]}.${Object.keys(i[1])[1]}`}/></TdPrice>
+                                                </tr>
+                                            )
+                                        })}
+                                    </Tbody>
+                                </Table>
+                                <ButtonWrapper>
+                                    <Button type='submit'>Сохранить</Button>
+                                </ButtonWrapper>
+                            </Form>
+                        )}
+                    </Formik>
+                )
+            }
+        }
+    }
 
     const initialValue = {
         mat: {
@@ -127,7 +212,8 @@ const Cloth: React.FC = () => {
             },
         },
     }
-
+    console.log(initialValue)
+    console.log(items)
 
     const tableRender = (nameObj: any,handleChange: any) => {
         const key: keyof typeof initialValue = nameObj
@@ -144,65 +230,10 @@ const Cloth: React.FC = () => {
         )
     }
 
-
-    console.log(Object.entries(initialValue.mat))
-
     return (
         <ClothWrapper>
             <Container>
-                <Formik initialValues={initialValue} onSubmit={onSubmit}>
-                    {({handleSubmit,values,handleChange}) => (
-                        <Form>
-                            <Table>
-                                <Tbody>
-                                    <tr>
-                                        <th style={{width: '350px'}}>Фактура</th>
-                                        <th style={{width: '150px'}} colSpan={2}>Цена</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Матовые (MSD Premium)</th>
-                                        <th>отрезы</th>
-                                        <th>в гарпуне</th>
-                                    </tr>
-                                    {tableRender('mat',handleChange)}
-                                    <tr>
-                                        <th>Лаковые (MSD Premium)</th>
-                                        <th>отрезы</th>
-                                        <th>в гарпуне</th>
-                                    </tr>
-                                    {tableRender('lac',handleChange)}
-                                    <tr>
-                                        <th>Эксклюзивные</th>
-                                        <th>отрезы</th>
-                                        <th>в гарпуне</th>
-                                    </tr>
-                                    {tableRender('exc',handleChange)}
-                                    <tr>
-                                        <th>Ткань</th>
-                                        <th colSpan={2}>цена</th>
-                                    </tr>
-                                    <tr>
-                                        <TdDescription><Input onChange={handleChange} type='text' name={`cloth.descor.label`}/></TdDescription>
-                                        <TdPrice colSpan={2}><Input onChange={handleChange} type='number' name={`cloth.descor.price`}/></TdPrice>
-                                    </tr>
-                                    <tr>
-                                        <th>Дополнительные работы</th>
-                                        <th colSpan={2}>цена</th>
-                                    </tr>
-                                    {Object.entries(initialValue.additional).map((i) => {
-                                        return (
-                                            <tr>
-                                                <TdDescription><Input onChange={handleChange} type='text' name={`additional.${i[0]}.${Object.keys(i[1])[0]}`}/></TdDescription>
-                                                <TdPrice colSpan={2}><Input onChange={handleChange} type='number' name={`additional.${i[0]}.${Object.keys(i[1])[1]}`}/></TdPrice>
-                                            </tr>
-                                        )
-                                    })}
-                                </Tbody>
-                            </Table>
-                            <button type='submit'>ss</button>
-                        </Form>
-                    )}
-                </Formik>
+                {renderTable()}
             </Container>
         </ClothWrapper>
     );
@@ -218,6 +249,9 @@ const Table = styled.table`
   border: 1px solid;
   text-align: center;
   width: 100%;
+  @media (max-width: 500px){
+    font-size: 12px;
+  }
 `
 
 const Container = styled.div`
@@ -231,10 +265,16 @@ const Tbody = styled.tbody`
   th {
    border: 1px solid;
    padding: 5px;
+    @media (max-width: 500px){
+      padding: 2px;
+    }
   }
   td {
    border: 1px solid;
    padding: 5px;
+    @media (max-width: 500px){
+      padding: 2px;
+    }
   }
 `
 const TdPrice = styled.td`
@@ -247,4 +287,40 @@ text-align: start;
 const Input = styled(Field)`
   border: none;
   width: 100%;
+`
+
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+`
+
+export const Button = styled.button`
+    padding: 7px 16px 8px;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+    background-color: #5181b8;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    &:hover {
+    opacity: 0.88;
+    }
+    &:active {
+    background-color: #4a76a8;
+    padding-top: 8px;
+    padding-bottom: 7px;
+    }
+    &:disabled{
+    opacity: 0.5;
+    }
 `

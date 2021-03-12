@@ -1,9 +1,9 @@
 import {CircularProgress} from '@material-ui/core'
-import React, {useEffect} from 'react'
+import React, {useEffect, useMemo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components/macro'
 import {Container} from '../../Common/CSS/src'
-import {getItem} from '../../redux/Admin/src/profile/item-action'
+import {getItem, setStatus} from '../../redux/Admin/src/profile/item-action'
 import {getItems, getStatus} from '../../redux/Admin/src/profile/item-select'
 import MainItem from './main-item'
 
@@ -21,6 +21,9 @@ const MainItemContainer: React.FC<Props> = (props) => {
         dispatch(getItem(props.route))
     }, [props.route])
 
+    useMemo(() => {
+        dispatch(setStatus('loading'))
+    },[props.route])
 
     const render = () => {
         switch (status) {

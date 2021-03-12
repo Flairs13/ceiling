@@ -200,6 +200,7 @@ const DescriptionContainer = styled.div`
 const LinkBack = styled(NavLink)`
   margin-top: auto;
   color: var(--main-color);
+  margin-bottom: 10px;
   :hover {
     color: var(--main-hover);
   }

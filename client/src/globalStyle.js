@@ -29,6 +29,7 @@ time, mark, audio, video {
   --main-border: rgba(0,0,0,0.06);
   --nav: #f7f7f7;
   --second: #999;
+  --table-back: #f2f2f2
 }
 
 * {

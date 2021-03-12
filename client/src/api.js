@@ -57,3 +57,18 @@ export const deleteItem = (id, route) => {
     .then((response) => ({ response }))
     .catch((error) => ({ error }))
 }
+
+
+export const uploadTable = (payload, route) => {
+  return instance.post(`/${route}`, payload)
+      .then((response) => ({ response }))
+      .catch((error) => console.log(error.message))
+}
+
+export const updateTable = (payload, route, id) => {
+  const obj = payload
+  obj._id = id
+  return instance.put(`/${route}`, obj)
+      .then((response) => ({ response }))
+      .catch((error) => console.log(error.message))
+}

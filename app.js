@@ -13,14 +13,14 @@ const ledRouter = require ('./routes/led')
 const consumablesRouter = require ('./routes/consumables')
 const toolsRouter = require ('./routes/tools')
 const additionalRouter = require ('./routes/additional')
-const uploadController = require ("./Controllers/profileController");
+const clothRouter = require ('./routes/cloth')
 
 
 const app = express ()
 app.use ('/uploads', express.static ('uploads'));
 
 
-// app.use(bodyParser.json())
+app.use(bodyParser.json())
 app.use (bodyParser.urlencoded ({extended: true}));
 app.use (
     '/api',
@@ -34,6 +34,7 @@ app.use (
     consumablesRouter,
     toolsRouter,
     additionalRouter,
+    clothRouter,
 )
 
 if (process.env.NODE_ENV === 'production') {

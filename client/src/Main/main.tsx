@@ -22,6 +22,6 @@ export default Main
 const MainContainer = styled.main`
   padding: 0 15px;
   @media (max-width: 600px){
-    padding: 0 5px;
+    padding: 0 10px;
   }
 `

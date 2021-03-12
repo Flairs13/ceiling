@@ -7,6 +7,7 @@ import Contacts from "./Contacts/contacts";
 import Request from "./Req/req-component";
 import Company from "./Company/company";
 import ItemRequest from "./item-request";
+import Cloth from "./Cloth/Cloth";
 
 
 const MainPage: React.FC = () => {
@@ -18,7 +19,14 @@ const MainPage: React.FC = () => {
                 <Route exact path='/request' render={() => <Request/>}/>
                 <Route exact path='/company' render={() => <Company/>}/>
                 <Route path='/:route/:id' render={({match}) => <ItemRequest id={match.params.id} route={match.params.route}/>}/>
-                <Route path='/:route' render={({match}) => <MainItemContainer route={match.params.route}/>}/>
+                <Route path='/:route' render={({match}) => {
+                    if (match.params.route === 'cloth'){
+                        return <Cloth route={match.params.route}/>
+                    }else {
+                        return <MainItemContainer route={match.params.route}/>
+                    }
+
+                }}/>
 
             </Switch>
 
