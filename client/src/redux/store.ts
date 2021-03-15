@@ -4,13 +4,15 @@ import CreateSagaMiddleware from 'redux-saga'
 import rootSaga from "./root-saga";
 import {itemReducer} from "./Admin/src/profile/item-reducer";
 import {authReducer} from "./Admin/src/auth/auth-reducer";
+import {clothReducer} from "./Admin/src/cloth/cloth-reducer";
 
 
 
 
 let reducers = combineReducers ({
     itemReducer,
-    authReducer
+    authReducer,
+    clothReducer,
 })
 
 

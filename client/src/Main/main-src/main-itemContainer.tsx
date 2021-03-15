@@ -1,32 +1,21 @@
 import {CircularProgress} from '@material-ui/core'
-import React, {useEffect, useMemo} from 'react'
+import React, {useEffect, useLayoutEffect, useMemo} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components/macro'
-import {Container} from '../../Common/CSS/src'
-import {getItem, setStatus} from '../../redux/Admin/src/profile/item-action'
+import {getItem, setItem, setStatus} from '../../redux/Admin/src/profile/item-action'
 import {getItems, getStatus} from '../../redux/Admin/src/profile/item-select'
 import MainItem from './main-item'
 
 type Props = {
-    route: string
+    arrItem: any
+    status: string
 }
 
-const MainItemContainer: React.FC<Props> = (props) => {
+const MainItemRender: React.FC<Props> = React.memo((props) => {
 
-    const arrItem = useSelector(getItems)
-    const status = useSelector(getStatus)
-
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getItem(props.route))
-    }, [props.route])
-
-    useMemo(() => {
-        dispatch(setStatus('loading'))
-    },[props.route])
 
     const render = () => {
-        switch (status) {
+        switch (props.status) {
             case 'loading': {
                 return <LoadingWrapper>
                     <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
@@ -37,9 +26,9 @@ const MainItemContainer: React.FC<Props> = (props) => {
                     <ListWrapper>
 
                         {
-                            arrItem.map((item: any) => {
+                            props.arrItem.map((item: any) => {
                                 return (
-                                    <MainItem route={props.route} {...item}/>
+                                    <MainItem {...item}/>
                                 )
                             }).reverse()
                         }
@@ -48,7 +37,9 @@ const MainItemContainer: React.FC<Props> = (props) => {
                 )
             }
             default: {
-                return <span>загрузка</span>
+                return <LoadingWrapper>
+                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
+                </LoadingWrapper>
             }
         }
     }
@@ -56,9 +47,28 @@ const MainItemContainer: React.FC<Props> = (props) => {
     return (
         render()
     )
-}
+})
 
-export default MainItemContainer
+type PropsContainer = {
+    route: string
+}
+const MainItemContainer:React.FC<PropsContainer> = (props) => {
+
+    const arrItem = useSelector(getItems)
+    const status = useSelector(getStatus)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getItem(props.route))
+
+    }, [props.route])
+
+    return (
+      <MainItemRender arrItem={arrItem} status={status}/>
+    );
+};
+
+export default MainItemContainer;
 
 
 const LoadingWrapper = styled.div`

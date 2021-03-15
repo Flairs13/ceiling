@@ -1,28 +1,22 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useLayoutEffect, useMemo, Component, useState, useRef} from 'react';
 import {CircularProgress} from "@material-ui/core";
 import styled from "styled-components/macro";
-import {useDispatch, useSelector} from "react-redux";
-import {getItems, getStatus} from "../../../redux/Admin/src/profile/item-select";
-import {getItem, setStatus} from "../../../redux/Admin/src/profile/item-action";
+import {connect, useDispatch, useSelector} from "react-redux";
+import { getItems, getStatus } from '../../../redux/Admin/src/cloth/cloth-select';
+import {getItem} from "../../../redux/Admin/src/cloth/cloth-action";
+
+
 
 
 type Props = {
     route: string
+    status: string
+    items: any
 }
 const Cloth:React.FC<Props> = (props) => {
-    const dispatch = useDispatch()
-    const items: any = useSelector(getItems)[0]
-    const status = useSelector(getStatus)
-
-    console.log(items)
-
-    useEffect(() => {
-        dispatch(getItem(props.route))
-    },[props.route])
-
 
     const renderTable = () => {
-        switch (status) {
+        switch (props.status) {
             case 'loading': {
                 return <LoadingWrapper>
                     <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
@@ -34,12 +28,12 @@ const Cloth:React.FC<Props> = (props) => {
                     <Table>
                         <Tbody>
                             <tr>
-                                <th style={{width: '350px'}}>Фактура</th>
-                                <th style={{width: '150px'}} colSpan={2}>Цена</th>
+                                <th style={{width: '70%'}}>Фактура</th>
+                                <th colSpan={2}>Цена</th>
                             </tr>
                             <tr>
                                 <th>Матовые (MSD Premium)</th>
-                                <th>отрезы</th>
+                                <th style={{width: '15%'}}>отрезы</th>
                                 <th>в гарпуне</th>
                             </tr>
                             {tableRender('mat')}
@@ -60,14 +54,14 @@ const Cloth:React.FC<Props> = (props) => {
                                 <th colSpan={2}>цена</th>
                             </tr>
                             <tr>
-                                <TdDescription>{items.cloth.descor.label}</TdDescription>
-                                <TdPrice colSpan={2}>{items.cloth.descor.price}</TdPrice>
+                                <TdDescription>{props.items.cloth.descor.label}</TdDescription>
+                                <TdPrice colSpan={2}>{props.items.cloth.descor.price}</TdPrice>
                             </tr>
                             <tr>
                                 <th>Дополнительные работы</th>
                                 <th colSpan={2}>цена</th>
                             </tr>
-                            {Object.entries(items.additional).map((i: any,index) => {
+                            {Object.entries(props.items.additional).map((i: any,index) => {
                                 return (
                                     <tr key={index}>
                                         <TdDescription><p style={index < 3  ? {color: 'blue'} : undefined}>{i[1].label}</p></TdDescription>
@@ -88,9 +82,9 @@ const Cloth:React.FC<Props> = (props) => {
     }
 
     const tableRender = (nameObj: any) => {
-        const key: keyof typeof items = nameObj
+        const key: keyof typeof props.items = nameObj
         return (
-            Object.entries(items[key]).map((i: any,index) => {
+            Object.entries(props.items[key]).map((i: any,index) => {
                 return (
                     <tr key={index}>
                         <TdDescription><p style={index < 3 && key !== 'exc' ? {color: 'blue'} : undefined}>{i[1].label}</p></TdDescription>
@@ -104,13 +98,36 @@ const Cloth:React.FC<Props> = (props) => {
 
 
     return (
-        <div>
-            {renderTable()}
-        </div>
+        renderTable()
     );
 };
 
-export default Cloth;
+
+
+type PropsContainer = {
+    route: string
+}
+const ClothContainer:React.FC<PropsContainer> = (props) => {
+    const dispatch = useDispatch()
+    let items: any = useSelector(getItems)[0]
+    const status = useSelector(getStatus)
+
+
+    useLayoutEffect(() => {
+            dispatch(getItem(props.route))
+    },[props.route])
+
+
+    return (
+        <Cloth route={props.route} items={items} status={status}/>
+    );
+};
+
+export default ClothContainer;
+
+
+
+
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -137,6 +154,7 @@ const Tbody = styled.tbody`
   th {
     border: 1px solid;
     padding: 5px;
+    white-space: nowrap;
     background-color: var(--table-back);
     @media (max-width: 500px) {
       padding: 2px;

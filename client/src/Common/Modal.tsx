@@ -52,4 +52,5 @@ const ModalContainer = styled.section<{padding: string}>`
     box-shadow: 0 1px 0 0 #d3d9de, 0 0 0 1px #e7e8ec;
     border-radius: 5px;
     background-color: white;
+    margin: 0 10px;
 `

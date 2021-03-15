@@ -51,7 +51,6 @@ const MainItem: React.FC<Props> = (props) => {
                 <img src={props.image} alt="#"/>
             </ImgWrapper>
             <DescriptionWrapper>
-                {/*{descriptionRender(props,props.route)}*/}
                 <DescriptionItem {...props}/>
             </DescriptionWrapper>
         </ItemWrapper>

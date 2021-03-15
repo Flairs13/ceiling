@@ -159,8 +159,8 @@ const DescriptionWrapper = styled.div`
 `
 
 const DescriptionItem = styled.dl`
-  @media (max-width: 495px) {
-    margin-bottom: 5px;
+  @media (max-width: 730px) {
+    margin-bottom: 10px;
   }
 `
 
@@ -200,11 +200,15 @@ const DescriptionContainer = styled.div`
 const LinkBack = styled(NavLink)`
   margin-top: auto;
   color: var(--main-color);
-  margin-bottom: 10px;
+ 
   :hover {
     color: var(--main-hover);
   }
   span {
     font-weight: bold;
+  }
+  
+  @media (max-width: 730px) {
+    margin-bottom: 15px;
   }
 `

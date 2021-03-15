@@ -23,6 +23,10 @@ time, mark, audio, video {
 
 }
 
+#root {
+  height: 100%;
+}
+
 :root {
   --main-color: #0088CC;
   --main-hover: #00a5e6;
@@ -39,6 +43,13 @@ time, mark, audio, video {
  
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;;
+}
 
 
 /* make sure to set some focus styles for accessibility */
