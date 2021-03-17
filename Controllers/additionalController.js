@@ -10,6 +10,7 @@ module.exports.getAdditional = (req, res) => {
 
 
 module.exports.newAdditional = (req, res) => {
+
     Additional.findOne ({}, () => {
         const host = req.host;
         const filePath = req.protocol + "://" + host + ':' + config.get ('port') + '/' + req.file.path;

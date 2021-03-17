@@ -13,11 +13,13 @@ const ledRouter = require ('./routes/led')
 const consumablesRouter = require ('./routes/consumables')
 const toolsRouter = require ('./routes/tools')
 const additionalRouter = require ('./routes/additional')
+const mailRouter = require ('./routes/mail')
 const clothRouter = require ('./routes/cloth')
 
 
 const app = express ()
 app.use ('/uploads', express.static ('uploads'));
+app.use ('/mail', express.static ('imgMail'));
 
 
 app.use(bodyParser.json())
@@ -35,6 +37,7 @@ app.use (
     toolsRouter,
     additionalRouter,
     clothRouter,
+    mailRouter,
 )
 
 if (process.env.NODE_ENV === 'production') {

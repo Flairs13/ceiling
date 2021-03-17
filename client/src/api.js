@@ -72,3 +72,16 @@ export const updateTable = (payload, route, id) => {
       .then((response) => ({ response }))
       .catch((error) => console.log(error.message))
 }
+
+export const uploadMail = (payload) => {
+  let formData = new FormData()
+  formData.append('name', payload.name)
+  formData.append('phone', payload.phone)
+  formData.append('mail', payload.mail)
+  formData.append('textarea', payload.textarea)
+
+  for (let i = 0; i < payload.files.length; i++){
+    formData.append('image', payload.files[i])
+  }
+    return instance.post('/mail',formData).then((response) => ({response})).catch((error) => ({error}))
+}
