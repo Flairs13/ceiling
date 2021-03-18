@@ -77,6 +77,9 @@ const CompanyName = styled.p`
 
 
 const OperatingMode = styled.div`
+  a {
+    text-align: center;
+  }
   @media (max-width: 1125px){
     order: 2;
     margin-bottom: 15px;

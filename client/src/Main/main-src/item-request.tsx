@@ -122,7 +122,7 @@ const LoadingWrapper = styled.div`
 `
 const ItemWrapper = styled.article`
   display: flex;
-  margin-top: 30px;
+  margin: 25px 0;
   @media (max-width: 730px) {
     flex-direction: column;
     justify-content: center;

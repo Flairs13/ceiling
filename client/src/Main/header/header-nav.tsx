@@ -1,18 +1,34 @@
-import React, {useRef, useState} from 'react'
-import styled from 'styled-components/macro'
+import React, {useEffect, useRef, useState} from 'react'
+import styled, {css} from 'styled-components/macro'
 import {Container} from '../../Common/CSS/src'
 import {NavLink} from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import {ReactComponent as Down} from '../../assets/images/down-chevron.svg'
 import {ReactComponent as Up} from '../../assets/images/up-chevron.svg'
+import {ReactComponent as Call} from "../../assets/images/call.svg";
+import {ReactComponent as Whatsapp} from '../../assets/images/whatsapp.svg'
+import Logo from "../../assets/images/logo.png";
 
 
 const HeaderNav: React.FC = () => {
     const [isShowMobileMenu, setShowMobileMenu] = useState(false)
     const [isShowMenu, setShowMenu] = useState(false)
+    const [isMenuFixed, setMenuFixed] = useState(false)
     const refItem = useRef<HTMLLIElement>(null)
+    console.log('render')
+    useEffect(() => {
+        window.addEventListener('scroll', scrollFunction)
+    }, [])
 
+    const scrollFunction = () => {
+        let scrollY = window.pageYOffset;
+        if (scrollY >= 110) {
+            setMenuFixed(true)
+        } else if (scrollY <= 50) {
+            setMenuFixed(false)
+        }
+    }
 
 
     const arrNav = [
@@ -32,9 +48,9 @@ const HeaderNav: React.FC = () => {
     return (
         <HeaderNavWrapper>
             <Container>
-                <Wrapper>
+                <Wrapper isMenuFixed={isMenuFixed}>
                     <NavList>
-                        <NavItem  onMouseLeave={() => setShowMenu(false)} ref={refItem}>
+                        <NavItem onMouseLeave={() => setShowMenu(false)} ref={refItem}>
                             <Link onMouseEnter={() => setShowMenu(true)}
                                   to={'#'}>
                                 <p>Каталог</p>
@@ -68,14 +84,33 @@ const HeaderNav: React.FC = () => {
                                 <p>Отправить запрос</p>
                             </Link>
                         </NavItem>
+                        {isMenuFixed &&   <Contacts>
+                            <li>
+                                <SvgWrapper>
+                                    <CallIcon/>
+                                </SvgWrapper>
+                                <PhoneLink href="tel:+7(999)977-93-19">+7(999)977-93-19</PhoneLink>
+                            </li>
+                            <li>
+                                <SvgWrapper>
+                                    <WhatsappIcon/>
+                                </SvgWrapper>
+                                <PhoneLink href="tel:+7(999)977-93-19">Консультация в WhatsApp</PhoneLink>
+                            </li>
+                        </Contacts>}
                     </NavList>
 
                     <NavListMobile>
+                        { isMenuFixed &&
+                            <HeaderLogo>
+                                <img src={Logo} alt="Logo" />
+                            </HeaderLogo>
+                        }
                         <IconButton
                             onClick={() => setShowMenu((prevState) => !prevState)}
                             style={{
                                 color: 'white',
-                                padding: '10px',
+                                padding: '15px',
                                 marginLeft: 'auto',
                                 display: 'block',
                                 backgroundColor: 'var(--main-color)',
@@ -83,9 +118,7 @@ const HeaderNav: React.FC = () => {
                         >
                             <MenuIcon/>
                         </IconButton>
-                        <DropDownMobileWrapper
-                            style={isShowMenu ? {height: 'auto'} : undefined}
-                        >
+                        <DropDownMobileWrapper style={isShowMenu ? {height: 'auto'} : undefined}>
                             <DropDownMobileList>
                                 <DropDownMobileItem>
                                     <DropDownMobileLink
@@ -101,7 +134,7 @@ const HeaderNav: React.FC = () => {
                                     </DropDownMobileLink>
                                     <DropDownMenuMobile
                                         isShowMobileMenu={isShowMobileMenu}
-                                        style={isShowMobileMenu ? {height: '30vh'} : undefined}
+                                        style={isShowMobileMenu ? {height: '310px'} : undefined}
                                     >
 
                                         {arrNav.map((i) => {
@@ -117,13 +150,16 @@ const HeaderNav: React.FC = () => {
                                     </DropDownMenuMobile>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/delivery'}>Доставка</DropDownMobileLink>
+                                    <DropDownMobileLink onClick={() => setShowMenu(false)}
+                                                        to={'/delivery'}>Доставка</DropDownMobileLink>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/contacts'}>Контакты</DropDownMobileLink>
+                                    <DropDownMobileLink onClick={() => setShowMenu(false)}
+                                                        to={'/contacts'}>Контакты</DropDownMobileLink>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
-                                    <DropDownMobileLink to={'/request'}>Отправить запрос</DropDownMobileLink>
+                                    <DropDownMobileLink onClick={() => setShowMenu(false)} to={'/request'}>Отправить
+                                        запрос</DropDownMobileLink>
                                 </DropDownMobileItem>
                             </DropDownMobileList>
                         </DropDownMobileWrapper>
@@ -138,8 +174,70 @@ export default HeaderNav
 
 const HeaderNavWrapper = styled.nav``
 
-const Wrapper = styled.div`
+
+const SvgWrapper = styled.div`
+  width: 15px;
+  
+ 
+`
+const CallIcon = styled(Call)`
+  fill: var(--main-color);
+  width: 100%;
+  height: 100%;
+`
+
+const WhatsappIcon = styled(Whatsapp)`
+  fill: var(--main-color);;
+  width: 100%;
+  height: 100%;
+`
+
+const PhoneLink = styled.a`
+  color: #444 !important;
+  margin-left: 5px;
+`
+
+const Contacts = styled.ul`
+  display: flex;
+  padding: 20px 0;
+  margin-left: auto;
+  @media (max-width: 1010px){
+    display: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    :last-child {
+      margin-right: 0;
+    }
+    :hover {
+      opacity: 0.6;
+    }
+  }
+`
+
+const HeaderLogo = styled.div`
+  width: 150px;
+  img {
+    width: 100%;
+  }
+`
+
+
+
+const Wrapper = styled.div<{ isMenuFixed: boolean }>`
   background-color: var(--nav);
+  ${props =>
+          props.isMenuFixed &&
+          css`
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0 10px;
+          `};
+
 `
 
 const NavList = styled.ul`
@@ -218,7 +316,9 @@ const NavListMobile = styled.div`
   position: relative;
 
   @media (max-width: 550px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    
   }
 `
 
@@ -227,7 +327,6 @@ const DropDownMobileWrapper = styled.div`
   top: 100%;
   left: 0;
   width: 100%;
-  margin-top: 15px;
   z-index: 999;
   height: 0;
   overflow: hidden;

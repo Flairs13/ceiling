@@ -168,7 +168,6 @@ const FormsItem = styled.div`
 `
 const Label = styled.label`
   color: #656565;
-  justify-self: end;
   grid-column: labels;
    @media(max-width: 738px) {
     justify-self: start;
@@ -187,7 +186,7 @@ const Input = styled(Field)`
   grid-column: controls;
   
   @media(max-width: 738px) {
-    width: 100%;
+    width: 190px;
     justify-self: end;
   }
 `

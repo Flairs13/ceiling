@@ -73,7 +73,9 @@ const ItemWrapper = styled.li`
 `
 
 const ImgWrapper = styled.div`
-  
+  :hover {
+    opacity: 0.7;
+  }
   img {
     width: 160px;
     height: 160px;

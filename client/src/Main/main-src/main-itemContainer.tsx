@@ -79,7 +79,7 @@ const LoadingWrapper = styled.div`
 `
 
 const ListWrapper = styled.ul`
-  padding: 15px 0;
+  padding: 15px 1px;
   
   
   @media (max-width: 800px) {

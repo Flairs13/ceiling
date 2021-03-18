@@ -137,7 +137,7 @@ const LoadingWrapper = styled.div`
 `
 
 const Table = styled.table`
-  margin: 20px 0;
+  margin: 40px 0;
   border: 1px solid;
   text-align: center;
   width: 100%;

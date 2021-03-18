@@ -15,7 +15,7 @@ const Request = () => {
     const captcha = useRef<any>()
     const [update,setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [errorModal, setErrorModal] = useState(true)
+    const [errorModal, setErrorModal] = useState(false)
     const [isShowErrorCaptcha, setShowErrorCaptcha] = useState(false)
     const [isShowModal, setShowModal] = useState(false)
 
