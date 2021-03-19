@@ -59,10 +59,16 @@ const ListWrapper = styled.ul`
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-gap: 10px;
+  @media (max-width: 1110px){
+    grid-template-columns: repeat(3,1fr);
+  }
+  @media (max-width: 860px){
+    grid-template-columns: repeat(2,1fr);
+  }
   li {
     flex-direction: column;
     margin-bottom: 0;
-    padding: 5px;
+    padding: 10px;
     
     div:first-child {
       width: 100%;

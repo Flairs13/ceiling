@@ -107,7 +107,7 @@ const ItemLeft = styled.li`
   }
   
   
-  @media (max-width: 850px){
+  @media (max-width: 875px){
     :nth-child(2){
       display: none;
     }

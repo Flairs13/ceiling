@@ -58,7 +58,7 @@ const Item = styled.li`
   font-size: 15px;
   :last-child {
     margin-left: 20px;
-    @media (max-width: 550px) {
+    @media (max-width: 570px) {
       display: none;
     }
   }
