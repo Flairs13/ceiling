@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import { Container } from '../../Common/CSS/src'
 import Logo from '../../assets/images/logo.png'
+import {NavLink} from "react-router-dom";
 
 const HeaderMiddle: React.FC = () => {
   return (
     <HeaderMiddleWrapper>
       <Container>
         <Wrapper>
-          <HeaderLogo>
+          <HeaderLogo to={'/'}>
             <img src={Logo} alt="Logo" />
           </HeaderLogo>
           <HeaderLinks>
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
   padding: 10px 10px;
 `
 
-const HeaderLogo = styled.div`
+const HeaderLogo = styled(NavLink)`
   width: 150px;
   img {
     width: 100%;

@@ -37,9 +37,14 @@ type Props = {
 
 const MainItem: React.FC<Props> = (props) => {
 
+
     const history = useHistory()
     const test = () => {
-        history.push( history.location.pathname + '/' + props._id)
+        if (history.location.pathname === '/'){
+            history.push( '/' + props.route + '/' + props._id)
+        } else {
+            history.push( history.location.pathname + '/' + props._id)
+        }
 
     }
 

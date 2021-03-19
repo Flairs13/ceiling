@@ -15,6 +15,7 @@ const toolsRouter = require ('./routes/tools')
 const additionalRouter = require ('./routes/additional')
 const mailRouter = require ('./routes/mail')
 const clothRouter = require ('./routes/cloth')
+const mainRouter = require ('./routes/main')
 
 
 const app = express ()
@@ -38,6 +39,7 @@ app.use (
     additionalRouter,
     clothRouter,
     mailRouter,
+    mainRouter,
 )
 
 if (process.env.NODE_ENV === 'production') {

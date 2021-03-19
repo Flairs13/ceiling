@@ -48,6 +48,7 @@ const HeaderNav: React.FC = () => {
     return (
         <HeaderNavWrapper>
             <Container>
+                {isMenuFixed && <div style={{height: '59px'}}></div>}
                 <Wrapper isMenuFixed={isMenuFixed}>
                     <NavList>
                         <NavItem onMouseLeave={() => setShowMenu(false)} ref={refItem}>
@@ -236,6 +237,7 @@ const Wrapper = styled.div<{ isMenuFixed: boolean }>`
             left: 0;
             width: 100%;
             padding: 0 10px;
+            z-index: 999999;
           `};
 
 `
