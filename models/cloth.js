@@ -83,6 +83,16 @@ const schema = new Schema({
             valueCut: Number,
             valueGarp: Number,
         },
+        additionalField_1: {
+            label: String,
+            valueCut: Number,
+            valueGarp: Number,
+        },
+        additionalField_2: {
+            label: String,
+            valueCut: Number,
+            valueGarp: Number,
+        },
     },
     mat: {
         white240: {
@@ -116,7 +126,18 @@ const schema = new Schema({
             valueCut: Number,
             valueGarp: Number,
         },
+        additionalField_1: {
+            label: String,
+            valueCut: Number,
+            valueGarp: Number,
+        },
+        additionalField_2: {
+            label: String,
+            valueCut: Number,
+            valueGarp: Number,
+        },
     },
 })
 
 module.exports = model('cloth', schema)
+

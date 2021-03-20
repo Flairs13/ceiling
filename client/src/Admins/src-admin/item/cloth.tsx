@@ -125,7 +125,17 @@ const Cloth: React.FC = () => {
                 label: 'Мат (цветной 501) 500',
                 valueCut: 145,
                 valueGarp: 165,
-            }
+            },
+            additionalField_1: {
+                label: '',
+                valueCut: 0,
+                valueGarp: 0,
+            },
+            additionalField_2: {
+                label: '',
+                valueCut: 0,
+                valueGarp: 0,
+            },
 
         },
         lac: {
@@ -158,7 +168,17 @@ const Cloth: React.FC = () => {
                 label: 'Лак (цветной 501) 500',
                 valueCut: 145,
                 valueGarp: 165,
-            }
+            },
+            additionalField_1: {
+                label: '',
+                valueCut: 0,
+                valueGarp: 0,
+            },
+            additionalField_2: {
+                label: '',
+                valueCut: 0,
+                valueGarp: 0,
+            },
 
         } ,
         exc: {
@@ -211,9 +231,8 @@ const Cloth: React.FC = () => {
                 price: '140',
             },
         },
-    }
-    console.log(initialValue)
-    console.log(items)
+    } // оставить для добавления новых полей!
+
 
     const tableRender = (nameObj: any,handleChange: any) => {
         const key: keyof typeof initialValue = nameObj

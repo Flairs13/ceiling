@@ -85,6 +85,7 @@ const Cloth:React.FC<Props> = (props) => {
         const key: keyof typeof props.items = nameObj
         return (
             Object.entries(props.items[key]).map((i: any,index) => {
+                if (i[1].label === '') return null
                 return (
                     <tr key={index}>
                         <TdDescription><p style={index < 3 && key !== 'exc' ? {color: 'blue'} : undefined}>{i[1].label}</p></TdDescription>

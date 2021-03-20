@@ -11,7 +11,6 @@ module.exports.getCloth = (req, res) => {
 
 module.exports.newCloth = (req, res) => {
     console.log(req.body)
-    console.log('req booodddddyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
 
     const table = req.body
 
@@ -98,6 +97,17 @@ module.exports.newCloth = (req, res) => {
                     valueCut:  table.lac.color500.valueCut,
                     valueGarp:  table.lac.color500.valueGarp,
                 },
+                additionalField_1: {
+                    label:  table.lac.additionalField_1.label,
+                    valueCut:  table.lac.additionalField_1.valueCut,
+                    valueGarp:  table.lac.additionalField_1.valueGarp,
+                },
+                additionalField_2: {
+                    label:  table.lac.additionalField_2.label,
+                    valueCut:  table.lac.additionalField_2.valueCut,
+                    valueGarp:  table.lac.additionalField_2.valueGarp,
+                },
+
             },
             mat: {
                 white240: {
@@ -131,6 +141,17 @@ module.exports.newCloth = (req, res) => {
                     valueCut:  table.mat.color500.valueCut,
                     valueGarp:  table.mat.color500.valueGarp,
                 },
+                additionalField_1: {
+                    label:  table.mat.additionalField_1.label,
+                    valueCut:  table.mat.additionalField_1.valueCut,
+                    valueGarp:  table.mat.additionalField_1.valueGarp,
+                },
+                additionalField_2: {
+                    label:  table.mat.additionalField_2.label,
+                    valueCut:  table.mat.additionalField_2.valueCut,
+                    valueGarp:  table.mat.additionalField_2.valueGarp,
+                },
+
             },
 
         })
@@ -229,6 +250,16 @@ module.exports.clothUpdate = (req, res) => {
                 valueCut:  table.lac.color500.valueCut,
                 valueGarp:  table.lac.color500.valueGarp,
             },
+            additionalField_1: {
+                label:  table.lac.additionalField_1.label,
+                valueCut:  table.lac.additionalField_1.valueCut,
+                valueGarp:  table.lac.additionalField_1.valueGarp,
+            },
+            additionalField_2: {
+                label:  table.lac.additionalField_2.label,
+                valueCut:  table.lac.additionalField_2.valueCut,
+                valueGarp:  table.lac.additionalField_2.valueGarp,
+            },
         },
         mat: {
             white240: {
@@ -261,6 +292,16 @@ module.exports.clothUpdate = (req, res) => {
                 label:  table.mat.color500.label,
                 valueCut:  table.mat.color500.valueCut,
                 valueGarp:  table.mat.color500.valueGarp,
+            },
+            additionalField_1: {
+                label:  table.mat.additionalField_1.label,
+                valueCut:  table.mat.additionalField_1.valueCut,
+                valueGarp:  table.mat.additionalField_1.valueGarp,
+            },
+            additionalField_2: {
+                label:  table.mat.additionalField_2.label,
+                valueCut:  table.mat.additionalField_2.valueCut,
+                valueGarp:  table.mat.additionalField_2.valueGarp,
             },
         },
     };
