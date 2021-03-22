@@ -2,7 +2,7 @@ import * as actions from './auth-action'
 export const IS_AUTH = 'auth-reducer/IS_AUTH'
 
 const initialState = {
-    Auth: true
+    Auth: false
 }
 type InitialStateType = typeof initialState
 

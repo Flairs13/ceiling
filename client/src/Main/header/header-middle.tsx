@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { Container } from '../../Common/CSS/src'
-import Logo from '../../assets/images/logo.png'
+
 import {NavLink} from "react-router-dom";
 
 const HeaderMiddle: React.FC = () => {
@@ -10,7 +10,7 @@ const HeaderMiddle: React.FC = () => {
       <Container>
         <Wrapper>
           <HeaderLogo to={'/'}>
-            <img src={Logo} alt="Logo" />
+            <span>Price-and-quality</span>
           </HeaderLogo>
           <HeaderLinks>
             <Item>
@@ -43,9 +43,10 @@ const Wrapper = styled.div`
 `
 
 const HeaderLogo = styled(NavLink)`
-  width: 150px;
-  img {
-    width: 100%;
+ 
+  span {
+    font-size: 30px;
+    color: black;
   }
 `
 
