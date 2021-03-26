@@ -38,20 +38,26 @@ module.exports.newProfile = (req, res) => {
 };
 
 module.exports.profileUpdate = (req, res) => {
-    console.log(req.body)
+    console.log('pppppppppppppppppp')
+    const updates = {}
 
-    const updates = {
-        name: req.body.name,
-        material: req.body.material,
-        type: req.body.type,
-        size: req.body.size,
-        priceOneUnit: req.body.priceOneUnit,
-        priceOneMetre: req.body.priceOneMetre,
-        technology: req.body.technology,
-        perf: req.body.perf,
-        weight: req.body.weight,
-        index: req.body.index,
-    };
+    // const updates = {
+    //     name: req.body.name,
+    //     material: req.body.material,
+    //     type: req.body.type,
+    //     size: req.body.size,
+    //     priceOneUnit: req.body.priceOneUnit,
+    //     priceOneMetre: req.body.priceOneMetre,
+    //     technology: req.body.technology,
+    //     perf: req.body.perf,
+    //     weight: req.body.weight,
+    //     index: req.body.index,
+    // };
+
+    for (const bodyKey in req.body) {
+        updates[bodyKey] = req.body[bodyKey]
+    }
+
     if (req.file) {
         const host = req.host;
         const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
@@ -59,6 +65,22 @@ module.exports.profileUpdate = (req, res) => {
     }
 
     Profile.findByIdAndUpdate(req.body._id, {$set: updates}).then(post => res.send(post)).catch(err => res.send(err));
+
+
+};
+
+module.exports.profileUpdatePosition = (req, res) => {
+    console.log('ssssssssssssss')
+
+    for (const bodyElement of req.body) {
+        Profile.findByIdAndUpdate(bodyElement._id, {$set: {index: bodyElement.index}}, () => {
+
+        })
+    }
+    res.send('ss')
+
+
+
 
 };
 

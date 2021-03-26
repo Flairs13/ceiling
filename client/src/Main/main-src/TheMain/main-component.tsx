@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { getItem } from '../../../redux/Admin/src/profile/item-action';
 import {getItems, getStatus} from "../../../redux/Admin/src/profile/item-select";
@@ -12,7 +12,7 @@ const MainComponent = () => {
     const status = useSelector(getStatus)
     const dispatch = useDispatch()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         dispatch(getItem('main'))
     },[])
 
@@ -68,7 +68,7 @@ const ListWrapper = styled.ul`
   li {
     flex-direction: column;
     margin-bottom: 0;
-    padding: 10px;
+    padding: 20px;
     
     div:first-child {
       width: 100%;

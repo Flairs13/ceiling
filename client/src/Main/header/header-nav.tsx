@@ -8,7 +8,7 @@ import {ReactComponent as Down} from '../../assets/images/down-chevron.svg'
 import {ReactComponent as Up} from '../../assets/images/up-chevron.svg'
 import {ReactComponent as Call} from "../../assets/images/call.svg";
 import {ReactComponent as Whatsapp} from '../../assets/images/whatsapp.svg'
-import Logo from "../../assets/images/logo.png";
+import Logo from "../../assets/images/logo2.png";
 
 
 const HeaderNav: React.FC = () => {

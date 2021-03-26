@@ -26,11 +26,11 @@ const MainItemRender: React.FC<Props> = React.memo((props) => {
                     <ListWrapper>
 
                         {
-                            props.arrItem.map((item: any) => {
+                            props.arrItem.sort((a:any,b:any) => a.index - b.index).map((item: any) => {
                                 return (
                                     <MainItem {...item}/>
                                 )
-                            }).reverse()
+                            })
                         }
 
                     </ListWrapper>

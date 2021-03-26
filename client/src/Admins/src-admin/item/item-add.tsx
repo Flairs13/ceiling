@@ -10,11 +10,10 @@ import {IconButton} from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 
 
-
-
 type Props = {
     req: string
     closeModal: (flag: boolean) => void
+    itemsLength: number
 }
 
 const ItemAdd: React.FC<Props> = (props) => {
@@ -25,7 +24,6 @@ const ItemAdd: React.FC<Props> = (props) => {
     const arrCollection = collection[route]
 
     const srcImg = useRef('')
-
 
 
     const validationSchema = yup.object().shape({
@@ -43,14 +41,15 @@ const ItemAdd: React.FC<Props> = (props) => {
     });
 
     const initialValues = {file: '',} as any
-     arrCollection.forEach((i) => {
+    arrCollection.forEach((i) => {
         const key: string = Object.keys(i)[0]
-         initialValues[key] = ''
+        initialValues[key] = ''
     })
 
 
     const submit = (values: any) => {
-        dispatch(uploadItemAction(values,props.req))
+        values.index = props.itemsLength
+        dispatch(uploadItemAction(values, props.req))
         props.closeModal(false)
 
     }
@@ -60,12 +59,12 @@ const ItemAdd: React.FC<Props> = (props) => {
             <Header>
                 <p>Добавить</p>
                 <IconButton onClick={() => props.closeModal(false)} aria-label="delete">
-                    <ClearIcon />
+                    <ClearIcon/>
                 </IconButton>
             </Header>
             <Forms>
-                <Formik validationSchema={validationSchema}  initialValues={initialValues} onSubmit={submit}>
-                    {({values, handleSubmit, setFieldValue,errors,isValid, handleChange,handleBlur,dirty}) => (
+                <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={submit}>
+                    {({values, handleSubmit, setFieldValue, handleChange,}) => (
                         <Form onSubmit={handleSubmit}>
                             <ImgWrapper>
                                 {srcImg.current ? <img src={srcImg.current} alt="#"/> : <PhotoSvgIcon/>}
@@ -73,19 +72,24 @@ const ItemAdd: React.FC<Props> = (props) => {
                             </ImgWrapper>
                             <FormsItem>
                                 <Label>Images</Label>
-                                <input  id="file" name="file" type="file" onChange={(event: any) => {
+                                <input id="file" name="file" type="file" onChange={(event: any) => {
                                     setFieldValue("file", event.currentTarget.files[0])
-                                    srcImg.current = URL.createObjectURL(event.currentTarget.files[0])
+                                    if (event.currentTarget.files[0]) {
+                                        srcImg.current = URL.createObjectURL(event.currentTarget.files[0])
+                                    } else {
+                                        srcImg.current = ''
+                                    }
+
 
                                 }}/>
                                 <Error name={'file'} component="div"/>
                             </FormsItem>
 
-                            {arrCollection.map((i,index) => {
+                            {arrCollection.map((i, index) => {
                                 return (
                                     <FormsItem key={index}>
                                         <Label>{Object.entries(i)[0][1]}</Label>
-                                        <Input onChange={handleChange}  type='text' name={Object.entries(i)[0][0]}/>
+                                        <Input onChange={handleChange} type='text' name={Object.entries(i)[0][0]}/>
                                         <Error name={Object.entries(i)[0][0]} component='div'/>
 
                                     </FormsItem>
@@ -112,35 +116,33 @@ const PhotoSvgIcon = styled(Img)`
 `
 
 
-
 const EditorWrapper = styled.div`
-   min-width: 500px;
-   white-space: nowrap;
-   
-  @media(max-width: 738px) {
+  min-width: 500px;
+  white-space: nowrap;
+
+  @media (max-width: 738px) {
     min-width: 200px;
     max-width: 350px;
   }
 `
 
 const Header = styled.div`
-    padding: 0 20px;
-    border-bottom: 1px solid #e7e8ec;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 54px;
-    line-height: 54px;
-    font-size: 16px;
-    outline: 0;
-    color: black;
+  padding: 0 20px;
+  border-bottom: 1px solid #e7e8ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+  line-height: 54px;
+  font-size: 16px;
+  outline: 0;
+  color: black;
 `
-
 
 
 const Forms = styled.section`
   padding: 30px 10px;
-     @media(max-width: 738px) {
+  @media (max-width: 738px) {
     max-height: 400px;
     overflow-y: auto;
   }
@@ -149,11 +151,12 @@ const Forms = styled.section`
 const ImgWrapper = styled.div`
   width: 180px;
   margin: 0 auto 15px;
-  
+
   img {
     width: 100%;
   }
-  @media(max-width: 738px) {
+
+  @media (max-width: 738px) {
     width: 90px;
   }
 `
@@ -164,12 +167,12 @@ const FormsItem = styled.div`
   grid-template-columns: [labels] 30% [controls] 1fr;
   column-gap: 10px;
   align-items: center;
- 
+
 `
 const Label = styled.label`
   color: #656565;
   grid-column: labels;
-   @media(max-width: 738px) {
+  @media (max-width: 738px) {
     justify-self: start;
   }
 `
@@ -184,8 +187,8 @@ const Input = styled(Field)`
   max-width: 300px;
   height: 25px;
   grid-column: controls;
-  
-  @media(max-width: 738px) {
+
+  @media (max-width: 738px) {
     width: 190px;
     justify-self: end;
   }
@@ -204,23 +207,26 @@ const ButtonWrapper = styled.div`
 `
 
 export const Button = styled.button`
-    padding: 7px 16px 8px;
-    margin: 0;
-    cursor: pointer;
-    text-align: center;
-    background-color: #5181b8;
-    border: 0;
-    border-radius: 4px;
-    color: #fff;
-    &:hover {
+  padding: 7px 16px 8px;
+  margin: 0;
+  cursor: pointer;
+  text-align: center;
+  background-color: #5181b8;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+
+  &:hover {
     opacity: 0.88;
-    }
-    &:active {
+  }
+
+  &:active {
     background-color: #4a76a8;
     padding-top: 8px;
     padding-bottom: 7px;
-    }
-    &:disabled{
+  }
+
+  &:disabled {
     opacity: 0.5;
-    }
+  }
 `

@@ -1,8 +1,13 @@
 import * as actions from './auth-action'
 export const IS_AUTH = 'auth-reducer/IS_AUTH'
+export const IS_ERROR = 'auth-reducer/IS_ERROR'
 
 const initialState = {
-    Auth: false
+    Auth: false,
+    errorDurationMin: 3 * 60 * 1000,
+    isError: false,
+    login: 'admin',
+    password: '123qweqwe'
 }
 type InitialStateType = typeof initialState
 
@@ -11,6 +16,12 @@ export const authReducer = (state = initialState,action: ActionType): InitialSta
         case IS_AUTH: {
             return {
                 ...state, Auth: action.flag
+            }
+        }
+
+        case IS_ERROR: {
+            return {
+                ...state, isError: action.flag
             }
         }
 

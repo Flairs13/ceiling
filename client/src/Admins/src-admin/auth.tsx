@@ -1,27 +1,31 @@
 import TextField from '@material-ui/core/TextField';
-import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch} from "react-redux";
-import {isAuth} from "../../redux/Admin/src/auth/auth-action";
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {isAuth, isError} from "../../redux/Admin/src/auth/auth-action";
 import {Button} from "@material-ui/core";
 import styleds from "styled-components/macro";
 import {styled} from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom';
+import {getIsError, getIsErrorDuration, getLogin, getPassword} from "../../redux/Admin/src/auth/auth-select";
+
 
 
 const Auth: React.FC = () => {
-    const [showStatusError, setStatusError] = useState(false)
+    const D = new Date()
+    const errorStatus = useSelector(getIsError)
     const [loginValue, setLoginValue] = useState('')
     const [passwordValue, setPasswordValue] = useState('')
     const [timeCount, setTimeCount] = useState(0)
-    // const [seconds, setSeconds] = useState(0);
-    // const [minuts, setMinuts] = useState(0);
-    const [time, setTime] = useState({seconds: 0, minutes: 0})
-    const D = new Date()
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const login = useSelector(getLogin)
+    const password = useSelector(getPassword)
 
-    const durationTimeMin = 2 * 60 * 1000
+    const durationTimeMin = useSelector(getIsErrorDuration)
+    const timeDownSeconds = Math.floor(((Number(localStorage.getItem('time')) + durationTimeMin - D.getTime()) / 1000))
+
 
     useEffect(() => {
-        console.log(localStorage.getItem('time'))
         const log = localStorage.getItem('login')
         const pass = localStorage.getItem('password')
         if (log === login && pass === password) {
@@ -30,13 +34,10 @@ const Auth: React.FC = () => {
         }
     }, [])
 
-    const history = useHistory()
 
 
-    const login = 'admin'
-    const password = '123qweqwe'
 
-    const dispatch = useDispatch()
+
 
     const changeLoginInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginValue(e.target.value)
@@ -46,7 +47,16 @@ const Auth: React.FC = () => {
         setPasswordValue(e.target.value)
     }
 
-    console.log(timeCount)
+
+    const checkTimeCount = () => {
+        dispatch(isError(true))
+        if (timeCount >= 2) {
+            localStorage.setItem('time', `${D.getTime()}`)
+            setTimeCount(0)
+        } else {
+            setTimeCount(prevState => prevState + 1)
+        }
+    }
 
     const checkAuth = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
@@ -55,73 +65,43 @@ const Auth: React.FC = () => {
             localStorage.setItem('password', password)
             dispatch(isAuth(true))
             history.push(history.location.pathname + '/main/profile')
-            setStatusError(false)
-        } else {
-            setStatusError(true)
         }
-        setTimeCount(prevState => prevState + 1)
-    }
+        checkTimeCount()
 
-    const timerCountDown = () => {
-        const time = Number(localStorage.getItem('time'))
-        let seconds = Math.floor((time / 1000) % 60)
-        let minutes = Math.floor((time / (1000 * 60)) % 60)
-        setTime({seconds: seconds,minutes: minutes})
-
-        // hours = (hours < 10) ? 0 + hours : hours;
-        // minutes = (minutes < 10) ? 0 + minutes : minutes;
-        // seconds = (seconds < 10) ? 0 + seconds : seconds;
-        return (
-            <div>
-                <div>ssssss</div>
-                <span>{minutes}</span>
-                <span>{seconds}</span>
-            </div>
-        )
 
     }
-
-
+    console.log('render parent')
     const render = () => {
-        if (timeCount > 3) {
-            timerCountDown()
-            localStorage.setItem('time', `${D.getTime()}`)
-            debugger
+        const Dates = new Date()
+        console.log(Dates.getTime())
+        console.log(Number(localStorage.getItem('time')) + durationTimeMin)
+        console.log(Number(localStorage.getItem('time')) + durationTimeMin <= Dates.getTime())
+        if (Number(localStorage.getItem('time')) + durationTimeMin <= Dates.getTime()) {
             return (
-                <div>
-                    <div>ssssss</div>
-                    <span>{time.minutes}</span>
-                    <span>{time.seconds}</span>
-                </div>
+                <FormWrapper>
+                    <h1>Вход в Админ панель </h1>
+                    <FormContainer>
+                        <Form>
+                            <Field variant="outlined" label="Логин" value={loginValue} onChange={changeLoginInput} type="text"/>
+                            <Field variant="outlined" label="Пароль" value={passwordValue} onChange={changePasswordInput}
+                                   type="password"/>
+                            <Btn onClick={checkAuth} variant="contained" color="primary">
+                                Войти
+                            </Btn>
+                            {errorStatus && <Error>Неверный логин или пароль</Error>}
+                        </Form>
+                    </FormContainer>
+
+                </FormWrapper>
             )
         } else {
-            if (Number(localStorage.getItem('time')) + durationTimeMin <= D.getTime()) {
-                return (
-                    <FormWrapper>
-                        <h1>Вход в Админ панель </h1>
-                        <FormContainer>
-                            <Form>
-                                <Field variant="outlined" label="Логин" value={loginValue} onChange={changeLoginInput} type="text"/>
-                                <Field variant="outlined" label="Пароль" value={passwordValue} onChange={changePasswordInput}
-                                       type="password"/>
-                                <Btn onClick={checkAuth} variant="contained" color="primary">
-                                    Войти
-                                </Btn>
-                                {showStatusError && <Error>Неверный логин или пароль</Error>}
-                            </Form>
-                        </FormContainer>
-
-                    </FormWrapper>
-                )
-            } else {
-                return (
-                    timerCountDown()
-                )
-            }
-
-
+           dispatch(isError(true))
+            return <TimeDown  time={timeDownSeconds}/>
         }
+
+
     }
+
 
     return (
         render()
@@ -129,6 +109,34 @@ const Auth: React.FC = () => {
 };
 
 export default Auth
+
+
+type TimeDownProps = {
+    time: number
+}
+const TimeDown: React.FC<TimeDownProps> = (props) => {
+    const [timeSeconds, setTime] = useState(props.time)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (timeSeconds < 1) {
+            localStorage.clear()
+            dispatch(isError(false))
+        } else {
+            setTimeout(() => {
+                setTime(prevState => prevState - 1)
+            }, 1000)
+        }
+
+    }, [timeSeconds])
+
+    return (
+        <ErrorDuration>
+            <h1>Дружище покури пока :)</h1>
+            <span>{timeSeconds} секунд</span>
+            <p style={{marginTop:'10px'}}>может пароль вспомнишь))</p>
+        </ErrorDuration>
+    );
+};
 
 
 const Field = styled(TextField)({
@@ -163,6 +171,26 @@ const Error = styleds.span`
   margin-top: 10px;
   color: red;
   text-align: center;
+`
+
+const ErrorDuration = styleds.section`
+  color: red;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span {
+    color: black;
+    display: block;
+    font-size: 60px;
+    @media (max-width: 550px) {
+        font-size:20px
+    }
+  }
+   @media (max-width: 550px) {
+        font-size:13px
+    }
 `
 
 const Btn = styled(Button)({

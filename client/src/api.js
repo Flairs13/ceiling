@@ -51,6 +51,17 @@ export const updateItem = (payload, route, id) => {
     .catch((error) => console.log(error.message))
 }
 
+export const updateItems = (payload, route) => {
+  return instance
+      .put(`/update/${route}`, payload)
+      .then((response) => ({ response }))
+      .catch((error) => console.log(error.message))
+}
+
+
+
+
+
 export const deleteItem = (id, route) => {
   return instance
     .delete(`/${route}/:${id}`)

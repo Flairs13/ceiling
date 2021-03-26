@@ -8,6 +8,7 @@ import Modal from "../../../Common/Modal";
 import Dropzone from 'react-dropzone';
 import {uploadMail} from "../../../api";
 import {CircularProgress} from "@material-ui/core";
+import {SectionWrapper, Title } from '../../../Common/CSS/src';
 
 
 const Request = () => {
@@ -52,8 +53,8 @@ const Request = () => {
 
 
     return (
-        <RequestWrapper>
-            <h1>Отправить Запрос</h1>
+        <SectionWrapper>
+            <Title>Отправить Запрос</Title>
             <Formik initialValues={{name: '', phone: '', personData: false, mail: '', files: [], textarea: ''}}
                     validationSchema={validationSchema} onSubmit={submit}>
                 {({values, handleChange,setFieldValue}) => (
@@ -153,7 +154,7 @@ const Request = () => {
 
             }
 
-        </RequestWrapper>
+        </SectionWrapper>
     );
 }
 
@@ -168,22 +169,6 @@ const Hr = styled.hr`
   margin: 22px 0;
 `
 
-const RequestWrapper = styled.section`
-  margin: 40px 0;
-
-  h1 {
-    font-size: 35px;
-    text-align: center;
-    margin-bottom: 80px;
-    @media (max-width: 750px) {
-      margin-bottom: 40px;
-    }
-  }
-
-  @media (max-width: 750px) {
-    margin: 20px 0;
-  }
-`
 
 const FormItem = styled.label`
   display: flex;

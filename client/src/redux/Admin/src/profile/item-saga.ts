@@ -1,5 +1,5 @@
 import {fork,call,throttle, put,takeEvery} from "redux-saga/effects";
-import {DELETE_ITEM, GET_ITEM, UPDATE_ITEM, UPDATE_TABLE, UPLOAD_ITEM, UPLOAD_TABLE} from "./item-reducer";
+import {DELETE_ITEM, GET_ITEM, UPDATE_ITEM, UPDATE_ITEMS, UPDATE_TABLE, UPLOAD_ITEM, UPLOAD_TABLE} from "./item-reducer";
 import {
     setItem,
     setStatus,
@@ -8,9 +8,9 @@ import {
     updateItemAction,
     uploadItemAction,
     uploadTableAction,
-    updateTableAction
+    updateTableAction, updateItemsAction
 } from "./item-action";
-import {deleteItem, getItemArr, updateItem, updateTable, uploadItem, uploadTable} from "../../../../api";
+import {deleteItem, getItemArr, updateItem, updateItems, updateTable, uploadItem, uploadTable} from "../../../../api";
 
 
 
@@ -64,6 +64,25 @@ function* updateItemWorker({values,route,id} : ReturnType<typeof updateItemActio
         console.log(error)
     }
 }
+
+function* updateItemsWatcher() {
+    yield takeEvery(UPDATE_ITEMS,updateItemsWorker)
+}
+
+function* updateItemsWorker({values,route} : ReturnType<typeof updateItemsAction>) {
+    const {response,error} = yield call(updateItems, values,route)
+    if (response){
+        yield put(getItem(route))
+    } else if (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+
+
 
 
 function* deleteItemWatcher() {
@@ -123,4 +142,5 @@ export default function* rootSaga () {
     yield fork(uploadItemWatcher)
     yield fork(uploadTableWatcher)
     yield fork(updateTableWatcher)
+    yield fork(updateItemsWatcher)
 }

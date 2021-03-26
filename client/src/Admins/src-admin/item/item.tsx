@@ -15,7 +15,7 @@ import Led from "./item-description/led";
 import Consumables from "./item-description/consumables";
 import Tools from "./item-description/tools";
 import Additional from "./item-description/additional";
-import { descriptionRender } from '../../../Common/descriptionSchema';
+import {descriptionRender} from '../../../Common/descriptionSchema';
 import DescriptionItem from './item-description/DescriptionItem';
 
 type Props = {
@@ -43,7 +43,6 @@ type Props = {
 const Item: React.FC<Props> = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isShowModalEditor, setShowModalEditor] = useState(false)
-    const [isShowModalAdd, setShowModalAdd] = useState(false)
 
 
     const dispatch = useDispatch()
@@ -64,12 +63,6 @@ const Item: React.FC<Props> = (props) => {
         setAnchorEl(null);
         setShowModalEditor(true)
     }
-    const addChange = () => {
-        setAnchorEl(null);
-        setShowModalAdd(true)
-    }
-
-
 
 
     return (
@@ -79,11 +72,10 @@ const Item: React.FC<Props> = (props) => {
                     <img src={props.image} alt={props.name}/>
                 </ImgWrapper>
                 <DescriptionWrapper>
-                    {/*{descriptionRender(props,props.req)}*/}
                     <DescriptionItem {...props}/>
                 </DescriptionWrapper>
 
-                <Btn aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                <Btn style={{backgroundColor: '#f1ecec'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     Меню
                 </Btn>
                 <Menu
@@ -93,7 +85,6 @@ const Item: React.FC<Props> = (props) => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={addChange}>Добавить</MenuItem>
                     <MenuItem onClick={deleteChange}>Удалить</MenuItem>
                     <MenuItem onClick={editChange}>Редактировать</MenuItem>
 
@@ -102,10 +93,7 @@ const Item: React.FC<Props> = (props) => {
                     <ItemEditor closeModal={setShowModalEditor} {...props}/>
                 </Modal>
                 }
-                {isShowModalAdd && <Modal closeModal={setShowModalAdd} padding={'5px'}>
-                    <ItemAdd closeModal={setShowModalAdd}  req={props.req}/>
-                </Modal>
-                }
+
 
             </ItemContainer>
         </ItemWrapper>
@@ -114,8 +102,8 @@ const Item: React.FC<Props> = (props) => {
 
 export default Item;
 
-const ItemWrapper = styled.li`
-  
+const ItemWrapper = styled.div`
+
 `
 
 const ItemContainer = styled.div`
@@ -127,11 +115,11 @@ const ItemContainer = styled.div`
   border-radius: 5px;
   margin-bottom: 15px;
   padding: 10px;
-  
-    @media(max-width: 738px) {
+
+  @media (max-width: 738px) {
     grid-template-columns: 1fr;
   }
-  
+
 `
 const ImgWrapper = styled.div`
   //width: 200px;
@@ -147,6 +135,7 @@ const DescriptionWrapper = styled.dl`
 
 
 const Btn = styled(Button)`
-  background-color: #f1ecec;
   height: 100%;
+  //background-color: #f1ecec;
+
 `

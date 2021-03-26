@@ -8,8 +8,8 @@ type Props = {
     priceOnePack: number,
 }
 const DescriptionItem: React.FC<Props> = (props) => {
-
-    const exceptions = ['_id', 'image', '__v', 'route','priceOneUnit','priceOneMetre','req']
+    console.log(props)
+    const exceptions = ['_id', 'image', '__v', 'route','priceOneUnit','priceOneMetre','req','index']
     const inputsArray = toStringItemTitle({...props},exceptions)
 
     const titleArr: any = []

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import Logo from '../../assets/images/logo2.png'
 import { Container } from '../../Common/CSS/src'
 
 import {NavLink} from "react-router-dom";
@@ -10,7 +11,7 @@ const HeaderMiddle: React.FC = () => {
       <Container>
         <Wrapper>
           <HeaderLogo to={'/'}>
-            <span>Price-and-quality</span>
+            <img src={Logo} alt="logo"/>
           </HeaderLogo>
           <HeaderLinks>
             <Item>
@@ -43,10 +44,12 @@ const Wrapper = styled.div`
 `
 
 const HeaderLogo = styled(NavLink)`
- 
-  span {
-    font-size: 30px;
-    color: black;
+ width: 250px;
+  img {
+    width: 100%;
+  }
+  @media(max-width: 550px){
+    width: 150px;
   }
 `
 
@@ -59,13 +62,13 @@ const Item = styled.li`
   font-size: 15px;
   :last-child {
     margin-left: 20px;
-    @media (max-width: 570px) {
+    @media (max-width: 685px) {
       display: none;
     }
   }
 
   @media (max-width: 550px){
-    font-size: 13px;
+    font-size: 12px;
   }
 
   label {

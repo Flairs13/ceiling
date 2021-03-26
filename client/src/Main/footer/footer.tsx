@@ -6,13 +6,13 @@ import {NavLink} from "react-router-dom";
 
 const Footer: React.FC = () => {
 
-    const year = Date()
+    const year = new Date().getFullYear()
 
     return (
         <FooterWrapper>
             <Container>
                 <FooterContainer>
-                    <CompanyName>© 2021. Фабрика натяжных потолков Master Plan</CompanyName>
+                    <CompanyName>© {year} Фабрика натяжных потолков Price and Quality</CompanyName>
                     <OperatingMode>
                         <p>Режим работы: будни 08:00-19:00, суббота 9:00-15:00</p>
                         <a style={{color: 'white', marginTop: '10px', display: 'block'}} href="tel:+7(999)977-93-19">Телефон: +7(999)977-93-19</a>

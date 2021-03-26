@@ -5,13 +5,14 @@ export const GET_ITEM = 'item-reducer/GET_ITEM'
 export const SET_ITEM = 'item-reducer/SET_ITEM'
 export const SET_STATUS = 'item-reducer/SET_STATUS'
 export const UPDATE_ITEM = 'item-reducer/UPDATE_ITEM'
+export const UPDATE_ITEMS = 'item-reducer/UPDATE_ITEMS'
 export const DELETE_ITEM = 'item-reducer/DELETE_ITEM'
 export const UPLOAD_ITEM = 'item-reducer/UPLOAD_ITEM'
 export const UPLOAD_TABLE = 'item-reducer/UPLOAD_TABLE'
 export const UPDATE_TABLE = 'item-reducer/UPDATE_TABLE'
 
 const initialState  = {
-    items: [] as Array<object>,
+    items: [] as Array<{id:number,index:number}>,
     collection: {
         profile:  [{name:'Наименование'},
             {material: 'Материал'},
