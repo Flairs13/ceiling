@@ -1,22 +1,13 @@
-import React, {useEffect, useImperativeHandle, useState} from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components/macro";
 import {Button, Menu, MenuItem} from "@material-ui/core";
 import Modal from "../../../Common/Modal";
 import ItemEditor from "./item-editor";
 import {useDispatch} from "react-redux";
-import {deleteItemAction} from "../../../redux/Admin/src/profile/item-action";
-import ItemAdd from "./item-add";
-import Profile from './item-description/DescriptionItem';
-import Tape from "./item-description/tape";
-import Accessories from "./item-description/accessories";
-import Light from "./item-description/light";
-import Constructions from "./item-description/constructions";
-import Led from "./item-description/led";
-import Consumables from "./item-description/consumables";
-import Tools from "./item-description/tools";
-import Additional from "./item-description/additional";
-import {descriptionRender} from '../../../Common/descriptionSchema';
+import {deleteItemAction} from "../../../redux/common/src/item/item-action";
 import DescriptionItem from './item-description/DescriptionItem';
+import {ItemList} from "../../../Common/Types";
+
 
 type Props = {
     image: string
@@ -40,14 +31,16 @@ type Props = {
     req: string
 
 }
-const Item: React.FC<Props> = (props) => {
-    const [anchorEl, setAnchorEl] = useState(null);
+type Test = Props & ItemList
+
+const Item: React.FC<Test> = (props) => {
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [isShowModalEditor, setShowModalEditor] = useState(false)
 
 
     const dispatch = useDispatch()
 
-    const handleClick = (event: any) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
 

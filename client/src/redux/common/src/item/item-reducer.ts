@@ -1,4 +1,5 @@
 import * as actions from "./item-action"
+import {ItemList} from "../../../../Common/Types";
 
 
 export const GET_ITEM = 'item-reducer/GET_ITEM'
@@ -12,7 +13,8 @@ export const UPLOAD_TABLE = 'item-reducer/UPLOAD_TABLE'
 export const UPDATE_TABLE = 'item-reducer/UPDATE_TABLE'
 
 const initialState  = {
-    items: [] as Array<{id:number,index:number}>,
+    items: [] as Array<ItemList>,
+    routes: ['cloth','profile','tape','accessories','light','constructions','led','consumables','tools','additional'],
     collection: {
         profile:  [{name:'Наименование'},
             {material: 'Материал'},

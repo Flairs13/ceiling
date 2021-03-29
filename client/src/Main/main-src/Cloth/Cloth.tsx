@@ -1,9 +1,9 @@
-import React, {useEffect, useLayoutEffect, useMemo, Component, useState, useRef} from 'react';
-import {CircularProgress} from "@material-ui/core";
+import React, {useLayoutEffect} from 'react';
 import styled from "styled-components/macro";
-import {connect, useDispatch, useSelector} from "react-redux";
-import { getItems, getStatus } from '../../../redux/Admin/src/cloth/cloth-select';
-import {getItem} from "../../../redux/Admin/src/cloth/cloth-action";
+import {useDispatch, useSelector} from "react-redux";
+import { getItems, getStatus } from '../../../redux/common/src/cloth/cloth-select';
+import {getItem} from "../../../redux/common/src/cloth/cloth-action";
+import Preloader from "../../../Common/Preloader";
 
 
 
@@ -18,9 +18,7 @@ const Cloth:React.FC<Props> = (props) => {
     const renderTable = () => {
         switch (props.status) {
             case 'loading': {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
 
             case 'complete': {
@@ -74,9 +72,7 @@ const Cloth:React.FC<Props> = (props) => {
                 )
             }
             default: {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
         }
     }
@@ -130,12 +126,6 @@ export default ClothContainer;
 
 
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-`
 
 const Table = styled.table`
   margin: 40px 0;

@@ -2,9 +2,9 @@ import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import CreateSagaMiddleware from 'redux-saga'
 
 import rootSaga from "./root-saga";
-import {itemReducer} from "./Admin/src/profile/item-reducer";
-import {authReducer} from "./Admin/src/auth/auth-reducer";
-import {clothReducer} from "./Admin/src/cloth/cloth-reducer";
+import {itemReducer} from "./common/src/item/item-reducer";
+import {authReducer} from "./common/src/auth/auth-reducer";
+import {clothReducer} from "./common/src/cloth/cloth-reducer";
 
 
 

@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import styled from "styled-components/macro";
 import {Formik,Form,Field} from 'formik';
 import {useDispatch, useSelector} from "react-redux";
-import {getItem, updateTableAction, uploadTableAction} from '../../../redux/Admin/src/profile/item-action';
-import {getItems, getStatus} from "../../../redux/Admin/src/profile/item-select";
-import {CircularProgress} from "@material-ui/core";
+import {getItem, updateTableAction} from '../../../redux/common/src/item/item-action';
+import {getItems, getStatus} from "../../../redux/common/src/item/item-select";
+import Preloader from "../../../Common/Preloader";
 
 const Cloth: React.FC = () => {
 
@@ -27,15 +27,13 @@ const Cloth: React.FC = () => {
     const renderTable = () => {
         switch (status){
             case 'loading': {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
 
             case 'complete': {
                 return (
                     <Formik initialValues={items} onSubmit={onSubmit}>
-                        {({handleSubmit,values,handleChange}) => (
+                        {({handleChange}) => (
                             <Form>
                                 <Table>
                                     <Tbody>
@@ -309,12 +307,6 @@ const Input = styled(Field)`
 `
 
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;  
-  align-items: center;
-  
-`
 
 const ButtonWrapper = styled.div`
   display: flex;

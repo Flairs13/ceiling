@@ -1,13 +1,14 @@
 import React, {useEffect,useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getItems, getStatus} from "../../../redux/Admin/src/profile/item-select";
-import {getItem, updateItemsAction} from "../../../redux/Admin/src/profile/item-action";
+import {getItems, getStatus} from "../../../redux/common/src/item/item-select";
+import {getItem, updateItemsAction} from "../../../redux/common/src/item/item-action";
 import Item from "./item";
-import {CircularProgress} from "@material-ui/core";
 import styled from "styled-components/macro";
 import Modal from "../../../Common/Modal";
 import ItemAdd from "./item-add";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+import {ItemList} from "../../../Common/Types";
+import Preloader from "../../../Common/Preloader";
 
 
 type Props = {
@@ -17,20 +18,17 @@ const ItemContainer: React.FC<Props> = (props) => {
     const arrItems = useSelector(getItems)
     const status = useSelector(getStatus)
     const [isShowModalAdd, setShowModalAdd] = useState(false)
-    const [items, setItems] = useState<typeof arrItems>([])
+    const [items, setItems] = useState<Array<ItemList>>([])
 
 
-
-    const reorder = (list: Array<object>, startIndex: number, endIndex: number) => {
+    const reorder = (list: Array<ItemList>, startIndex: number, endIndex: number) => {
         const result = Array.from(list);
-        console.log(result)
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
 
         return result;
     };
 
-    console.log(items)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getItem(props.type))
@@ -41,17 +39,16 @@ const ItemContainer: React.FC<Props> = (props) => {
     },[arrItems])
 
 
-    type Item = {
-        [key: string]: number | string
-    }
+
 
     const onDragEnd = (result: any) => {
         if (!result.destination) {
             return;
         }
         const newItems = reorder(items, result.source.index, result.destination.index)
-        newItems.forEach((item: arrI,index: number) => {
+        newItems.forEach((item,index: number): void => {
             item.index = index
+
         })
 
     }
@@ -62,9 +59,7 @@ const ItemContainer: React.FC<Props> = (props) => {
     const render = () => {
         switch (status) {
             case 'loading': {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
             case 'complete': {
                 return (
@@ -75,15 +70,15 @@ const ItemContainer: React.FC<Props> = (props) => {
                         </ButtonWrapper>
                         <DragDropContext onDragEnd={onDragEnd}>
                             <Droppable droppableId="droppable">
-                                {(provided, snapshot) => (
+                                {(provided) => (
                                     <ul  {...provided.droppableProps}
                                          ref={provided.innerRef}
                                        >
                                         {
-                                            items.sort((a: object,b: object) => a.index - b.index).map((item: object, index: number) => {
+                                            items.sort((a: ItemList,b: ItemList) => a.index - b.index).map((item: any, index: number) => {
                                                 return (
                                                     <Draggable key={item._id} draggableId={item._id} index={index}>
-                                                        {(provided, snapshot) => (
+                                                        {(provided) => (
                                                             <li ref={provided.innerRef}
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
@@ -125,12 +120,7 @@ const ItemContainer: React.FC<Props> = (props) => {
 
 export default ItemContainer
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-`
 const ButtonWrapper = styled.div`
   margin-bottom: 20px;
 `

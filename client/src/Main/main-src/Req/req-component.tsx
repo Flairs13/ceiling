@@ -32,7 +32,15 @@ const Request = () => {
         }
     }
 
-    const submit = async (values: any, {resetForm} : any) => {
+    interface FormikValues {
+        name: string,
+        phone: string,
+        personData: boolean,
+        mail: string,
+        files: never[],
+        textarea: string
+    }
+    const submit = async (values: FormikValues, {resetForm}:any) => {
         if (captcha.current.getValue()) {
             setLoading(true)
            const {response,error} = await uploadMail(values)
@@ -50,6 +58,7 @@ const Request = () => {
 
 
     }
+
 
 
     return (
@@ -221,9 +230,6 @@ const TextareaWrapper = styled.div`
 
 const FileWrapper = styled.div`
   margin-top: 30px;
-`
-const File = styled.input`
-  margin-top: 10px;
 `
 
 const CheckBoxWrapper = styled.div`

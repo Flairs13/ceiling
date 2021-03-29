@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import styled from "styled-components/macro";
 import {ErrorMessage, Field, Form, Formik} from 'formik';
-import {updateItemAction} from '../../../redux/Admin/src/profile/item-action';
+import {updateItemAction} from '../../../redux/common/src/item/item-action';
 import {useDispatch} from "react-redux";
 import {IconButton} from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
@@ -26,6 +26,7 @@ const ItemEditor: React.FC<Props> = (props) => {
     }
 
 
+
     return (
         <EditorWrapper>
             <Header>
@@ -36,7 +37,7 @@ const ItemEditor: React.FC<Props> = (props) => {
             </Header>
             <Forms>
                 <Formik initialValues={Object.fromEntries(inputsArray)} onSubmit={submit}>
-                    {({values, setFieldValue, handleChange, handleBlur, dirty}) => (
+                    {({setFieldValue, handleChange, handleBlur, dirty}) => (
                         <Form>
                             <ImgWrapper>
                                 <img src={srcImg.current} alt="#"/>
@@ -149,11 +150,7 @@ const Input = styled(Field)`
   }
 `
 
-const Error = styled(ErrorMessage)`
-  color: red;
-  grid-column: controls;
-  margin-top: 5px;
-`
+
 
 const ButtonWrapper = styled.div`
   display: flex;

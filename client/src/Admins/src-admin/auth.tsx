@@ -1,12 +1,12 @@
 import TextField from '@material-ui/core/TextField';
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {isAuth, isError} from "../../redux/Admin/src/auth/auth-action";
+import {isAuth, isError} from "../../redux/common/src/auth/auth-action";
 import {Button} from "@material-ui/core";
 import styleds from "styled-components/macro";
 import {styled} from '@material-ui/core/styles';
-import {useHistory} from 'react-router-dom';
-import {getIsError, getIsErrorDuration, getLogin, getPassword} from "../../redux/Admin/src/auth/auth-select";
+import {Redirect, useHistory} from 'react-router-dom';
+import {getIsError, getIsErrorDuration, getLogin, getPassword} from "../../redux/common/src/auth/auth-select";
 
 
 
@@ -20,22 +20,22 @@ const Auth: React.FC = () => {
     const history = useHistory()
     const login = useSelector(getLogin)
     const password = useSelector(getPassword)
+    const log = localStorage.getItem('login')
+    const pass = localStorage.getItem('password')
 
     const durationTimeMin = useSelector(getIsErrorDuration)
+
     const timeDownSeconds = Math.floor(((Number(localStorage.getItem('time')) + durationTimeMin - D.getTime()) / 1000))
 
 
     useEffect(() => {
-        const log = localStorage.getItem('login')
-        const pass = localStorage.getItem('password')
         if (log === login && pass === password) {
             dispatch(isAuth(true))
-            history.push(history.location.pathname + '/main/profile')
         }
     }, [])
 
 
-
+    if (log === login && pass === password) return <Redirect to={'/admin/main/profile'}/>
 
 
 
@@ -64,18 +64,15 @@ const Auth: React.FC = () => {
             localStorage.setItem('login', login)
             localStorage.setItem('password', password)
             dispatch(isAuth(true))
-            history.push(history.location.pathname + '/main/profile')
+            history.push(history.location.pathname + '/main/item')
         }
         checkTimeCount()
 
 
     }
-    console.log('render parent')
     const render = () => {
         const Dates = new Date()
-        console.log(Dates.getTime())
-        console.log(Number(localStorage.getItem('time')) + durationTimeMin)
-        console.log(Number(localStorage.getItem('time')) + durationTimeMin <= Dates.getTime())
+
         if (Number(localStorage.getItem('time')) + durationTimeMin <= Dates.getTime()) {
             return (
                 <FormWrapper>

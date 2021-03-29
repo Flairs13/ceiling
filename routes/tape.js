@@ -8,6 +8,7 @@ const uploadController = require('../Controllers/tapeController')
 router.get('/tape', uploadController.getTape)
 router.post('/tape',uploadImg.uploadImg, uploadController.newTape)
 router.put('/tape',uploadImg.uploadImg, uploadController.tapeUpdate)
+router.put('/update/tape',uploadController.tapeUpdatePosition)
 router.delete('/tape/:id', uploadController.tapeDelete)
 
 module.exports = router

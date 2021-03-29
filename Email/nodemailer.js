@@ -9,12 +9,12 @@ const nodemailer = require("nodemailer");
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'potolki30rus@yandex.ru', // generated ethereal user
-            pass: '123qweqwe', // generated ethereal password
+            user: 'paq-diller@yandex.ru', // generated ethereal user
+            pass: 'w9753w9753', // generated ethereal password
         },
     },
         {
-            from: 'Mailer Test <potolki30rus@yandex.ru>'
+            from: 'Mailer Test <paq-diller@yandex.ru>'
         }
 
     );

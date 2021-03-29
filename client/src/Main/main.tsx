@@ -5,7 +5,7 @@ import Header from "./header/header";
 import Footer from "./footer/footer";
 
 
-const Main = () => {
+const Main:React.FC = () => {
     return (
         <>
             <MainContainer>

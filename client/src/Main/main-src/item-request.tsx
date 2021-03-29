@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getCollection, getItems, getStatus} from "../../redux/Admin/src/profile/item-select";
-import {getItem} from "../../redux/Admin/src/profile/item-action";
+import {getCollection, getItems, getStatus} from "../../redux/common/src/item/item-select";
+import {getItem} from "../../redux/common/src/item/item-action";
 import {NavLink} from 'react-router-dom';
-import {CircularProgress} from "@material-ui/core";
 import styled from "styled-components/macro";
+import Preloader from "../../Common/Preloader";
+import NotFound from "../../Common/404";
 
 
 type Props = {
@@ -57,12 +58,11 @@ const ItemRequest: React.FC<Props> = (props) => {
     const render = () => {
         switch (status) {
             case 'loading': {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
 
             case 'complete': {
+                if (!findItem) return <NotFound/>
                 const arrCharacteristics = []
                 // Здесь проходимся циклом по найденой коллекции и добавляем объект из ключа и значения исключая значенияб
                 //которые не ввел пользователь в админке в новый одъект и потом пушим его в массив,
@@ -114,12 +114,7 @@ export default ItemRequest;
 
 
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-`
 const ItemWrapper = styled.article`
   display: flex;
   margin: 25px 0;

@@ -17,19 +17,19 @@ const HeaderTop = () => {
                             <SvgWrapper>
                                 <CallIcon/>
                             </SvgWrapper>
-                            <PhoneLink href="tel:+7(999)977-93-19">+7(999)977-93-19</PhoneLink>
+                            <PhoneLink href="tel:+7(915)346-00-07">+7(915)346-00-07</PhoneLink>
                         </ItemLeft>
                         <ItemLeft>
                             <SvgWrapper>
                                 <WhatsappIcon/>
                             </SvgWrapper>
-                            <a href="tel:+7(999)977-93-19">Консультация в WhatsApp</a>
+                            <a href="https://wa.me/79153460007" target='_blank'>Консультация в WhatsApp</a>
                         </ItemLeft>
                         <ItemLeft>
                             <SvgWrapper>
                                 <MailIcon/>
                             </SvgWrapper>
-                            <a href="mailto:flairs13@gmail.com">flairs13@gmail.com</a>
+                            <a href="mailto:paq-diller@yandex.ru">paq-diller@yandex.ru</a>
                         </ItemLeft>
                     </HeaderLeft>
                     <HeaderRight>
@@ -107,13 +107,13 @@ const ItemLeft = styled.li`
   }
   
   
-  @media (max-width: 875px){
+  @media (max-width: 900px){
     :nth-child(2){
       display: none;
     }
   }
   
-  @media (max-width: 625px){
+  @media (max-width: 645px){
     :nth-child(3){
       display: none;
     }

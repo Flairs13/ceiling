@@ -10,9 +10,14 @@ import Cloth from "./Cloth/Cloth";
 import styled from "styled-components/macro";
 import { Container } from '../../Common/CSS/src';
 import MainComponent from "./TheMain/main-component";
+import NotFound from "../../Common/404";
+import {useSelector} from "react-redux";
+import {getRoutes} from "../../redux/common/src/item/item-select";
 
 
 const MainPage: React.FC = () => {
+    const routes = useSelector(getRoutes)
+
     return (
         <MainWrapper>
             <Container>
@@ -27,11 +32,15 @@ const MainPage: React.FC = () => {
                         if (match.params.route === 'cloth') {
                             return <Cloth route={match.params.route}/>
                         } else {
-                            return <MainItemContainer route={match.params.route}/>
+                            if (routes.some(i => i === match.params.route)){
+                                return <MainItemContainer route={match.params.route}/>
+                            } else {
+                               return <NotFound/>
+                            }
                         }
 
                     }}/>
-
+                    <NotFound/>
                 </Switch>
             </Container>
         </MainWrapper>

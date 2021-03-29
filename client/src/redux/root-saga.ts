@@ -1,6 +1,6 @@
 import {spawn} from "redux-saga/effects";
-import item from './Admin/src/profile/item-saga'
-import cloth from './Admin/src/cloth/cloth-saga'
+import item from './common/src/item/item-saga'
+import cloth from './common/src/cloth/cloth-saga'
 
 
 

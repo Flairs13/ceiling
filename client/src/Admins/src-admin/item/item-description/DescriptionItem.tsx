@@ -2,13 +2,18 @@ import React from 'react';
 import styled from "styled-components/macro";
 import { toStringItemTitle } from '../../../../Common/functions';
 
+
+
 type Props = {
     priceOneUnit: number,
     priceOneMetre: number,
     priceOnePack: number,
 }
+
+
+
+
 const DescriptionItem: React.FC<Props> = (props) => {
-    console.log(props)
     const exceptions = ['_id', 'image', '__v', 'route','priceOneUnit','priceOneMetre','req','index']
     const inputsArray = toStringItemTitle({...props},exceptions)
 
@@ -28,6 +33,7 @@ const DescriptionItem: React.FC<Props> = (props) => {
                 {props.priceOneMetre && <p>{props.priceOneMetre}<span>₽/метр.</span></p>}
                 {props.priceOneUnit && <p>{props.priceOneUnit}<span>₽/шт.</span></p>}
                 {props.priceOnePack && <p>{props.priceOnePack}<span>₽/упаковка.</span></p>}
+
             </Price>
         </DescriptionItemWrapper>
     );

@@ -1,10 +1,10 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import { getItem } from '../../../redux/Admin/src/profile/item-action';
-import {getItems, getStatus} from "../../../redux/Admin/src/profile/item-select";
-import {CircularProgress} from "@material-ui/core";
+import { getItem } from '../../../redux/common/src/item/item-action';
+import {getItems, getStatus} from "../../../redux/common/src/item/item-select";
 import MainItem from "../main-item";
 import styled from "styled-components/macro";
+import Preloader from "../../../Common/Preloader";
 
 const MainComponent = () => {
 
@@ -19,9 +19,7 @@ const MainComponent = () => {
     const render = () => {
         switch (status) {
             case 'loading': {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
             case 'complete': {
                 return (
@@ -39,9 +37,7 @@ const MainComponent = () => {
                 )
             }
             default: {
-                return <LoadingWrapper>
-                    <CircularProgress style={{width: '200px', height: '200px', marginTop: '120px'}}/>
-                </LoadingWrapper>
+                return <Preloader/>
             }
         }
     }
@@ -117,9 +113,3 @@ const ListWrapper = styled.ul`
   }
 `
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-`

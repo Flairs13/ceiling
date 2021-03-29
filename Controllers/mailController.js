@@ -1,5 +1,5 @@
 const mailer = require('../Email/nodemailer')
-const config = require ('config')
+
 
 
 
@@ -16,13 +16,14 @@ module.exports.newMail = (req, res) => {
     html += `<p>Комментарии к заказу: ${req.body.textarea}</p>`
 
     const message = {
-        from: '<potolki30rus@yandex.ru>', // sender address
-        to: "potolki30rus@yandex.ru", // list of receivers
+        from: '<paq-diller@yandex.ru>', // sender address
+        to: "paq-diller@yandex.ru", // list of receivers
         subject: "✔✔✔--НОВАЯ ЗАЯВКА--✔✔✔", // Subject line
-        text: "Заявкаааа", // plain text body
+        text: "Заявка", // plain text body
         html: html,
         attachments: [...attachments]
     }
     mailer(message,res)
 
 };
+

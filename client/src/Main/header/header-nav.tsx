@@ -16,7 +16,7 @@ const HeaderNav: React.FC = () => {
     const [isShowMenu, setShowMenu] = useState(false)
     const [isMenuFixed, setMenuFixed] = useState(false)
     const refItem = useRef<HTMLLIElement>(null)
-    console.log('render')
+
     useEffect(() => {
         window.addEventListener('scroll', scrollFunction)
     }, [])
@@ -51,6 +51,13 @@ const HeaderNav: React.FC = () => {
                 {isMenuFixed && <div style={{height: '59px'}}></div>}
                 <Wrapper isMenuFixed={isMenuFixed}>
                     <NavList>
+                        {isMenuFixed &&
+                        <FixedLogo>
+                            <NavLink to={'/'}>
+                                <img src={Logo} alt="Logo"/>
+                            </NavLink>
+                        </FixedLogo>
+                        }
                         <NavItem onMouseLeave={() => setShowMenu(false)} ref={refItem}>
                             <Link onMouseEnter={() => setShowMenu(true)}
                                   to={'#'}>
@@ -85,27 +92,27 @@ const HeaderNav: React.FC = () => {
                                 <p>Отправить запрос</p>
                             </Link>
                         </NavItem>
-                        {isMenuFixed &&   <Contacts>
+                        {isMenuFixed && <Contacts>
                             <li>
                                 <SvgWrapper>
                                     <CallIcon/>
                                 </SvgWrapper>
-                                <PhoneLink href="tel:+7(999)977-93-19">+7(999)977-93-19</PhoneLink>
+                                <PhoneLink href="tel:+7(915)346-00-07">+7(915)346-00-07</PhoneLink>
                             </li>
                             <li>
                                 <SvgWrapper>
                                     <WhatsappIcon/>
                                 </SvgWrapper>
-                                <PhoneLink href="tel:+7(999)977-93-19">Консультация в WhatsApp</PhoneLink>
+                                <PhoneLink href="https://wa.me/79153460007" target='_blank'>Консультация в WhatsApp</PhoneLink>
                             </li>
                         </Contacts>}
                     </NavList>
 
                     <NavListMobile>
-                        { isMenuFixed &&
-                            <HeaderLogo>
-                                <img src={Logo} alt="Logo" />
-                            </HeaderLogo>
+                        {isMenuFixed &&
+                        <HeaderLogo>
+                            <img src={Logo} alt="Logo"/>
+                        </HeaderLogo>
                         }
                         <IconButton
                             onClick={() => setShowMenu((prevState) => !prevState)}
@@ -178,8 +185,8 @@ const HeaderNavWrapper = styled.nav``
 
 const SvgWrapper = styled.div`
   width: 15px;
-  
- 
+
+
 `
 const CallIcon = styled(Call)`
   fill: var(--main-color);
@@ -202,16 +209,19 @@ const Contacts = styled.ul`
   display: flex;
   padding: 20px 0;
   margin-left: auto;
-  @media (max-width: 1010px){
+  @media (max-width: 1200px) {
     display: none;
   }
+
   li {
     display: flex;
     align-items: center;
     margin-right: 15px;
+
     :last-child {
       margin-right: 0;
     }
+
     :hover {
       opacity: 0.6;
     }
@@ -220,11 +230,19 @@ const Contacts = styled.ul`
 
 const HeaderLogo = styled.div`
   width: 150px;
+
   img {
     width: 100%;
   }
 `
 
+const FixedLogo = styled.div`
+  margin: auto 30px auto 0;
+
+  img {
+    width: 150px;
+  }
+`
 
 
 const Wrapper = styled.div<{ isMenuFixed: boolean }>`
@@ -246,7 +264,7 @@ const NavList = styled.ul`
   display: flex;
   padding: 0 30px;
 
-  @media (max-width: 550px) {
+  @media (max-width: 730px) {
     display: none;
   }
 `
@@ -264,6 +282,7 @@ const NavItem = styled.li`
   :first-child {
     border: none;
   }
+  
 `
 
 const Link = styled(NavLink)`
@@ -271,6 +290,7 @@ const Link = styled(NavLink)`
 
   p {
     padding: 20px 0;
+    white-space: nowrap;
 
     :hover {
       color: rgba(0, 0, 0, 0.5);
@@ -317,10 +337,10 @@ const NavListMobile = styled.div`
   padding: 5px 5px;
   position: relative;
 
-  @media (max-width: 550px) {
+  @media (max-width: 730px) {
     display: flex;
     align-items: center;
-    
+
   }
 `
 

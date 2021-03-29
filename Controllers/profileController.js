@@ -38,21 +38,8 @@ module.exports.newProfile = (req, res) => {
 };
 
 module.exports.profileUpdate = (req, res) => {
-    console.log('pppppppppppppppppp')
-    const updates = {}
 
-    // const updates = {
-    //     name: req.body.name,
-    //     material: req.body.material,
-    //     type: req.body.type,
-    //     size: req.body.size,
-    //     priceOneUnit: req.body.priceOneUnit,
-    //     priceOneMetre: req.body.priceOneMetre,
-    //     technology: req.body.technology,
-    //     perf: req.body.perf,
-    //     weight: req.body.weight,
-    //     index: req.body.index,
-    // };
+    const updates = {}
 
     for (const bodyKey in req.body) {
         updates[bodyKey] = req.body[bodyKey]
@@ -70,18 +57,11 @@ module.exports.profileUpdate = (req, res) => {
 };
 
 module.exports.profileUpdatePosition = (req, res) => {
-    console.log('ssssssssssssss')
-
     for (const bodyElement of req.body) {
         Profile.findByIdAndUpdate(bodyElement._id, {$set: {index: bodyElement.index}}, () => {
-
         })
     }
-    res.send('ss')
-
-
-
-
+    res.send('success')
 };
 
 module.exports.profileDelete = (req, res) => {

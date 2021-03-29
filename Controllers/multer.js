@@ -1,5 +1,6 @@
 const multer = require ('multer');
 
+
 const storage = multer.diskStorage ({
                                         destination: function (req, file, cb) {
                                             cb (null,  './uploads');
@@ -21,4 +22,4 @@ const storage2 = multer.diskStorage ({
     }
 });
 
-module.exports.uploadImgMail = uploadImg = multer ({storage: storage2, limits : {fileSize : 1000000}}).array('image',20)
+module.exports.uploadImgMail = uploadImg = multer ({storage: storage2, limits : {fileSize : 50000000}}).array('image',20)

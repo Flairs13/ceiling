@@ -15,3 +15,8 @@ export const getStatus = (state:AppStateType) => {
 export const getCollection = (state: AppStateType) => {
     return state.itemReducer.collection
 }
+
+export const getRoutes = (state: AppStateType) => {
+    return state.itemReducer.routes
+}
+

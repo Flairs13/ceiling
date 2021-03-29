@@ -1,10 +1,10 @@
 import React, {useRef} from 'react';
 import styled from "styled-components/macro";
 import {ErrorMessage, Field, Form, Formik} from 'formik';
-import {updateItemAction, uploadItemAction} from '../../../redux/Admin/src/profile/item-action';
+import {uploadItemAction} from '../../../redux/common/src/item/item-action';
 import {ReactComponent as Img} from '../../../assets/images/no-image.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {getCollection} from "../../../redux/Admin/src/profile/item-select";
+import {getCollection} from "../../../redux/common/src/item/item-select";
 import * as yup from 'yup';
 import {IconButton} from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -64,7 +64,7 @@ const ItemAdd: React.FC<Props> = (props) => {
             </Header>
             <Forms>
                 <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={submit}>
-                    {({values, handleSubmit, setFieldValue, handleChange,}) => (
+                    {({handleSubmit, setFieldValue, handleChange,}) => (
                         <Form onSubmit={handleSubmit}>
                             <ImgWrapper>
                                 {srcImg.current ? <img src={srcImg.current} alt="#"/> : <PhotoSvgIcon/>}
