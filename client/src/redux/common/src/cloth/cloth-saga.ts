@@ -1,4 +1,4 @@
-import {fork,call,throttle, put,takeEvery} from "redux-saga/effects";
+import {fork,call,put,takeEvery} from "redux-saga/effects";
 import {getItem, setItem, setStatus } from "./cloth-action";
 import {GET_ITEM} from "./cloth-reducer";
 import {getItemArr} from "../../../../api";

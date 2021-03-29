@@ -1,4 +1,4 @@
-import {fork,call,throttle, put,takeEvery} from "redux-saga/effects";
+import {fork,call,put,takeEvery} from "redux-saga/effects";
 import {DELETE_ITEM, GET_ITEM, UPDATE_ITEM, UPDATE_ITEMS, UPDATE_TABLE, UPLOAD_ITEM, UPLOAD_TABLE} from "./item-reducer";
 import {
     setItem,
