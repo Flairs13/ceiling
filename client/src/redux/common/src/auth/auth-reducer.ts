@@ -6,8 +6,8 @@ const initialState = {
     Auth: false,
     errorDurationMin: 3 * 60 * 1000,
     isError: false,
-    login: 'admin',
-    password: '123qweqwe'
+    login: 'paq-diller@yandex.ru',
+    password: 'w9753w9753'
 }
 type InitialStateType = typeof initialState
 

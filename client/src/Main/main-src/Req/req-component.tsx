@@ -63,7 +63,7 @@ const Request = () => {
 
     return (
         <SectionWrapper>
-            <Title>Отправить Запрос</Title>
+            <Title>Отправить Запрос:</Title>
             <Formik initialValues={{name: '', phone: '', personData: false, mail: '', files: [], textarea: ''}}
                     validationSchema={validationSchema} onSubmit={submit}>
                 {({values, handleChange,setFieldValue}) => (
