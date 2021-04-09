@@ -28,7 +28,7 @@ const MainComponent = () => {
                         {
                             items.map((item: any) => {
                                 return (
-                                    <MainItem {...item}/>
+                                    <MainItem {...item} key={item._id}/>
                                 )
                             })
                         }
@@ -66,9 +66,12 @@ const ListWrapper = styled.ul`
     margin-bottom: 0;
     padding: 20px;
     
-    div:first-child {
-      width: 100%;
+    div {
+      max-width: 250px;
       margin-bottom: 10px;
+      @media (max-width: 860px){
+        max-width: 100%;
+      }
       img {
         width: 100%;
         height: 100%;
