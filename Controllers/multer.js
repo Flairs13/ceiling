@@ -10,7 +10,7 @@ const storage = multer.diskStorage ({
                                         }
                                     });
 
-module.exports.uploadImg = uploadImg = multer ({storage: storage, limits : {fileSize : 1000000}}).single ('image');
+module.exports.uploadImg = uploadImg = multer ({storage: storage , limits : {fileSize : 1000000}}).single ('image');
 
 
 const storage2 = multer.diskStorage ({

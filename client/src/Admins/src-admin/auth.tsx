@@ -64,7 +64,7 @@ const Auth: React.FC = () => {
             localStorage.setItem('login', login)
             localStorage.setItem('password', password)
             dispatch(isAuth(true))
-            history.push(history.location.pathname + '/main/item')
+            history.push(history.location.pathname + '/main/profile')
         }
         checkTimeCount()
 

@@ -177,8 +177,8 @@ export default function AdminMain() {
                         </ListItem>
                     </NavLink>
                     {arr.map((i) => (
-                        <NavLink style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/${i.route}`}>
-                            <ListItem button key={i.name}>
+                        <NavLink key={i.name} style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/${i.route}`}>
+                            <ListItem button>
                                 <ListItemIcon>
                                     {i.icon}
                                 </ListItemIcon>
@@ -190,8 +190,8 @@ export default function AdminMain() {
                 <Divider/>
                 <List>
                     {arr2.map((i, index) => (
-                        <NavLink style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/${i.route}`}>
-                            <ListItem button key={index}>
+                        <NavLink key={index} style={{color: "rgba(0, 0, 0, 0.8)"}} to={`/admin/main/${i.route}`}>
+                            <ListItem button >
                                 <ListItemIcon>
                                     {i.icon}
                                 </ListItemIcon>

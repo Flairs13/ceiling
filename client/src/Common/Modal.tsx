@@ -44,6 +44,7 @@ const ModalWrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px 0;
 `
 
 const ModalContainer = styled.section<{padding: string}>`
@@ -53,4 +54,6 @@ const ModalContainer = styled.section<{padding: string}>`
     border-radius: 5px;
     background-color: white;
     margin: 0 10px;
+    max-height: 100%;
+    overflow-y: auto;
 `

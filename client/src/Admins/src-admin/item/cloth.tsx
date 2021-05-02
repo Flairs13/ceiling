@@ -71,9 +71,9 @@ const Cloth: React.FC = () => {
                                             <th>Дополнительные работы</th>
                                             <th colSpan={2}>цена</th>
                                         </tr>
-                                        {Object.entries(initialValue.additional).map((i) => {
+                                        {Object.entries(initialValue.additional).map((i,index) => {
                                             return (
-                                                <tr>
+                                                <tr key={index}>
                                                     <TdDescription><Input onChange={handleChange} type='text' name={`additional.${i[0]}.${Object.keys(i[1])[0]}`}/></TdDescription>
                                                     <TdPrice colSpan={2}><Input onChange={handleChange} type='number' name={`additional.${i[0]}.${Object.keys(i[1])[1]}`}/></TdPrice>
                                                 </tr>
