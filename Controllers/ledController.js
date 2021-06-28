@@ -1,4 +1,3 @@
-const config = require('config')
 const Led = require('../models/led')
 
 
@@ -12,7 +11,7 @@ module.exports.getLed = (req, res) => {
 module.exports.newLed = (req, res) => {
     Led.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newLed = new Led({
@@ -45,7 +44,7 @@ module.exports.ledUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
         updates.image = filePath;
     }
 

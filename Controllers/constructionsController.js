@@ -1,4 +1,3 @@
-const config = require('config')
 const Constructions = require('../models/constructions')
 
 
@@ -12,7 +11,7 @@ module.exports.getConstructions = (req, res) => {
 module.exports.newConstructions = (req, res) => {
     Constructions.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newConstructions = new Constructions({
@@ -41,7 +40,7 @@ module.exports.constructionsUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
         updates.image = filePath;
     }
 

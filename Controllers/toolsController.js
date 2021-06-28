@@ -1,4 +1,3 @@
-const config = require('config')
 const Tools = require('../models/tools')
 
 
@@ -12,7 +11,7 @@ module.exports.getTools = (req, res) => {
 module.exports.newTools = (req, res) => {
     Tools.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newTools = new Tools({
@@ -44,7 +43,7 @@ module.exports.toolsUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host +  '/' + req.file.path;
         updates.image = filePath;
     }
 

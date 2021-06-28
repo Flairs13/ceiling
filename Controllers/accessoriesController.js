@@ -1,4 +1,3 @@
-const config = require('config')
 const Accessories = require('../models/accessories')
 
 
@@ -12,7 +11,7 @@ module.exports.getAccessories = (req, res) => {
 module.exports.newAccessories = (req, res) => {
     Accessories.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newAccessories = new Accessories({
@@ -42,7 +41,7 @@ module.exports.accessoriesUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
         updates.image = filePath;
     }
 

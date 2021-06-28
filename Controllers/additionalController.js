@@ -1,4 +1,3 @@
-const config = require('config')
 const Additional = require('../models/additional')
 
 
@@ -13,7 +12,7 @@ module.exports.newAdditional = (req, res) => {
 
     Additional.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newAdditional = new Additional({
@@ -47,7 +46,7 @@ module.exports.additionalUpdate = (req, res) => {
     }
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
         updates.image = filePath;
     }
 

@@ -1,4 +1,3 @@
-const config = require('config')
 const Light = require('../models/light')
 
 
@@ -12,7 +11,7 @@ module.exports.getLight = (req, res) => {
 module.exports.newLight = (req, res) => {
     Light.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newLight = new Light({
@@ -45,7 +44,7 @@ module.exports.lightUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host +  '/' + req.file.path;
         updates.image = filePath;
     }
 

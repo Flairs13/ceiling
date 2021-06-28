@@ -1,4 +1,3 @@
-const config = require('config')
 const Profile = require('../models/profile')
 
 
@@ -12,7 +11,7 @@ module.exports.newProfile = (req, res) => {
     console.log(req.body)
     Profile.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newProfile = new Profile({
@@ -47,7 +46,7 @@ module.exports.profileUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
         updates.image = filePath;
     }
 

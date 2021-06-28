@@ -1,4 +1,3 @@
-const config = require('config')
 const Tape = require('../models/tape')
 
 
@@ -10,7 +9,7 @@ module.exports.getTape = (req, res) => {
 module.exports.newTape = (req, res) => {
     Tape.findOne({}, () => {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
         const newProfile = new Tape({
@@ -40,7 +39,7 @@ module.exports.tapeUpdate = (req, res) => {
 
     if (req.file) {
         const host = req.host;
-        const filePath = req.protocol + "://" + host + ':' + config.get('port') + '/' + req.file.path;
+        const filePath = req.protocol + "://" + host + '/' + req.file.path;
         updates.image = filePath;
     }
 
