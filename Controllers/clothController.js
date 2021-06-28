@@ -1,4 +1,3 @@
-const config = require('config')
 const Cloth = require('../models/cloth')
 
 
