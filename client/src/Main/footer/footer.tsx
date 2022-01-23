@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
                 <FooterContainer>
                     <CompanyName>© {year} Фабрика натяжных потолков Price and Quality</CompanyName>
                     <OperatingMode>
-                        <p>Режим работы: 07:00-19:00, воскресенье выходной</p>
-                        <a style={{color: 'white', marginTop: '10px', display: 'block'}} href="tel:+7(915)346-00-07">Телефон: +7(915)346-00-07</a>
+                        <p>Режим работы: с 07:00 до 20:00 ежедневно</p>
+                        <a style={{color: 'white', marginTop: '10px', display: 'block'}} href="tel:+7(985)993-44-60">Телефон: +7(985)993-44-60</a>
                     </OperatingMode>
                     <NavList>
                         <NavItem>

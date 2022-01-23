@@ -17,13 +17,13 @@ const HeaderMiddle: React.FC = () => {
             <Item>
               <label>Отправьте спецификацию:</label>
               <strong>
-                <a href="mailto:paq-diller@yandex.ru">paq-diller@yandex.ru</a>
+                <a href="mailto:potolokmsk@list.ru">potolokmsk@list.ru</a>
               </strong>
             </Item>
             <Item>
               <label>Консультации:</label>
               <strong>
-                <a href="tel:+7(915)346-00-07">+7(915)346-00-07</a>
+                <a href="tel:+7(985)993-44-60">+7(985)993-44-60</a>
               </strong>
             </Item>
           </HeaderLinks>

@@ -1,5 +1,5 @@
 {
-  "port": 5000,
+  "port": 80,
   "mongoUri": "mongodb+srv://flairsss:hw7gs7eip7@cluster.eouga.mongodb.net/potolki-shop?retryWrites=true&w=majority",
-  "baseUrl": "http://localhost"
+  "baseUrl": "http://price-and-quality.ru"
 }

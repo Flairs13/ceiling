@@ -65,10 +65,10 @@ const Price = styled.div`
       @media (max-width: 800px){
         margin-bottom: 0;
       }
-        @media (max-width: 500px){
-            font-size: 20px;
-        }
     }
+      @media (max-width: 500px){
+          font-size: 20px;
+      }
     span {
       font-size: 18px;
       margin-left: 5px;

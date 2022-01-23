@@ -60,7 +60,7 @@ const HeaderNav: React.FC = () => {
                         <NavItem onMouseLeave={() => setShowMenu(false)} ref={refItem}>
                             <Link onMouseEnter={() => setShowMenu(true)}
                                   to={'#'}>
-                                <p>Каталог</p>
+                                <p>Продукция</p>
                             </Link>
                             <DropDownMenu style={isShowMenu ? {opacity: 1} : {pointerEvents: 'none'}}>
 
@@ -77,8 +77,8 @@ const HeaderNav: React.FC = () => {
                             </DropDownMenu>
                         </NavItem>
                         <NavItem>
-                            <Link to={'/delivery'}>
-                                <p>Доставка</p>
+                            <Link to={'/company'}>
+                                <p>О нас</p>
                             </Link>
                         </NavItem>
                         <NavItem>
@@ -96,13 +96,13 @@ const HeaderNav: React.FC = () => {
                                 <SvgWrapper>
                                     <CallIcon/>
                                 </SvgWrapper>
-                                <PhoneLink href="tel:+7(915)346-00-07">+7(915)346-00-07</PhoneLink>
+                                <PhoneLink href="tel:+7(985)993-44-60">+7(985)993-44-60</PhoneLink>
                             </li>
                             <li>
                                 <SvgWrapper>
                                     <WhatsappIcon/>
                                 </SvgWrapper>
-                                <PhoneLink href="https://wa.me/79153460007" target='_blank'>Консультация в WhatsApp</PhoneLink>
+                                <PhoneLink href="https://wa.me/79859934460" target='_blank'>Консультация в WhatsApp</PhoneLink>
                             </li>
                         </Contacts>}
                     </NavList>

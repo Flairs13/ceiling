@@ -17,27 +17,27 @@ const HeaderTop = () => {
                             <SvgWrapper>
                                 <CallIcon/>
                             </SvgWrapper>
-                            <PhoneLink href="tel:+7(915)346-00-07">+7(915)346-00-07</PhoneLink>
+                            <PhoneLink href="tel:+7(985)993-44-60">+7(985)993-44-60</PhoneLink>
                         </ItemLeft>
                         <ItemLeft>
                             <SvgWrapper>
                                 <WhatsappIcon/>
                             </SvgWrapper>
-                            <a href="https://wa.me/79153460007" target='_blank'>Консультация в WhatsApp</a>
+                            <a href="https://wa.me/79859934460" target='_blank'>Консультация в WhatsApp</a>
                         </ItemLeft>
                         <ItemLeft>
                             <SvgWrapper>
                                 <MailIcon/>
                             </SvgWrapper>
-                            <a href="mailto:paq-diller@yandex.ru">paq-diller@yandex.ru</a>
+                            <a href="mailto:potolokmsk@list.ru">potolokmsk@list.ru</a>
                         </ItemLeft>
                     </HeaderLeft>
                     <HeaderRight>
-                        <ItemRight>
-                            <Link to={'/company'}>
-                                <p>О компании</p>
-                            </Link>
-                        </ItemRight>
+                        {/*<ItemRight>*/}
+                        {/*    <Link to={'/company'}>*/}
+                        {/*        <p>О нас</p>*/}
+                        {/*    </Link>*/}
+                        {/*</ItemRight>*/}
                         <ItemRight>
                             <Link to={'/contacts'}>
                                 <p>Контакты</p>
