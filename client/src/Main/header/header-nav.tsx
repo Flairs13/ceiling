@@ -133,7 +133,7 @@ const HeaderNav: React.FC = () => {
                                         onClick={() => setShowMobileMenu((prevState) => !prevState)}
                                         to={'#'}
                                     >
-                                        Каталог
+                                        Продукция
                                         <IconWrapper>
                                             {isShowMobileMenu ? <IconWrapper><UpIcon/></IconWrapper> :
                                                 <IconWrapper><DownIcon/></IconWrapper>}
@@ -158,7 +158,7 @@ const HeaderNav: React.FC = () => {
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
                                     <DropDownMobileLink onClick={() => setShowMenu(false)}
-                                                        to={'/delivery'}>Доставка</DropDownMobileLink>
+                                                        to={'/company'}>О нас</DropDownMobileLink>
                                 </DropDownMobileItem>
                                 <DropDownMobileItem>
                                     <DropDownMobileLink onClick={() => setShowMenu(false)}

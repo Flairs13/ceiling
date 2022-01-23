@@ -53,7 +53,7 @@ const Contacts = () => {
                     <SvgWrapper>
                       <AccessTime/>
                     </SvgWrapper>
-                    <p style={{color: 'black', cursor: 'default'}}>Режим работы: с 07:00 до 20:00 ежедневно</p>
+                    <p style={{color: 'black', cursor: 'default'}}>с 07:00 до 20:00 ежедневно</p>
                   </a>
                 </li>
             </ContactsWrapper>
@@ -97,6 +97,7 @@ const ContactsWrapper = styled.ul`
     a {
       margin-right: 10px;
       display: flex;
+      align-items: center;
       color: var(--main-ContactColor);
       :hover {
         color: var(--main-ContactHover);
