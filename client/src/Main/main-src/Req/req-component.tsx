@@ -253,28 +253,28 @@ const ButtonWrapper = styled.div`
 `
 
 export const Button = styled.button`
-  padding: 7px 16px 8px;
-  margin: 0;
-  cursor: pointer;
-  text-align: center;
-  background-color: #5181b8;
-  border: 0;
-  border-radius: 4px;
-  color: #fff;
+    padding: 7px 16px 8px;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+    background-color: black;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
 
-  &:hover {
-    opacity: 0.88;
-  }
+    &:hover {
+        opacity: 0.88;
+    }
 
-  &:active {
-    background-color: #4a76a8;
-    padding-top: 8px;
-    padding-bottom: 7px;
-  }
+    &:active {
+        background-color: #262525;
+        padding-top: 8px;
+        padding-bottom: 7px;
+    }
 
-  &:disabled {
-    opacity: 0.5;
-  }
+    &:disabled {
+        opacity: 0.5;
+    }
 `
 
 const Error = styled(ErrorMessage)`

@@ -24,9 +24,9 @@ const ContactsWrapper = styled.ul`
     margin-bottom: 10px;
     a {
       margin-left: 10px;
-      color: var(--main-color);
+      color: var(--main-ContactColor);
       :hover {
-        color: var(--main-hover);
+        color: var(--main-ContactHover);
       }
     }
     @media (max-width: 550px){

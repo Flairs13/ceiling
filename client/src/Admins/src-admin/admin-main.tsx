@@ -22,11 +22,9 @@ import EcoIcon from '@material-ui/icons/Eco';
 import PowerIcon from '@material-ui/icons/Power';
 import ItemContainer from "./item/item-container";
 import AttachFileIcon from '@material-ui/icons/AttachFile';
-import CategoryIcon from '@material-ui/icons/Category';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import BuildIcon from '@material-ui/icons/Build';
 import DockIcon from '@material-ui/icons/Dock'
-import StarIcon from '@material-ui/icons/Star';
 import Cloth from './item/cloth';
 
 const drawerWidth = 240;
@@ -100,17 +98,22 @@ export default function AdminMain() {
 
     const arr = [
         {name: 'Профили', route: 'profile', icon: <GavelIcon/>},
-        {name: 'Вставки', route: 'tape', icon: <PanToolIcon/>},
+        {name: 'Kraab-systems', route: 'profile-kraab', icon: <GavelIcon/>},
+        {name: 'Flexy', route: 'profile-flexy', icon: <GavelIcon/>},
         {name: 'Комплектующие', route: 'accessories', icon: <AttachFileIcon/>},
-        {name: 'Светильники', route: 'light', icon: <PowerIcon/>},
     ]
 
     const arr2 = [
-        {name: 'Конструкции', route: 'constructions', icon: <CategoryIcon/>,},
-        {name: 'Ленты и пульты', route: 'led', icon: <DockIcon/>,},
-        {name: 'Расходники', route: 'consumables', icon: <BusinessCenterIcon/>,},
-        {name: 'Инструменты', route: 'tools', icon: <BuildIcon/>,},
-        {name: 'Дополнительное', route: 'additional', icon: <StarIcon/>,},
+        {name: 'Светодиодная лента', route: 'led', icon: <DockIcon/>,},
+        {name: 'Освещение', route: 'light', icon: <PowerIcon/>},
+        {name: 'Вставки', route: 'tape', icon: <PanToolIcon/>},
+        {name: 'Расходный материал', route: 'consumables', icon: <BusinessCenterIcon/>,},
+        {name: 'Инструмент', route: 'tools', icon: <BuildIcon/>,},
+
+
+        // {name: 'Конструкции', route: 'constructions', icon: <CategoryIcon/>,},
+        // {name: 'Дополнительное', route: 'additional', icon: <StarIcon/>,},
+
     ]
 
 

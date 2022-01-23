@@ -28,8 +28,10 @@ time, mark, audio, video {
 }
 
 :root {
-  --main-color: #0088CC;
-  --main-hover: #00a5e6;
+  --main-ContactColor: #0088CC;
+  --main-ContactHover: #00a5e6;
+  --main-color: rgba(0,0,0,1);
+  --main-hover: rgba(0,0,0,0.5);
   --main-border: rgba(0,0,0,0.06);
   --nav: #f7f7f7;
   --second: #999;

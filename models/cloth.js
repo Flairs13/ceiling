@@ -1,6 +1,12 @@
 const {Schema, model} = require('mongoose')
 
+const schema2 = new Schema({
+    facture: Object,
+    cloth: Object,
+    additional: Object,
 
+
+})
 const schema = new Schema({
     additional: {
         angle: {
@@ -139,5 +145,5 @@ const schema = new Schema({
     },
 })
 
-module.exports = model('cloth', schema)
+module.exports = model('cloth', schema2)
 

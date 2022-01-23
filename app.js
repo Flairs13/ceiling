@@ -8,11 +8,11 @@ const path = require ('path')
 const profileRoutes = require ("./routes/profile")
 const accessoriesRoutes = require ('./routes/accessories')
 const lightRouter = require ('./routes/light')
-const constructionsRouter = require ('./routes/constructions')
+const profileKraabRouter = require ('./routes/profile-kraab')
 const ledRouter = require ('./routes/led')
 const consumablesRouter = require ('./routes/consumables')
 const toolsRouter = require ('./routes/tools')
-const additionalRouter = require ('./routes/additional')
+const profileFlexyRouter = require ('./routes/profile-flexy')
 const mailRouter = require ('./routes/mail')
 const clothRouter = require ('./routes/cloth')
 const mainRouter = require ('./routes/main')
@@ -32,11 +32,11 @@ app.use (
     profileRoutes,
     accessoriesRoutes,
     lightRouter,
-    constructionsRouter,
+    profileKraabRouter,
     ledRouter,
     consumablesRouter,
     toolsRouter,
-    additionalRouter,
+    profileFlexyRouter,
     clothRouter,
     mailRouter,
     mainRouter,

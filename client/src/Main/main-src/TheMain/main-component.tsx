@@ -65,12 +65,15 @@ const ListWrapper = styled.ul`
     flex-direction: column;
     margin-bottom: 0;
     padding: 20px;
+    align-items: center;
     
-    div {
+    &.div:first-child {
       max-width: 250px;
+      max-height: 250px;
       margin-bottom: 10px;
       @media (max-width: 860px){
-        max-width: 100%;
+        max-width: 160px;
+        max-height: 160px;
       }
       img {
         width: 100%;

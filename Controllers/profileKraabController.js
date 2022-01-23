@@ -1,28 +1,34 @@
-const Constructions = require('../models/constructions')
+const ProfileKraab = require('../models/profile-kraab')
 
 
-module.exports.getConstructions = (req, res) => {
-    Constructions.find({})
+module.exports.getProfileKraab  = (req, res) => {
+    ProfileKraab.find({})
         .then(profile => res.send(profile))
         .catch(error => res.send(error))
 }
 
 
-module.exports.newConstructions = (req, res) => {
-    Constructions.findOne({}, () => {
+module.exports.newProfileKraab  = (req, res) => {
+    ProfileKraab.findOne({}, () => {
         const host = req.host;
         const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
-        const newConstructions = new Constructions({
+        const newProfileKraab = new ProfileKraab({
             name: req.body.name,
+            material: req.body.material,
             type: req.body.type,
+            size: req.body.size,
+            priceOneUnit: req.body.priceOneUnit,
             priceOneMetre: req.body.priceOneMetre,
+            technology: req.body.technology,
+            perf: req.body.perf,
+            weight: req.body.weight,
             index: req.body.index,
-            image: filePath,
+            image: filePath
         })
 
-        newConstructions.save((err, data) => {
+        newProfileKraab.save((err, data) => {
             if (err) return res.json({Error: err});
             console.log(data)
             return res.json(data);
@@ -30,7 +36,7 @@ module.exports.newConstructions = (req, res) => {
     })
 };
 
-module.exports.constructionsUpdate = (req, res) => {
+module.exports.profileKraabUpdate = (req, res) => {
 
     const updates = {};
 
@@ -44,7 +50,7 @@ module.exports.constructionsUpdate = (req, res) => {
         updates.image = filePath;
     }
 
-    Constructions.findByIdAndUpdate(req.body._id, {$set: updates})
+    ProfileKraab.findByIdAndUpdate(req.body._id, {$set: updates})
         .then(post => {
             res.send(post)
         })
@@ -54,18 +60,18 @@ module.exports.constructionsUpdate = (req, res) => {
 
 };
 
-module.exports.constructionsUpdatePosition = (req, res) => {
+module.exports.profileKraabUpdatePosition = (req, res) => {
     for (const bodyElement of req.body) {
-        Constructions.findByIdAndUpdate(bodyElement._id, {$set: {index: bodyElement.index}}, () => {
+        ProfileKraab.findByIdAndUpdate(bodyElement._id, {$set: {index: bodyElement.index}}, () => {
         })
     }
     res.send('success')
 };
 
-module.exports.constructionsDelete = (req, res) => {
+module.exports.profileKraabDelete = (req, res) => {
     const _id = req.params.id.slice(1)
     console.log(JSON.stringify(_id))
-    Constructions.findByIdAndRemove(_id, {}, function (err, docs) {
+    ProfileKraab.findByIdAndRemove(_id, {}, function (err, docs) {
         if (err) {
             console.log(err)
         } else {

@@ -65,6 +65,9 @@ const Price = styled.div`
       @media (max-width: 800px){
         margin-bottom: 0;
       }
+        @media (max-width: 500px){
+            font-size: 20px;
+        }
     }
     span {
       font-size: 18px;
@@ -81,4 +84,7 @@ const Title = styled.h2`
   @media (max-width: 800px){
     margin-bottom: 15px;
   }
+    @media (max-width: 500px){
+        font-size: 17px;
+    }
 `

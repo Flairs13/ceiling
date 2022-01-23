@@ -30,18 +30,17 @@ const HeaderNav: React.FC = () => {
         }
     }
 
-
     const arrNav = [
         {name: 'Полотна', route: '/cloth'},
         {name: 'Профили', route: '/profile'},
-        {name: 'Вставки', route: '/tape'},
+        {name: 'Kraab-systems', route: '/profile-kraab'},
+        {name: 'Flexy', route: '/profile-flexy'},
         {name: 'Комплектующие', route: '/accessories'},
-        {name: 'Светильники', route: '/light'},
-        {name: 'Конструкции', route: '/constructions'},
-        {name: 'Ленты и пульты', route: '/led'},
-        {name: 'Расходники', route: '/consumables'},
-        {name: 'Инструменты', route: '/tools'},
-        {name: 'Дополнительное', route: '/additional'},
+        {name: 'Светодиодная лента', route: '/led'},
+        {name: 'Освещение', route: '/light'},
+        {name: 'Вставки', route: '/tape'},
+        {name: 'Расходный материал', route: '/consumables'},
+        {name: 'Инструмент', route: '/tools'},
     ]
 
 

@@ -14,7 +14,7 @@ export const UPDATE_TABLE = 'item-reducer/UPDATE_TABLE'
 
 const initialState  = {
     items: [] as Array<ItemList>,
-    routes: ['cloth','profile','tape','accessories','light','constructions','led','consumables','tools','additional'],
+    routes: ['cloth','profile','tape','accessories','light','profile-kraab','led','consumables','tools','profile-flexy'],
     collection: {
         profile:  [{name:'Наименование'},
             {material: 'Материал'},
@@ -45,10 +45,14 @@ const initialState  = {
             {priceOneUnit: 'Цена за шт'},
 
         ] as Array<object>,
-        constructions: [
-            {name:'Наименование'},
-            {type: 'Тип'},
+        ['profile-kraab']:  [{name:'Наименование'},
+            {material: 'Материал'},
+            {type: 'Тип'}, {size: 'Размер'},
+            {technology: 'Технология'},
+            {perf: 'Вид'},
+            {weight: 'Вес'},
             {priceOneMetre: 'Цена за метр'},
+            {priceOneUnit: 'Цена за шт'},
         ] as Array<object>,
 
         led: [
@@ -79,15 +83,14 @@ const initialState  = {
             {priceOneUnit: 'Цена за шт'},
         ] as Array<object>,
 
-        additional: [
-            {name:'Наименование'},
-            {type: 'Тип'},
-            {manufacturer:'Производитель'},
-            {color: 'Цвет'},
-            {size: 'Размер'},
+        ['profile-flexy']:  [{name:'Наименование'},
+            {material: 'Материал'},
+            {type: 'Тип'}, {size: 'Размер'},
+            {technology: 'Технология'},
+            {perf: 'Вид'},
+            {weight: 'Вес'},
             {priceOneMetre: 'Цена за метр'},
             {priceOneUnit: 'Цена за шт'},
-            {priceOnePack: 'Цена за упаковку'},
         ] as Array<object>,
     },
     status: '',

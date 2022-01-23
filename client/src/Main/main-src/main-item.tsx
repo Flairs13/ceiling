@@ -14,52 +14,51 @@ import {descriptionRender} from "../../Common/descriptionSchema";
 import DescriptionItem from '../../Admins/src-admin/item/item-description/DescriptionItem'
 
 type Props = {
-    image: string
-    priceOnePack: number
-    thickness: string
-    size: string
-    material: string
-    priceOneUnit: number
-    priceOneMetre: number
-    technology: string
-    manufacturer: string
-    numberLed: number
-    weight: string
-    perf: string
-    plinth: string,
-    color: string,
-    power: string,
-    type: string
-    name: string
-    _id: string
-    route: string
+  image: string
+  priceOnePack: number
+  thickness: string
+  size: string
+  material: string
+  priceOneUnit: number
+  priceOneMetre: number
+  technology: string
+  manufacturer: string
+  numberLed: number
+  weight: string
+  perf: string
+  plinth: string,
+  color: string,
+  power: string,
+  type: string
+  name: string
+  _id: string
+  route: string
 }
 
 const MainItem: React.FC<Props> = (props) => {
 
 
-    const history = useHistory()
-    const test = () => {
-        if (history.location.pathname === '/'){
-            history.push( '/' + props.route + '/' + props._id)
-        } else {
-            history.push( history.location.pathname + '/' + props._id)
-        }
-
+  const history = useHistory()
+  const test = () => {
+    if (history.location.pathname === '/') {
+      history.push('/' + props.route + '/' + props._id)
+    } else {
+      history.push(history.location.pathname + '/' + props._id)
     }
 
+  }
 
 
-    return (
-        <ItemWrapper>
-            <ImgWrapper onClick={test}>
-                <img src={props.image} alt="#"/>
-            </ImgWrapper>
-            <DescriptionWrapper>
-                <DescriptionItem {...props}/>
-            </DescriptionWrapper>
-        </ItemWrapper>
-    )
+  return (
+    <ItemWrapper>
+      <ImgWrapper onClick={test}>
+        <img src={props.image} alt="#"/>
+      </ImgWrapper>
+      <DescriptionWrapper>
+        <DescriptionItem {...props}/>
+      </DescriptionWrapper>
+    </ItemWrapper>
+  )
 }
 
 export default MainItem
@@ -67,11 +66,11 @@ export default MainItem
 
 const ItemWrapper = styled.li`
   display: flex;
-  box-shadow: 0 1px 0 0 #d3d9de,0 0 0 1px #e7e8ec;
+  box-shadow: 0 1px 0 0 #d3d9de, 0 0 0 1px #e7e8ec;
   border-radius: 5px;
   padding: 20px;
   margin-bottom: 10px;
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     flex-direction: column;
     align-items: center;
   }
@@ -81,12 +80,19 @@ const ImgWrapper = styled.div`
   :hover {
     opacity: 0.7;
   }
+
   img {
-    width: 160px;
-    height: 160px;
+    width: 250px;
+    height: 250px;
+    @media (max-width: 500px) {
+      width: 180px;
+      height: 180px;
+    }
   }
 
-  @media (max-width: 800px){
+  margin-bottom: 10px;
+
+  @media (max-width: 800px) {
     margin-bottom: 10px;
   }
 `
@@ -96,16 +102,20 @@ const DescriptionWrapper = styled.div`
   margin-left: 15px;
   width: 100%;
 
-  @media (max-width: 800px){
+  @media (max-width: 800px) {
     margin-left: 0;
     font-size: 15px;
   }
-  
+  @media (max-width: 500px) {
+    margin-left: 0;
+    font-size: 12px !important;
+  }
+
   div {
-    @media (max-width: 800px){
+    @media (max-width: 800px) {
       flex-direction: column;
     }
   }
-  
+
 `
 

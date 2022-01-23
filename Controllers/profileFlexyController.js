@@ -1,35 +1,36 @@
-const Additional = require('../models/additional')
+const ProfileFlexy = require('../models/profile-flexy')
 
 
-module.exports.getAdditional = (req, res) => {
-    Additional.find({})
+module.exports.getProfileFlexy = (req, res) => {
+    ProfileFlexy.find({})
         .then(profile => res.send(profile))
         .catch(error => res.send(error))
 }
 
 
-module.exports.newAdditional = (req, res) => {
+module.exports.newProfileFlexy = (req, res) => {
 
-    Additional.findOne({}, () => {
+    ProfileFlexy.findOne({}, () => {
         const host = req.host;
         const filePath = req.protocol + "://" + host + '/' + req.file.path;
 
 
-        const newAdditional = new Additional({
+        const newProfileFlexy = new ProfileFlexy({
             name: req.body.name,
+            material: req.body.material,
             type: req.body.type,
-            manufacturer: req.body.manufacturer,
             size: req.body.size,
             priceOneUnit: req.body.priceOneUnit,
-            color: req.body.color,
             priceOneMetre: req.body.priceOneMetre,
-            priceOnePack: req.body.priceOnePack,
+            technology: req.body.technology,
+            perf: req.body.perf,
+            weight: req.body.weight,
             index: req.body.index,
-            image: filePath,
+            image: filePath
         })
 
 
-        newAdditional.save((err, data) => {
+        newProfileFlexy.save((err, data) => {
             if (err) return res.json({Error: err});
             console.log(data)
             return res.json(data);
@@ -37,7 +38,7 @@ module.exports.newAdditional = (req, res) => {
     })
 };
 
-module.exports.additionalUpdate = (req, res) => {
+module.exports.profileFlexyUpdate = (req, res) => {
 
     const updates = {};
 
@@ -50,7 +51,7 @@ module.exports.additionalUpdate = (req, res) => {
         updates.image = filePath;
     }
 
-    Additional.findByIdAndUpdate(req.body._id, {$set: updates})
+    ProfileFlexy.findByIdAndUpdate(req.body._id, {$set: updates})
         .then(post => {
             res.send(post)
         })
@@ -60,19 +61,19 @@ module.exports.additionalUpdate = (req, res) => {
 
 };
 
-module.exports.accessoriesUpdatePosition = (req, res) => {
+module.exports.profileFlexyUpdatePosition = (req, res) => {
     for (const bodyElement of req.body) {
-        Additional.findByIdAndUpdate(bodyElement._id, {$set: {index: bodyElement.index}}, () => {
+        ProfileFlexy.findByIdAndUpdate(bodyElement._id, {$set: {index: bodyElement.index}}, () => {
         })
     }
     res.send('success')
 };
 
 
-module.exports.additionalDelete = (req, res) => {
+module.exports.profileFlexyDelete = (req, res) => {
     const _id = req.params.id.slice(1)
     console.log(JSON.stringify(_id))
-    Additional.findByIdAndRemove(_id, {}, function (err, docs) {
+    ProfileFlexy.findByIdAndRemove(_id, {}, function (err, docs) {
         if (err) {
             console.log(err)
         } else {
