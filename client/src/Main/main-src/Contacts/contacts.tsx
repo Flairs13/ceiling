@@ -37,7 +37,7 @@ const Contacts = () => {
                     <SvgWrapper>
                       <Instagram/>
                     </SvgWrapper>
-                    <p>+7(985)993-44-60</p>
+                    <p>potolok_msk_diler</p>
                   </a>
                 </li>
                 <li>
@@ -45,7 +45,7 @@ const Contacts = () => {
                     <SvgWrapper>
                       <Telegram/>
                     </SvgWrapper>
-                    <p>+7(985)993-44-60</p>
+                    <p>+7(985)993-44-60 potolok_msk_diler</p>
                   </a>
                 </li>
                 <li>
