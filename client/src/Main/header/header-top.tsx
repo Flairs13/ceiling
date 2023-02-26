@@ -6,6 +6,7 @@ import {ReactComponent as Mail} from '../../assets/images/mail.svg'
 
 import {Container} from '../../Common/CSS/src';
 import {NavLink} from 'react-router-dom';
+import {contactsGlobal} from "../../index";
 
 const HeaderTop = () => {
     return (
@@ -17,19 +18,19 @@ const HeaderTop = () => {
                             <SvgWrapper>
                                 <CallIcon/>
                             </SvgWrapper>
-                            <PhoneLink href="tel:+7(985)993-44-60">+7(985)993-44-60</PhoneLink>
+                            <PhoneLink href={contactsGlobal.phoneSrc}>{contactsGlobal.phone}</PhoneLink>
                         </ItemLeft>
                         <ItemLeft>
                             <SvgWrapper>
                                 <WhatsappIcon/>
                             </SvgWrapper>
-                            <a href="https://wa.me/79859934460" target='_blank'>Консультация в WhatsApp</a>
+                            <a href={contactsGlobal.phoneWhatsSrc} target='_blank'>Консультация в WhatsApp</a>
                         </ItemLeft>
                         <ItemLeft>
                             <SvgWrapper>
                                 <MailIcon/>
                             </SvgWrapper>
-                            <a href="mailto:potolokmsk@list.ru">potolokmsk@list.ru</a>
+                            <a href={contactsGlobal.mailTo}>{contactsGlobal.mail}</a>
                         </ItemLeft>
                     </HeaderLeft>
                     <HeaderRight>

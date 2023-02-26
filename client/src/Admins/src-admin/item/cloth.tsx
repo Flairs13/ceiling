@@ -229,19 +229,19 @@ const Cloth: React.FC = () => {
 
 
   const initialValue1 = {
-    facture: getFields(20,{
+    facture: getFields(55,{
       label: '',
       color: '',
       width: 0,
       price: 0,
     }),
-    cloth: getFields(10,{
+    cloth: getFields(25,{
       label: '',
       color: '',
       width: 0,
       price: 0,
     }),
-    additional: getFields(15,{
+    additional: getFields(20,{
       label: '',
       price: 0,
     }),

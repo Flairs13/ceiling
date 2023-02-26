@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Logo from '../../assets/images/logo2.png'
+import Logo from '../../assets/images/newLogo2023.png'
 import { Container } from '../../Common/CSS/src'
 
 import {NavLink} from "react-router-dom";
+import { contactsGlobal } from "../../index";
 
 const HeaderMiddle: React.FC = () => {
   return (
@@ -17,13 +18,13 @@ const HeaderMiddle: React.FC = () => {
             <Item>
               <label>Отправьте спецификацию:</label>
               <strong>
-                <a href="mailto:potolokmsk@list.ru">potolokmsk@list.ru</a>
+                <a href={contactsGlobal.mailTo}>{contactsGlobal.mail}</a>
               </strong>
             </Item>
             <Item>
               <label>Консультации:</label>
               <strong>
-                <a href="tel:+7(985)993-44-60">+7(985)993-44-60</a>
+                <a href={contactsGlobal.phoneSrc}>{contactsGlobal.phone}</a>
               </strong>
             </Item>
           </HeaderLinks>

@@ -47,7 +47,7 @@ module.exports.getRandomItems = async (req, res) => {
         const randomIndex = getRandomInt(items.length)
         let obj = items[randomIndex]
         const objRoute = {...obj._doc}
-        objRoute.route = 'constructions'
+        objRoute.route = 'profile-flexy'
         arr.push(objRoute)
     })
     await Led.find({}).then(items => {

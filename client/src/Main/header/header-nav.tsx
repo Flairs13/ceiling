@@ -8,7 +8,8 @@ import {ReactComponent as Down} from '../../assets/images/down-chevron.svg'
 import {ReactComponent as Up} from '../../assets/images/up-chevron.svg'
 import {ReactComponent as Call} from "../../assets/images/call.svg";
 import {ReactComponent as Whatsapp} from '../../assets/images/whatsapp.svg'
-import Logo from "../../assets/images/logo2.png";
+import Logo from "../../assets/images/newLogo2023.png";
+import {contactsGlobal} from "../../index";
 
 
 const HeaderNav: React.FC = () => {
@@ -96,13 +97,13 @@ const HeaderNav: React.FC = () => {
                                 <SvgWrapper>
                                     <CallIcon/>
                                 </SvgWrapper>
-                                <PhoneLink href="tel:+7(985)993-44-60">+7(985)993-44-60</PhoneLink>
+                                <PhoneLink href={contactsGlobal.phoneSrc}>{contactsGlobal.phone}</PhoneLink>
                             </li>
                             <li>
                                 <SvgWrapper>
                                     <WhatsappIcon/>
                                 </SvgWrapper>
-                                <PhoneLink href="https://wa.me/79859934460" target='_blank'>Консультация в WhatsApp</PhoneLink>
+                                <PhoneLink href={contactsGlobal.phoneWhatsSrc} target='_blank'>Консультация в WhatsApp</PhoneLink>
                             </li>
                         </Contacts>}
                     </NavList>

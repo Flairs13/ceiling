@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components/macro";
 import {Phone, Mail, Instagram, Telegram, WhatsApp, AccessTime} from "@material-ui/icons";
 import {SectionWrapper, Title } from '../../../Common/CSS/src';
+import {contactsGlobal} from "../../../index";
 
 const Contacts = () => {
     return (
@@ -9,31 +10,31 @@ const Contacts = () => {
             <Title>Контактная информация:</Title>
             <ContactsWrapper>
                 <li>
-                  <a href="tel:+7(985)993-44-60">
+                  <a href={contactsGlobal.phoneSrc}>
                     <SvgWrapper>
                       <Phone/>
                     </SvgWrapper>
-                    <p>+7(985)993-44-60</p>
+                    <p>{contactsGlobal.phone}</p>
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:potolokmsk@list.ru">
+                  <a href={contactsGlobal.mailTo}>
                     <SvgWrapper>
                       <Mail/>
                     </SvgWrapper>
-                  <p>potolokmsk@list.ru</p>
+                  <p>{contactsGlobal.mail}</p>
                 </a>
                 </li>
                 <li>
-                  <a href="https://wa.me/79859934460" target='_blank'>
+                  <a href={contactsGlobal.phoneWhatsSrc} target='_blank'>
                     <SvgWrapper>
                       <WhatsApp/>
                     </SvgWrapper>
-                    <p>+7(985)993-44-60</p>
+                    <p>{contactsGlobal.phone}</p>
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com/potolok_msk_diler" target='_blank'>
+                  <a href={contactsGlobal.instagram} target='_blank'>
                     <SvgWrapper>
                       <Instagram/>
                     </SvgWrapper>
@@ -41,11 +42,11 @@ const Contacts = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="tg://resolve?domain=potolok_msk_diler" target='_blank'>
+                  <a href={contactsGlobal.tg} target='_blank'>
                     <SvgWrapper>
                       <Telegram/>
                     </SvgWrapper>
-                    <p>+7(985)993-44-60 potolok_msk_diler</p>
+                    <p>{contactsGlobal.phone} potolok_msk_diler</p>
                   </a>
                 </li>
                 <li>

@@ -119,4 +119,4 @@ export type Additional = {
 
 
 export type ItemList = Profile | Tape | Accessories | Light | Constructions | Led | Consumables | Tools | Additional
-export type Routes = 'profile' | 'tape' | 'accessories' | 'light' | 'constructions' | 'led' | 'consumables' | 'tools' | 'additional'
+export type Routes = 'profile' | 'tape' | 'accessories' | 'light' | 'proxi' | 'led' | 'consumables' | 'tools' | 'additional'

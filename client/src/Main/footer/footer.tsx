@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components/macro";
 import {Container} from '../../Common/CSS/src';
 import {NavLink} from "react-router-dom";
+import {contactsGlobal} from "../../index";
 
 
 const Footer: React.FC = () => {
@@ -15,7 +16,7 @@ const Footer: React.FC = () => {
                     <CompanyName>© {year} Фабрика натяжных потолков Price and Quality</CompanyName>
                     <OperatingMode>
                         <p>Режим работы: с 07:00 до 20:00 ежедневно</p>
-                        <a style={{color: 'white', marginTop: '10px', display: 'block'}} href="tel:+7(985)993-44-60">Телефон: +7(985)993-44-60</a>
+                        <a style={{color: 'white', marginTop: '10px', display: 'block'}} href={contactsGlobal.phoneSrc}>Телефон: {contactsGlobal.phone}</a>
                     </OperatingMode>
                     <NavList>
                         <NavItem>
